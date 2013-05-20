@@ -46,9 +46,9 @@ class DHtmlxComponent extends \yii\base\Widget
 	public function init()
 	{
 		// Register the dhtmlx path alias.
-		if (Yii::getPathOfAlias('dhtmlx') === false)
+		if (Yii::getPathOfAlias('@dhtmlx') === false)
 		{
-			Yii::setPathOfAlias('dhtmlx', realpath(dirname(__FILE__) . '/..'));
+			Yii::setPathOfAlias('@dhtmlx', __DIR__.'/..'));
 		}
 
 		// Prevents the extension from registering scripts and publishing assets when ran from the command line.
@@ -73,7 +73,7 @@ class DHtmlxComponent extends \yii\base\Widget
         }
         //not published yet, so publish the files that are within the "assets" folder to the app's assets folder
         //and return the path
-        return $this->assetPath = Yii::$app->assetManager->publish(dirname(__FILE__).DIRECTORY_SEPARATOR.'assets');
+        return $this->assetPath = Yii::$app->assetManager->publish(__DIR__.DIRECTORY_SEPARATOR.'assets');
     }
 
     /**
@@ -103,7 +103,7 @@ class DHtmlxComponent extends \yii\base\Widget
      */
     protected function registerCss()
     {
-        $cs = Yii::$app->getClientScript();
+        $cs = Yii::$app->AssetManager();
         //Include base files
         foreach($this->css as $css)
         {
