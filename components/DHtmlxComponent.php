@@ -4,9 +4,16 @@
  * widgets and thus have to be imported before any widget gets rendered.
  * @copyright Frenzel GmbH - www.frenzel.net
  * 
- * @author Johannes "Haensel" Bauer <johannes@codecrumbs.at>
+ * @author Philipp Frenzel <philipp@frenzel.net>
  */
-class DHtmlxComponent extends CApplicationComponent
+
+namespace yiiext\dhtmlx;
+
+use Yii;
+use yii\base\View;
+use yii\web\AssetManager;
+
+class DHtmlxComponent extends \yii\base\Widget
 {
 	/**
      * All scripts that are common for all widgets.
@@ -16,7 +23,7 @@ class DHtmlxComponent extends CApplicationComponent
      * @var array
      */
     protected $scripts = array(
-        'codebase/dhtmlxcommon.js',
+        '../assets/dhtmlxcommon.js',
     );
     /**
      * All css files that should be loaded.
@@ -45,10 +52,11 @@ class DHtmlxComponent extends CApplicationComponent
 		}
 
 		// Prevents the extension from registering scripts and publishing assets when ran from the command line.
-		if (Yii::app() instanceof CConsoleApplication)
+		if (Yii::$app instanceof \yii\console)
 			return;
 
 		$this->publishAssets();
+
 		parent::init();
 	}
 
@@ -65,7 +73,7 @@ class DHtmlxComponent extends CApplicationComponent
         }
         //not published yet, so publish the files that are within the "assets" folder to the app's assets folder
         //and return the path
-        return $this->assetPath = Yii::app()->assetManager->publish(dirname(__FILE__).DIRECTORY_SEPARATOR.'assets');
+        return $this->assetPath = Yii::$app->assetManager->publish(dirname(__FILE__).DIRECTORY_SEPARATOR.'assets');
     }
 
     /**
@@ -82,7 +90,7 @@ class DHtmlxComponent extends CApplicationComponent
 	 */
 	protected function registerScripts()
     {
-        $cs = Yii::app()->getClientScript();
+        $cs = Yii::$app->getClientScript();
         //Include base files
         foreach($this->scripts as $script)
         {
@@ -95,7 +103,7 @@ class DHtmlxComponent extends CApplicationComponent
      */
     protected function registerCss()
     {
-        $cs = Yii::app()->getClientScript();
+        $cs = Yii::$app->getClientScript();
         //Include base files
         foreach($this->css as $css)
         {
