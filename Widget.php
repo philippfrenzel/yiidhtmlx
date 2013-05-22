@@ -8,7 +8,7 @@
  * @author Philipp Frenzel <philipp@frenzel.net>
  */
 
-namespace yiiext\dhmlx;
+namespace yiiext\dhtmlx;
 
 use Yii;
 use yii\base\View;
