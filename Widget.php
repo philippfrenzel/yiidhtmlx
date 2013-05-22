@@ -14,42 +14,35 @@ use Yii;
 use yii\base\View;
 use yii\helpers\Json;
 
-
-/**
- * \yiiext\dhtmlx\Widget is the base class for all dhtmlx widgets.
- *
- * @author Philipp Frenzel <philipp@frenzel.net>
- */
 class Widget extends \yii\base\Widget
 {
 	/**
-	 * @var boolean whether to use the transition effects.
+	 * @var string the dhtmlx theme bundle.
 	 */
-	public static $transition = true;
+	public static $theme = 'yiiext/dhtmlx/theme/web';
 	/**
 	 * @var array the HTML attributes for the widget container tag.
 	 */
 	public $options = array();
 	/**
-	 * @var array the options for the underlying Bootstrap JS plugin.
-	 * Please refer to the corresponding Bootstrap plugin Web page for possible options.
-	 * For example, [this page](http://twitter.github.io/bootstrap/javascript.html#modals) shows
-	 * how to use the "Modal" plugin and the supported options (e.g. "remote").
+	 * @var array the options for the underlying jQuery UI widget.
+	 * Please refer to the corresponding jQuery UI widget Web page for possible options.
+	 * For example, [this page](http://api.jqueryui.com/accordion/) shows
+	 * how to use the "Accordion" widget and the supported options (e.g. "header").
 	 */
-	public $pluginOptions = array();
+	public $clientOptions = array();
 	/**
-	 * @var array the event handlers for the underlying Bootstrap JS plugin.
-	 * Please refer to the corresponding Bootstrap plugin Web page for possible events.
-	 * For example, [this page](http://twitter.github.io/bootstrap/javascript.html#modals) shows
-	 * how to use the "Modal" plugin and the supported events (e.g. "shown").
+	 * @var array the event handlers for the underlying jQuery UI widget.
+	 * Please refer to the corresponding jQuery UI widget Web page for possible events.
+	 * For example, [this page](http://api.jqueryui.com/accordion/) shows
+	 * how to use the "Accordion" widget and the supported events (e.g. "create").
 	 */
-	public $pluginEvents = array();
+	public $clientEvents = array();
 
 
 	/**
 	 * Initializes the widget.
-	 * This method will register the bootstrap asset bundle. If you override this method,
-	 * make sure you call the parent implementation first.
+	 * If you override this method, make sure you call the parent implementation first.
 	 */
 	public function init()
 	{
@@ -60,43 +53,29 @@ class Widget extends \yii\base\Widget
 	}
 
 	/**
-	 * Registers a specific Bootstrap plugin and the related events
-	 * @param string $name the name of the Bootstrap plugin
+	 * Registers a specific jQuery UI widget and the related events
+	 * @param string $name the name of the jQuery UI widget
 	 */
-	protected function registerPlugin($name)
+	protected function registerWidget($name)
 	{
 		$id = $this->options['id'];
 		$view = $this->getView();
-		$view->registerAssetBundle('yiiext/dhtmlx');
+		$view->registerAssetBundle("yii/jui/$name");
+		$view->registerAssetBundle(static::$theme . "/$name");
 
-		if ($this->pluginOptions !== false) {
-			$options = empty($this->pluginOptions) ? '' : Json::encode($this->pluginOptions);
+		if ($this->clientOptions !== false) {
+			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
 			$js = "jQuery('#$id').$name($options);";
 			$view->registerJs($js);
 		}
 
-		if (!empty($this->pluginEvents)) {
+		if (!empty($this->clientEvents)) {
 			$js = array();
-			foreach ($this->pluginEvents as $event => $handler) {
-				$js[] = "jQuery('#$id').on('$event', $handler);";
+			foreach ($this->clientEvents as $event => $handler) {
+				$js[] = "jQuery('#$id').on('$name$event', $handler);";
 			}
 			$view->registerJs(implode("\n", $js));
 		}
 	}
-
-	/**
-	 * Adds a CSS class to the specified options.
-	 * This method will ensure that the CSS class is unique and the "class" option is properly formatted.
-	 * @param array $options the options to be modified.
-	 * @param string $class the CSS class to be added
-	 */
-	protected function addCssClass(&$options, $class)
-	{
-		if (isset($options['class'])) {
-			$classes = preg_split('/\s+/', $options['class'] . ' ' . $class, -1, PREG_SPLIT_NO_EMPTY);
-			$options['class'] = implode(' ', array_unique($classes));
-		} else {
-			$options['class'] = $class;
-		}
-	}
 }
+
