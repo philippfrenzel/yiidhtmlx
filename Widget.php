@@ -19,7 +19,7 @@ class Widget extends \yii\base\Widget
 	/**
 	 * @var string the dhtmlx theme bundle.
 	 */
-	public static $theme = 'yiiext/dhtmlx/theme/web';
+	//public static $theme = 'yiiext/dhtmlx/theme/dhx_web';
 	/**
 	 * @var array the HTML attributes for the widget container tag.
 	 */
@@ -60,8 +60,8 @@ class Widget extends \yii\base\Widget
 	{
 		$id = $this->options['id'];
 		$view = $this->getView();
-		$view->registerAssetBundle("yii/jui/$name");
-		$view->registerAssetBundle(static::$theme . "/$name");
+		$view->registerAssetBundle("yii/dhtmlx/$name");
+		//$view->registerAssetBundle(static::$theme . "/$name");
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
