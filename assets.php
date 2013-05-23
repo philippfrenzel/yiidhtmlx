@@ -5,6 +5,7 @@ return array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxcommon.js',
+			'js/dhtmlxcontainer.js',
 		),
 	),
 	'yii/dhtmlx/chart' => array(
@@ -13,7 +14,7 @@ return array(
 			'js/dhtmlxchart.js',
 		),
 		'css'=>array(
-			'css/dhtmlxchart.css'
+			'css/dhtmlxchart.css',
 		),
 		'depends' => array('yiiext/dhtmlx'),
 	),
@@ -24,6 +25,16 @@ return array(
 		),
 		'css'=>array(
 			'css/dhtmlxmessage_dhx_web.css'
+		),
+		'depends' => array('yiiext/dhtmlx'),
+	),
+	'yii/dhtmlx/accordion' => array(
+		'sourcePath' => __DIR__ . '/assets',
+		'js' => array(
+			'js/dhtmlxaccordion.js',
+		),
+		'css'=>array(
+			'css/dhtmlxaccordion_dhx_web.css',
 		),
 		'depends' => array('yiiext/dhtmlx'),
 	),
