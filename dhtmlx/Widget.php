@@ -8,7 +8,7 @@
  * @author Philipp Frenzel <philipp@frenzel.net>
  */
 
-namespace dhtmlx;
+namespace yiiext\yiidhtmlx\dhtmlx;
 
 use Yii;
 use yii\base\View;
@@ -60,7 +60,7 @@ class Widget extends yii\base\Widget
 	{
 		$id = $this->options['id'];
 		$view = $this->getView();
-		$view->registerAssetBundle("yii/dhtmlx/$name");
+		$view->registerAssetBundle("yiiext/yiidhtmlx/$name");
 		//$view->registerAssetBundle(static::$theme . "/$name");
 
 		if ($this->clientOptions !== false) {
