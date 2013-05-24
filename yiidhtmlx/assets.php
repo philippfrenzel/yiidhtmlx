@@ -27,4 +27,14 @@ return array(
 		),
 		'depends' => array('yiidhtmlx'),
 	),
+	'yiidhtmlx/accordion' => array(
+		'sourcePath' => __DIR__ . '/assets',
+		'js' => array(
+			'js/dhtmlxaccordion.js',
+		),
+		'css'=>array(
+			'css/dhtmlxaccordion_dhx_web.css'
+		),
+		'depends' => array('yiidhtmlx'),
+	)
 );
