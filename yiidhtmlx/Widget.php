@@ -60,19 +60,18 @@ class Widget extends yii\base\Widget
 	{
 		$id = $this->options['id'];
 		$view = $this->getView();
-		//$view->registerAssetBundle(static::$responsive ? 'yii/bootstrap/responsive' : 'yii/bootstrap');
 		$view->registerAssetBundle("yiidhtmlx/$name");
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
-			$js = "jQuery('#$id').$name($options);";
+			$js = "$id.$name($options);";
 			$view->registerJs($js);
 		}
 
 		if (!empty($this->clientEvents)) {
 			$js = array();
 			foreach ($this->clientEvents as $event => $handler) {
-				$js[] = "jQuery('#$id').on('$event', $handler);";
+				$js[] = "$id.on('$event', $handler);";
 			}
 			$view->registerJs(implode("\n", $js));
 		}
