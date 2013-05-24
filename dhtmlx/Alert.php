@@ -8,7 +8,7 @@
  * @author Philipp Frenzel <philipp@frenzel.net>
  */
 
-namespace dhtmlx;
+namespace yiiext\yiidhtmlx\dhtmlx;
 
 use Yii;
 use yii\helpers\ArrayHelper;
