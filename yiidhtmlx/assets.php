@@ -7,7 +7,7 @@ return array(
 			'js/dhtmlxcommon.js',
 		),
 	),
-	'chart' => array(
+	'yiidhtmlx\chart' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxchart.js',
@@ -17,7 +17,7 @@ return array(
 		),
 		'depends' => array('yiidhtmlx'),
 	),
-	'alert' => array(
+	'yiidhtmlx\alert' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxmessage.js',
