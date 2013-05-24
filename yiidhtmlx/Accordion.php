@@ -68,7 +68,6 @@ class Accordion extends Widget
 	public function init()
 	{
 		parent::init();
-		$this->registerWidget($this->options, 'accordion');
 	}
 
 	/**
@@ -79,7 +78,6 @@ class Accordion extends Widget
 		echo Html::beginTag('div', $this->options) . "\n";
 		echo $this->renderItems() . "\n";
 		echo Html::endTag('div') . "\n";
-		$this->registerPlugin('collapse');
 	}
 
 	/**

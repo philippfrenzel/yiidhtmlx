@@ -47,6 +47,7 @@ class Widget extends yii\base\Widget
 	public function init()
 	{
 		parent::init();
+		$this->registerPlugin(strtolower(get_called_class())); 
 		if (!isset($this->options['id'])) {
 			$this->options['id'] = $this->getId();
 		}
@@ -64,14 +65,14 @@ class Widget extends yii\base\Widget
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
-			$js = "$id.$name($options);";
+			$js = "var yiidhtmlx$id = new dhtmlx$name('$id',$options);";
 			$view->registerJs($js);
 		}
 
 		if (!empty($this->clientEvents)) {
 			$js = array();
 			foreach ($this->clientEvents as $event => $handler) {
-				$js[] = "$id.on('$event', $handler);";
+				$js[] = "yiidhtmlx$id.on('$event', $handler);";
 			}
 			$view->registerJs(implode("\n", $js));
 		}
