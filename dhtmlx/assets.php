@@ -1,13 +1,13 @@
 <?php
 
 return array(
-	'yiiext/yiidhtmlx' => array(
+	'dhtmlx' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxcommon.js',
 		),
 	),
-	'yiiext/yiidhtmlx/chart' => array(
+	'dhtmlx/chart' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxchart.js',
@@ -17,7 +17,7 @@ return array(
 		),
 		'depends' => array('yiiext/dhtmlx'),
 	),
-	'yiiext/yiidhtmlx/alert' => array(
+	'dhtmlx/alert' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxmessage.js',
