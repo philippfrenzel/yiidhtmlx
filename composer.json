@@ -1,5 +1,5 @@
 {
-	"name": "yiiext/yiidhtmlx",
+	"name": "philippfrenzel/yiidhtmlx",
 	"description": "Yii2 DHTMLX Widgets",
 	"keywords": ["yii", "framework","dhtmlx"],
 	"homepage": ["http://www.frenzel.net/","http://www.dhtmlx.com"],
@@ -21,6 +21,6 @@
 		"yiisoft/yii2": "*"
 	},
 	"autoload": {
-		"psr-0": { "yiidhtmlx\\dhtmlx": "vendor/yiiext/yiidhtmlx/dhtmlx" }
+		"psr-0": { "yiidhtmlx\\": "/" }
 	}
 }
