@@ -8,7 +8,7 @@
  * @author Philipp Frenzel <philipp@frenzel.net>
  */
 
-namespace yiiext\yiidhtmlx\dhtmlx;
+namespace yiidhtmlx\dhtmlx;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\base\ArrayHelper;

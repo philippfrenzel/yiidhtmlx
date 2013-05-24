@@ -1,13 +1,13 @@
 <?php
 
 return array(
-	'yiiext/yiidhtmlx/dhtmlx' => array(
+	'yiidhtmlx/dhtmlx' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxcommon.js',
 		),
 	),
-	'yiiext/yiidhtmlx/chart' => array(
+	'yiidhtmlx/chart' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxchart.js',
@@ -15,9 +15,9 @@ return array(
 		'css'=>array(
 			'css/dhtmlxchart.css'
 		),
-		'depends' => array('yiiext/yiidhtmlx/dhtmlx'),
+		'depends' => array('yiidhtmlx/dhtmlx'),
 	),
-	'yiiext/yiidhtmlx/alert' => array(
+	'yiidhtmlx/alert' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxmessage.js',
@@ -25,6 +25,6 @@ return array(
 		'css'=>array(
 			'css/dhtmlxmessage_dhx_web.css'
 		),
-		'depends' => array('yiiext/yiidhtmlx/dhtmlx'),
+		'depends' => array('yiidhtmlx/dhtmlx'),
 	),
 );
