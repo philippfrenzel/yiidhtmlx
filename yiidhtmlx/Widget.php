@@ -53,15 +53,15 @@ class Widget extends yii\base\Widget
 	}
 
 	/**
-	 * Registers a specific jQuery UI widget and the related events
-	 * @param string $name the name of the jQuery UI widget
-	 */
-	protected function registerWidget($name)
+	* Registers a specific Bootstrap plugin and the related events
+	* @param string $name the name of the Bootstrap plugin
+	*/
+	protected function registerPlugin($name)
 	{
 		$id = $this->options['id'];
 		$view = $this->getView();
+		//$view->registerAssetBundle(static::$responsive ? 'yii/bootstrap/responsive' : 'yii/bootstrap');
 		$view->registerAssetBundle("yiidhtmlx/$name");
-		//$view->registerAssetBundle(static::$theme . "/$name");
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
@@ -72,7 +72,7 @@ class Widget extends yii\base\Widget
 		if (!empty($this->clientEvents)) {
 			$js = array();
 			foreach ($this->clientEvents as $event => $handler) {
-				$js[] = "jQuery('#$id').on('$name$event', $handler);";
+				$js[] = "jQuery('#$id').on('$event', $handler);";
 			}
 			$view->registerJs(implode("\n", $js));
 		}

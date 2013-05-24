@@ -94,7 +94,7 @@ class Alert extends Widget
 		echo "\n" . $this->renderBodyEnd();
 		echo "\n" . Html::endTag('div');
 
-		//$this->registerPlugin('alert');
+		$this->registerPlugin('alert');
 	}
 
 	/**
