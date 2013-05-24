@@ -21,6 +21,6 @@
 		"yiisoft/yii2": "*"
 	},
 	"autoload": {
-		"psr-0": { "yiiext\\yiidhtmlx\\dhtmlx": "" }
+		"psr-0": { "yiiext\\yiidhtmlx\\dhtmlx": "vendor/yiiext/yiidhtmlx/dhtmlx" }
 	}
 }
