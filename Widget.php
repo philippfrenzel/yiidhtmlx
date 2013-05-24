@@ -14,7 +14,7 @@ use Yii;
 use yii\base\View;
 use yii\helpers\Json;
 
-class Widget extends \yii\base\Widget
+class Widget extends yii\base\Widget
 {
 	/**
 	 * @var string the dhtmlx theme bundle.
