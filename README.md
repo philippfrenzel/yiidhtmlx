@@ -7,3 +7,7 @@ yiidhtmlx components and extensions
 
 Add the following line to your index.php in /www
 Yii::setAlias('@yiidhtmlx', __DIR__ . '/../vendor/yiiext/yiidhtmlx/yiidhtmlx/');
+
+
+Carousel
+=========
