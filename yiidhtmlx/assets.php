@@ -2,13 +2,13 @@
 
 return array(
 	'yiidhtmlx' => array(
-		'sourcePath' => __DIR__ . '/yiidhtmlx/assets',
+		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxcommon.js',
 		),
 	),
 	'yiidhtmlx\chart' => array(
-		'sourcePath' => __DIR__ . '/yiidhtmlx/assets',
+		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxchart.js',
 		),
@@ -18,7 +18,7 @@ return array(
 		'depends' => array('yiidhtmlx'),
 	),
 	'yiidhtmlx\alert' => array(
-		'sourcePath' => __DIR__ . '/yiidhtmlx/assets',
+		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxmessage.js',
 		),
@@ -28,7 +28,7 @@ return array(
 		'depends' => array('yiidhtmlx'),
 	),
 	'yiidhtmlx\accordion' => array(
-		'sourcePath' => __DIR__ . '/yiidhtmlx/assets',
+		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxaccordion.js',
 		),
