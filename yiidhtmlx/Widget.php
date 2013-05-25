@@ -48,7 +48,6 @@ class Widget extends BaseWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerPlugin(strtolower(get_called_class())); 
 		if (!isset($this->options['id'])) {
 			$this->options['id'] = $this->getId();
 		}
@@ -62,7 +61,7 @@ class Widget extends BaseWidget
 	{
 		$id = $this->options['id'];
 		$view = $this->getView();
-		$view->registerAssetBundle("$name");
+		$view->registerAssetBundle("yiidhtmlx/$name");
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
