@@ -14,7 +14,7 @@
 		}
 	],
 	"support": {
-		"source": "https://github.com/philippfrenzel/yiidhtmlx",
+		"source": "https://github.com/philippfrenzel/yiidhtmlx"
 	},
 	"minimum-stability": "dev",
 	"require": {
