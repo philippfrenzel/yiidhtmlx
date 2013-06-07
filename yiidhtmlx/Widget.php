@@ -23,17 +23,25 @@ class Widget extends BaseWidget
 	public $options = array();
 	
 	/**
-	 * @var array the options for the underlying jQuery UI widget.
-	 * Please refer to the corresponding jQuery UI widget Web page for possible options.
-	 * For example, [this page](http://api.jqueryui.com/accordion/) shows
+	 * @var array the options for the underlying dhtmlx UI widget.
+	 * Please refer to the corresponding dhtmlx UI widget Web page for possible options.
+	 * For example, [this page](http://api.dhtmlx.com/accordion/) shows
 	 * how to use the "Accordion" widget and the supported options (e.g. "header").
 	 */
 	public $clientOptions = array();
+
+	/**
+	 * @var array the data option for the underlying dhtmlx UI widget.
+	 * Please refer to the corresponding dhtmlx UI widget Web page for possible options.
+	 * For example, [this page](http://api.dhtmlx.com/accordion/) shows
+	 * how to use the "Accordion" widget and the supported options (e.g. "header").
+	 */
+	public $clientDataOptions = array();
 	
 	/**
-	 * @var array the event handlers for the underlying jQuery UI widget.
-	 * Please refer to the corresponding jQuery UI widget Web page for possible events.
-	 * For example, [this page](http://api.jqueryui.com/accordion/) shows
+	 * @var array the event handlers for the underlying dhtmlx UI widget.
+	 * Please refer to the corresponding dhtmlx UI widget Web page for possible events.
+	 * For example, [this page](http://api.dhtmlx.com/accordion/) shows
 	 * how to use the "Accordion" widget and the supported events (e.g. "create").
 	 */
 	public $clientEvents = array();
@@ -65,8 +73,15 @@ class Widget extends BaseWidget
 		$name = ucfirst($name);
 
 		if ($this->clientOptions !== false) {
-			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
+			$options = empty($this->clientOptions) ? '' : implode(",",$this->clientOptions));
 			$js = "var yiidhtmlx$id = new dhtmlX$name('$id',$options);";
+			$view->registerJs($js);
+		}
+
+		if ($this->clientDataOptions !== false) {
+			$type = empty($this->clientDataOptions['type']) ? 'JSON' : $this->clientDataOptions['type'];
+			$url = empty($this->clientDataOptions['url']) ? '' : $this->clientDataOptions['url'];
+			$js = "yiidhtmlx$id.load('$url', '$type');";
 			$view->registerJs($js);
 		}
 

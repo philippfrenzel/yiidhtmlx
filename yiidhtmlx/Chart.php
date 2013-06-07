@@ -29,6 +29,10 @@ use yii\helpers\Html;
  *         'value' => '#sales#',
  *		   'label' => '#year#'
  *     ),
+ *     'clientDataOptions'=> array(
+ *         'type' => 'JSON',
+ *		   'url' => 'http://my.json.data'
+ *     )
  * ));
  * ```
  *
