@@ -76,10 +76,11 @@ class Widget extends BaseWidget
 		}
 
 		if ($this->clientDataOptions !== false) {
-			$type = empty($this->clientDataOptions['type']) ? 'JSON' : $this->clientDataOptions['type'];
+			$type = empty($this->clientDataOptions['type']) ? 'json' : $this->clientDataOptions['type'];
 			$url = empty($this->clientDataOptions['url']) ? '' : $this->clientDataOptions['url'];
-			$js = "yiidhtmlx$id.load('$url', '$type');";
-			$view->registerJs($js);
+			$js[] = "yiidhtmlx$id.load('$url', '$type');";
+			$js[] = "yiidhtmlx$id.refresh();";
+			$view->registerJs(implode("\n", $js));
 		}
 
 		if (!empty($this->clientEvents)) {
