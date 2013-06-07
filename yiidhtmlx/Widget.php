@@ -70,7 +70,7 @@ class Widget extends BaseWidget
 		$name = ucfirst($name);
 
 		if ($this->clientOptions !== false) {
-			$options = empty($this->clientOptions) ? '' : implode(",",$this->clientOptions));
+			$options = empty($this->clientOptions) ? '' : json_encode($this->clientOptions);
 			$js = "var yiidhtmlx$id = new dhtmlX$name('$id',$options);";
 			$view->registerJs($js);
 		}
