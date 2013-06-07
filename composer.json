@@ -15,12 +15,12 @@
 	],
 	"support": {
 		"source": "https://github.com/philippfrenzel/yiidhtmlx",
-		"autoload": {
-			"psr-0": { "yiidhtmlx\\": "/" }
-		}
 	},
 	"minimum-stability": "dev",
 	"require": {
 		"yiisoft/yii2": "*"
+	},
+	"autoload": {
+		"psr-0": { "yiidhtmlx\\": "/" }
 	}
 }
