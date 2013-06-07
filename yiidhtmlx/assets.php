@@ -1,7 +1,7 @@
 <?php
 
 return array(
-	'yiidhtmlx' => array(
+	'yiidhtmlx/core' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxcommon.js',
@@ -15,7 +15,7 @@ return array(
 		'css'=>array(
 			'css/dhtmlxchart.css'
 		),
-		'depends' => array('yiidhtmlx'),
+		'depends' => array('yiidhtmlx/core'),
 	),
 	'yiidhtmlx/alert' => array(
 		'sourcePath' => __DIR__ . '/assets',
@@ -35,6 +35,6 @@ return array(
 		'css'=>array(
 			'css/dhtmlxaccordion_dhx_web.css'
 		),
-		'depends' => array('yiidhtmlx'),
+		'depends' => array('yiidhtmlx/core'),
 	)
 );

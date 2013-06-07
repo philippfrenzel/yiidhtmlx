@@ -20,7 +20,7 @@ class Widget extends BaseWidget
 	/**
 	 * @var string the dhtmlx theme bundle.
 	 */
-	//public static $theme = 'yiiext/dhtmlx/theme/dhx_web';
+	public static $theme = 'yiiext/dhtmlx/theme/dhx_web';
 	/**
 	 * @var array the HTML attributes for the widget container tag.
 	 */
