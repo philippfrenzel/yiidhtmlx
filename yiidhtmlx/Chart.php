@@ -10,7 +10,6 @@
 
 namespace yiidhtmlx;
 
-use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -40,6 +39,7 @@ use yii\helpers\Html;
  * @author Philipp Frenzel <philipp@frenzel.net>
  * @since 1.0
  */
+
 class Chart extends Widget
 {
 
