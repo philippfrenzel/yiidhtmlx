@@ -38,6 +38,11 @@ class Widget extends BaseWidget
 	 */
 	public $clientEvents = array();
 
+	/**
+	 * @var array the data option for the underlying dhtmlx UI widget.
+	 * Please refer to the corresponding dhtmlx UI widget Web page for possible options.
+	 */
+	public $clientDataOptions = array();
 
 	/**
 	 * Initializes the widget.
