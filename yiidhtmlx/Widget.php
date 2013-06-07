@@ -42,7 +42,7 @@ class Widget extends BaseWidget
 	 * @var array the data option for the underlying dhtmlx UI widget.
 	 * Please refer to the corresponding dhtmlx UI widget Web page for possible options.
 	 */
-	public $dataOptions = array();
+	public $clientDataOptions = array();
 
 	/**
 	 * Initializes the widget.
@@ -75,9 +75,9 @@ class Widget extends BaseWidget
 			$view->registerJs($js);
 		}
 
-		if ($this->dataOptions !== false) {
-			$type = empty($this->dataOptions['type']) ? 'JSON' : $this->dataOptions['type'];
-			$url = empty($this->dataOptions['url']) ? '' : $this->dataOptions['url'];
+		if ($this->clientDataOptions !== false) {
+			$type = empty($this->clientDataOptions['type']) ? 'JSON' : $this->clientDataOptions['type'];
+			$url = empty($this->clientDataOptions['url']) ? '' : $this->clientDataOptions['url'];
 			$js = "yiidhtmlx$id.load('$url', '$type');";
 			$view->registerJs($js);
 		}
