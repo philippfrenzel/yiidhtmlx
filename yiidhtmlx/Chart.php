@@ -44,6 +44,15 @@ class Chart extends Widget
 {
 
 	/**
+	 * @var array the data option for the underlying dhtmlx UI widget.
+	 * Please refer to the corresponding dhtmlx UI widget Web page for possible options.
+	 */
+	public $dataOptions = array(
+		'type'=>'JSON',
+		'url' =>'http://default.json.url'
+	);
+
+	/**
 	 * Initializes the widget.
 	 */
 	public function init()
