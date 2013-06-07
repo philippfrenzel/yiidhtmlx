@@ -18,13 +18,10 @@ use yii\base\Widget as BaseWidget;
 class Widget extends BaseWidget
 {
 	/**
-	 * @var string the dhtmlx theme bundle.
-	 */
-	public static $theme = 'yiiext/dhtmlx/theme/dhx_web';
-	/**
 	 * @var array the HTML attributes for the widget container tag.
 	 */
 	public $options = array();
+	
 	/**
 	 * @var array the options for the underlying jQuery UI widget.
 	 * Please refer to the corresponding jQuery UI widget Web page for possible options.
@@ -32,6 +29,7 @@ class Widget extends BaseWidget
 	 * how to use the "Accordion" widget and the supported options (e.g. "header").
 	 */
 	public $clientOptions = array();
+	
 	/**
 	 * @var array the event handlers for the underlying jQuery UI widget.
 	 * Please refer to the corresponding jQuery UI widget Web page for possible events.
@@ -58,14 +56,17 @@ class Widget extends BaseWidget
 	* @param string $name the name of the Bootstrap plugin
 	*/
 	protected function registerPlugin($name)
-	{
+	{		
 		$id = $this->options['id'];
 		$view = $this->getView();
 		$view->registerAssetBundle("yiidhtmlx/$name");
 
+		//for the js object generation, the first letter needs to be in upper case
+		$name = ucfirst($name);
+
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
-			$js = "var yiidhtmlx$id = new dhtmlx$name('$id',$options);";
+			$js = "var yiidhtmlx$id = new dhtmlX$name('$id',$options);";
 			$view->registerJs($js);
 		}
 
