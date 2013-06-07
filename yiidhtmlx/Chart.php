@@ -21,8 +21,9 @@ use yii\helpers\Html;
  *
  * ```php
  * Chart::widget(array(
- *     'closeButton' => array(
- *         'label' => '&times;',
+ *     'clientOptions' => array(
+ *         'value' => '#sales#',
+ *		   'label' => '#year#'
  *     ),
  * ));
  * ```
@@ -69,9 +70,9 @@ class Chart extends Widget
 	protected function initOptions()
 	{
 		$this->options = array_merge(array(
-			'class' => 'testchart',
+			'class' => 'dhtmlxchart',
 		), $this->options);
 
-		$this->addCssClass($this->options, 'alert');
+		$this->addCssClass($this->options, 'info');
 	}
 }
