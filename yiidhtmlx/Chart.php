@@ -77,6 +77,6 @@ class Chart extends Widget
 			'class' => 'dhtmlxchart',
 		), $this->options);
 
-		$this->addCssClass($this->options, 'warning');
+		$this->addCssClass($this->options, 'bg-color-blueLight');
 	}
 }
