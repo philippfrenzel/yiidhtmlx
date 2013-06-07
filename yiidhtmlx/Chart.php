@@ -15,12 +15,16 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
- * Chart renders an alert bootstrap component.
+ * Chart renders an DHTMLX chart component.
  *
  * For example,
  *
  * ```php
  * Chart::widget(array(
+ *	   'options'=>array(
+ *		   'id'    => 'myTestChart',
+ *		   'style' => 'width:280px;height:250px;',
+ *	   ),
  *     'clientOptions' => array(
  *         'value' => '#sales#',
  *		   'label' => '#year#'
@@ -28,9 +32,9 @@ use yii\helpers\Html;
  * ));
  * ```
  *
- * @see http://twitter.github.io/bootstrap/javascript.html#alerts
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
- * @since 2.0
+ * @see http://dhtmlx.com/chart
+ * @author Philipp Frenzel <philipp@frenzel.net>
+ * @since 1.0
  */
 class Chart extends Widget
 {
