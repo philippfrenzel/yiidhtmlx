@@ -60,8 +60,8 @@ class Widget extends BaseWidget
 	}
 
 	/**
-	* Registers a specific Bootstrap plugin and the related events
-	* @param string $name the name of the Bootstrap plugin
+	* Registers a specific dhtmlx widget and the related events
+	* @param string $name the name of the dhtmlx plugin
 	*/
 	protected function registerPlugin($name)
 	{		
