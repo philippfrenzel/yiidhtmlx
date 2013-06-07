@@ -29,14 +29,6 @@ class Widget extends BaseWidget
 	 * how to use the "Accordion" widget and the supported options (e.g. "header").
 	 */
 	public $clientOptions = array();
-
-	/**
-	 * @var array the data option for the underlying dhtmlx UI widget.
-	 * Please refer to the corresponding dhtmlx UI widget Web page for possible options.
-	 * For example, [this page](http://api.dhtmlx.com/accordion/) shows
-	 * how to use the "Accordion" widget and the supported options (e.g. "header").
-	 */
-	public $clientDataOptions = array();
 	
 	/**
 	 * @var array the event handlers for the underlying dhtmlx UI widget.
