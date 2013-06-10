@@ -71,7 +71,7 @@ class Widget extends BaseWidget
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
-			$js = "var dhtmlx$id = new dhtmlX$name('$id',$options);";
+			$js = "var dhtmlx$id = new dhtmlX$name($options);";
 			$view->registerJs($js,View::POS_READY);
 		}
 
