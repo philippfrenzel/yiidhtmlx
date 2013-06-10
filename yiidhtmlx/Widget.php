@@ -72,7 +72,7 @@ class Widget extends BaseWidget
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
 			$js = "var dhtmlx$id = new dhtmlX$name('$id',$options);";
-			$view->registerJs($js);
+			$view->registerJs($js,View::POS_HEAD);
 		}
 
 		if (!empty($this->clientDataOptions)) {
@@ -81,7 +81,7 @@ class Widget extends BaseWidget
 			$url = empty($this->clientDataOptions['url']) ? '' : $this->clientDataOptions['url'];
 			$js[] = "dhtmlx$id.load('$url', '$type');";
 			//$js[] = "dhtmlx$id.refresh();";
-			$view->registerJs(implode("\n", $js));
+			$view->registerJs(implode("\n", $js),View::POS_HEAD);
 		}
 
 		if (!empty($this->clientEvents)) {
@@ -89,7 +89,7 @@ class Widget extends BaseWidget
 			foreach ($this->clientEvents as $event => $handler) {
 				$js[] = "yiidhtmlx$id.on('$event', $handler);";
 			}
-			$view->registerJs(implode("\n", $js));
+			$view->registerJs(implode("\n", $js),View::POS_HEAD);
 		}
 	}
 
