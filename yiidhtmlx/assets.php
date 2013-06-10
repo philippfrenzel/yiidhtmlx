@@ -17,6 +17,18 @@ return array(
 		),
 		'depends' => array('yiidhtmlx/core'),
 	),
+	'yiidhtmlx/grid' => array(
+		'sourcePath' => __DIR__ . '/assets',
+		'js' => array(
+			'js/dhtmlxgrid.js',
+			'js/dhtmlxgridcell.js',
+		),
+		'css'=>array(
+			'css/dhtmlxgrid.css',
+			'css/skins/dhtmlxgrid_dhx_web.css'
+		),
+		'depends' => array('yiidhtmlx/core'),
+	),
 	'yiidhtmlx/alert' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
