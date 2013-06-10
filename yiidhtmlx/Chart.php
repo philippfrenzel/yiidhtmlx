@@ -79,7 +79,6 @@ class Chart extends Widget
 		$this->options = array_merge(array(
 			'class' => 'yiidhtmlx',
 		), $this->options);
-
-		$this->addCssClass($this->options, 'bg-color-blueLight');
+		//$this->addCssClass($this->options, 'bg-color-blueLight');
 	}
 }
