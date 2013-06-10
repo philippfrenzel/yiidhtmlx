@@ -1,9 +1,10 @@
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
-To use this component please contact sales@dhtmlx.com to obtain license
+You allowed to use this component or parts of it under GPL terms
+To use it on other terms or get Professional edition of the component please contact us at sales@dhtmlx.com
 */
 /*
-2013 April 17
+2013 April 16
 */
 
 
@@ -5486,7 +5487,7 @@ dhtmlx.ui.Canvas.prototype = {
 };
 
 
-/* DHX INITIAL FILE '/Volumes/G/dhtmlx.out/Professional/dhtmlxCore/sources//chart.js'*/
+/* DHX INITIAL FILE '/Volumes/G/dhtmlx.out/Standard/dhtmlxCore/sources//chart.js'*/
 
 
 /*DHX:Depend chart.css*/

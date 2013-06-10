@@ -1,6 +1,7 @@
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
-To use this component please contact sales@dhtmlx.com to obtain license
+You allowed to use this component or parts of it under GPL terms
+To use it on other terms or get Professional edition of the component please contact us at sales@dhtmlx.com
 */
 window.dhtmlx||(dhtmlx={});dhtmlx.version="3.0";dhtmlx.codebase="./";dhtmlx.copy=function(a){var b=dhtmlx.copy._function;b.prototype=a;return new b};dhtmlx.copy._function=function(){};dhtmlx.extend=function(a,b){for(var c in b)a[c]=b[c];b._init&&a._init();return a};
 dhtmlx.proto_extend=function(){for(var a=arguments,b=a[0],c=[],d=a.length-1;d>0;d--){if(typeof a[d]=="function")a[d]=a[d].prototype;for(var e in a[d])e=="_init"?c.push(a[d][e]):b[e]||(b[e]=a[d][e])}a[0]._init&&c.push(a[0]._init);b._init=function(){for(var a=0;a<c.length;a++)c[a].apply(this,arguments)};b.base=a[1];var f=function(a){this._init(a);this._parseSettings&&this._parseSettings(a,this.defaults)};f.prototype=b;b=a=null;return f};dhtmlx.bind=function(a,b){return function(){return a.apply(b,arguments)}};
