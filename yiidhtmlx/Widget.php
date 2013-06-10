@@ -71,16 +71,16 @@ class Widget extends BaseWidget
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
-			$js = "var yiidhtmlx$id = new dhtmlX$name('$id',$options);";
+			$js = "var dhtmlx$id = new dhtmlX$name('$id',$options);";
 			$view->registerJs($js);
 		}
 
-		if ($this->clientDataOptions !== false) {
+		if (!empty($this->clientDataOptions)) {
 			$js = array();
 			$type = empty($this->clientDataOptions['type']) ? 'json' : $this->clientDataOptions['type'];
 			$url = empty($this->clientDataOptions['url']) ? '' : $this->clientDataOptions['url'];
-			$js[] = "yiidhtmlx$id.load('$url', '$type');";
-			$js[] = "yiidhtmlx$id.refresh();";
+			$js[] = "dhtmlx$id.load('$url', '$type');";
+			$js[] = "dhtmlx$id.refresh();";
 			$view->registerJs(implode("\n", $js));
 		}
 

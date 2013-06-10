@@ -29,7 +29,7 @@ use yii\helpers\Html;
  *		   'label' => '#year#'
  *     ),
  *     'clientDataOptions'=> array(
- *         'type' => 'JSON',
+ *         'type' => 'json',
  *		   'url' => 'http://my.json.data'
  *     )
  * ));
@@ -57,7 +57,7 @@ class Chart extends Widget
 	public function run()
 	{
 		echo Html::beginTag('div', $this->options) . "\n";
-		echo $this->renderChart()."\n";
+		//echo $this->renderChart()."\n";
 		echo Html::endTag('div')."\n";
 		$this->registerPlugin('chart');
 	}
@@ -77,7 +77,7 @@ class Chart extends Widget
 	protected function initOptions()
 	{
 		$this->options = array_merge(array(
-			'class' => 'dhtmlxchart',
+			'class' => 'yiidhtmlx',
 		), $this->options);
 
 		$this->addCssClass($this->options, 'bg-color-blueLight');
