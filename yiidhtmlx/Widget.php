@@ -80,7 +80,7 @@ class Widget extends BaseWidget
 			$type = empty($this->clientDataOptions['type']) ? 'json' : $this->clientDataOptions['type'];
 			$url = empty($this->clientDataOptions['url']) ? '' : $this->clientDataOptions['url'];
 			$js[] = "dhtmlx$id.load('$url', '$type');";
-			$js[] = "dhtmlx$id.refresh();";
+			//$js[] = "dhtmlx$id.refresh();";
 			$view->registerJs(implode("\n", $js));
 		}
 
