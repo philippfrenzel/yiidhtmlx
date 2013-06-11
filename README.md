@@ -49,10 +49,10 @@ echo Grid::widget(
 	array(
 		'clientOptions'=>array(
 		 	'parent' => 'myTestGrid',
-		 	'auto_height' => false,
+		 	'auto_height' => true, //no scrolling
 		 	'skin' => "dhx_web",
 		 	'columns' => array(
-		 		array('label'=>'Category','size'=>50,'type'=>'ed'),
+		 		array('label'=>'Category','width'=>50,'type'=>'ed'),
 				array('label'=>'Amount','type'=>'ed'),
 		 	),
 		 	'image_path' => "./css/imgs/"
