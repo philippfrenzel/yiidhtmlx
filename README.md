@@ -29,6 +29,9 @@ Chart::widget(array(
     'clientDataOptions'=>array(
 		'type'=>'json',
 		'url'=>'data/data.json'))
+	),
+	'clientEvents'=>array(
+		'click'=>'alert("clicked"'),
 	)
 ));
 ```
@@ -54,13 +57,16 @@ echo Grid::widget(
 		 	),
 		 	'image_path' => "./css/imgs/"
 		),			
-	    	'options'=>array(
+	    'options'=>array(
 			'id'    => 'myTestGrid',
 			'style' => 'width:100%;height:400px;'
 		),
 		'clientDataOptions'=>array(
 			'type'=>'json',
 			'url'=>'data/data.json'))
+		),
+		'clientEvents'=>array(
+			'click'=>'alert("clicked"'),
 		)		
 	)
 );
