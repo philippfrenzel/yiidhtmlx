@@ -23,9 +23,7 @@ return array(
 			'js/dhtmlxgrid.js',
 			'js/dhtmlxgridcell.js',
 			'js/ext/dhtmlxgrid_srnd.js',
-			'js/ext/dhtmlxgrid_keymap_access.js',
 			'js/ext/dhtmlxgrid_filter.js',
-			'js/ext/dhtmlxgrid_json.js',
 		),
 		'css'=>array(
 			'css/dhtmlxgrid.css',
