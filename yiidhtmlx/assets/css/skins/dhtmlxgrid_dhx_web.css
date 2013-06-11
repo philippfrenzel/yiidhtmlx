@@ -21,7 +21,7 @@ div.gridbox_dhx_web table.hdr td {
 	border-width: 0px 1px 1px 0px;
 	padding:8px 0px 9px 0px;
 	background-color:#ECECEC;
-	font-size:12px;
+	font-size:14px;
 	color:black;
 	vertical-align:top;
 	text-align:left;
@@ -67,7 +67,7 @@ div.gridbox_dhx_web .odd_dhx_web{
 
 .dhx_combo_select, .gridbox_dhx_web .dhx_combo_edit, .gridbox_dhx_web .dhx_textarea{
   
-    font-size:12px;
+    font-size:14px;
 }
 .gridbox_dhx_web .dhx_combo_edit{
 	padding:1px 0px 0px 1px;
