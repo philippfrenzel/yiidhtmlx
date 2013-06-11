@@ -58,7 +58,7 @@ class Grid extends Widget
 	{
 		echo Html::beginTag('div', $this->options) . "\n";
 		echo Html::endTag('div')."\n";
-		$this->registerPlugin('grid');
+		$this->registerPlugin('gridObject');
 	}
 
 	/**

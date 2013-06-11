@@ -17,7 +17,7 @@ return array(
 		),
 		'depends' => array('yiidhtmlx/core'),
 	),
-	'yiidhtmlx/grid' => array(
+	'yiidhtmlx/gridObject' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
 			'js/dhtmlxgrid.js',
