@@ -22,6 +22,8 @@ return array(
 		'js' => array(
 			'js/dhtmlxgrid.js',
 			'js/dhtmlxgridcell.js',
+			'js/ext/dhtmlxgrid_srnd.js',
+			'js/ext/dhtmlxgrid_filter.js',
 		),
 		'css'=>array(
 			'css/dhtmlxgrid.css',
