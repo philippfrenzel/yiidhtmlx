@@ -87,7 +87,7 @@ class Widget extends BaseWidget
 		if (!empty($this->clientEvents)) {
 			$js = array();
 			foreach ($this->clientEvents as $event => $handler) {
-				$js[] = "dhtmlx$id.on('$event', $handler);";
+				$js[] = "dhtmlx$id.attachEvent('$event', $handler);";
 			}
 			$view->registerJs(implode("\n", $js),View::POS_READY);
 		}
