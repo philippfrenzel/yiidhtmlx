@@ -6,7 +6,6 @@ div.gridbox_dhx_web table.hdr tr{
 }
 
 div.gridbox_dhx_web table.obj tr td{
-	font-family:Tahoma;
 	font-size:12px;
 	border-width:0px 0px 0px 0px;
 	padding-right:4px;
@@ -21,11 +20,7 @@ div.gridbox_dhx_web table.hdr td {
 	border: 1px solid #8B8B8B;
 	border-width: 0px 1px 1px 0px;
 	padding:8px 0px 9px 0px;
-	
 	background-color:#ECECEC;
-	
-	
-	font-family:Tahoma;
 	font-size:12px;
 	color:black;
 	vertical-align:top;
@@ -71,7 +66,7 @@ div.gridbox_dhx_web .odd_dhx_web{
 }
 
 .dhx_combo_select, .gridbox_dhx_web .dhx_combo_edit, .gridbox_dhx_web .dhx_textarea{
-    font-family:Tahoma;
+  
     font-size:12px;
 }
 .gridbox_dhx_web .dhx_combo_edit{
