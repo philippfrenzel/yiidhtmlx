@@ -15,7 +15,6 @@ div.gridbox table.obj{
 }
 div.gridbox table.hdr td {
 	line-height:normal;
-	font-family:arial;
 	font-size:12px;
 	background-Color:#D4D0C8;
 	border: 1px solid;
@@ -35,7 +34,6 @@ div.gridbox table.hdr td div.hdrcell{
 div.gridbox table.obj td {
 	border: 1px solid;
 	border-color : white Gray Gray white;
-	font-family:Arial;
 	font-size:12px;
     -moz-user-select:none;
     -moz-user-select:-moz-none;   
@@ -79,7 +77,6 @@ div.gridbox table.obj td.group_row{
 
 .dragSpanDiv{ 	font-size : 12px; 	border: 1px gray solid; background-color:white; z-index:999; }
 .dhx_combo_select{
-    font-family:arial;
     font-size:12px;
     border:1px solid;
     border-color:black silver silver black;
@@ -125,7 +122,6 @@ div.gridbox table.obj td.group_row{
 /*paginal output*/
 div.pagingBlock{
 	font-size:12px;
-	font-family:verdana,arial;
 }
 div.pagingBlock .pagingCurrentPage{
 	font-weight:bold;
@@ -137,7 +133,6 @@ div.pagingBlock .pagingPage{
 }
 span.recordsInfoBlock {
 	font-size:12px;
-	font-family:verdana,arial;
 }
 div.pagingBlock a{
 	text-decoration:none;
@@ -187,14 +182,12 @@ div.gridbox_xp table.hdr td div.hdrcell{
 	border-right: 1px solid gray;
 	height:16px;
 	white-space : nowrap;
-	font-family:Arial;
 	font-size:12px;
 }
 div.gridbox_xp table.obj td {
 	border:0px;
 	border-bottom: 1px solid lightgrey;
 	border-right: 1px solid lightgrey;
-	font-family:Arial;
 	font-size:12px;
     -moz-user-select:none;
     -moz-user-select:-moz-none;    
@@ -301,7 +294,7 @@ div.gridbox div.ftr td {
 		border-right:1px solid gray;
 		background-color:#ffffcc;
 		font-style : italic;
-		font-family:arial;
+
 		font-size:12px;
 		overflow:hidden;
 	}
@@ -317,7 +310,6 @@ div.gridbox table.hdr td.columnTargetL div.hdrcell{
 }
 
 .dhx_dragColDiv{
-	font-family:Arial;
 	font-size:12px;
 	background-color:#D4D0C8;
 	border: 1px solid;
@@ -478,7 +470,7 @@ div.gridbox_modern div.ftr td {
 		border-right:0px solid gray;
 		background-color:#ffffcc;
 		font-style : italic;
-		font-family:arial;
+
 		font-size:12px;
 	}
 
@@ -564,7 +556,7 @@ div.gridbox_clear div.ftr td {
 		border-right:0px solid gray;
 		background-color:#ffffcc;
 		font-style : italic;
-		font-family:arial;
+
 		font-size:12px;
 	}
 
