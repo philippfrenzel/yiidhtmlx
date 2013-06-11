@@ -50,6 +50,7 @@ echo Grid::widget(
 		'clientOptions'=>array(
 		 	'parent' => 'myTestGrid',
 		 	'auto_height' => true, //no scrolling
+		 	'auto_width' => true,
 		 	'skin' => "dhx_web",
 		 	'columns' => array(
 		 		array('label'=>'Category','width'=>50,'type'=>'ed'),
@@ -59,7 +60,6 @@ echo Grid::widget(
 		),			
 	    'options'=>array(
 			'id'    => 'myTestGrid',
-			'style' => 'width:100%;height:400px;'
 		),
 		'clientDataOptions'=>array(
 			'type'=>'json',
