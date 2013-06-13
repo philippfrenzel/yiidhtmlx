@@ -4,50 +4,30 @@ return array(
 	'yiidhtmlx/core' => array(
 		'sourcePath' => __DIR__ . '/assets',
 		'js' => array(
-			'js/dhtmlxcommon.js',
+			'dhtmlxcommon.js',
 		),
 	),
 	'yiidhtmlx/chart' => array(
-		'sourcePath' => __DIR__ . '/assets',
+		'sourcePath' => __DIR__ . '/assets/dhtmlxChart',
 		'js' => array(
-			'js/dhtmlxchart.js',
+			'dhtmlxchart.js',
 		),
 		'css'=>array(
-			'css/dhtmlxchart.css'
+			'dhtmlxchart.css'
 		),
 		'depends' => array('yiidhtmlx/core'),
 	),
 	'yiidhtmlx/gridObject' => array(
-		'sourcePath' => __DIR__ . '/assets',
+		'sourcePath' => __DIR__ . '/assets/dhtmlxGrid',
 		'js' => array(
-			'js/dhtmlxgrid.js',
-			'js/dhtmlxgridcell.js',
-			'js/ext/dhtmlxgrid_srnd.js',
-			'js/ext/dhtmlxgrid_filter.js',
+			'dhtmlxgrid.js',
+			'dhtmlxgridcell.js',
+			'ext/dhtmlxgrid_srnd.js',
+			'ext/dhtmlxgrid_filter.js',
 		),
 		'css'=>array(
-			'css/dhtmlxgrid.css',
-			'css/skins/dhtmlxgrid_dhx_web.css'
-		),
-		'depends' => array('yiidhtmlx/core'),
-	),
-	'yiidhtmlx/alert' => array(
-		'sourcePath' => __DIR__ . '/assets',
-		'js' => array(
-			'js/dhtmlxmessage.js',
-		),
-		'css'=>array(
-			'css/dhtmlxmessage_dhx_web.css'
-		),
-		'depends' => array('yiidhtmlx'),
-	),
-	'yiidhtmlx/accordion' => array(
-		'sourcePath' => __DIR__ . '/assets',
-		'js' => array(
-			'js/dhtmlxaccordion.js',
-		),
-		'css'=>array(
-			'css/dhtmlxaccordion_dhx_web.css'
+			'dhtmlxgrid.css',
+			'skins/dhtmlxgrid_dhx_terrace.css'
 		),
 		'depends' => array('yiidhtmlx/core'),
 	)
