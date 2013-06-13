@@ -97,6 +97,11 @@ For example,
 
 use yiidhtmlx\Grid;
 
+//needs to be registered manualy as the base url is only available later
+$this->registerAssetBundle('yiidhtmlx/core');
+
+$imgPath = Yii::$app->assetManager->getBundle('yiidhtmlx/core')->baseUrl . "/dhtmlxGrid/imgs/";
+
 echo Grid::widget(
 	array(
 		'clientOptions'=>array(
@@ -111,7 +116,7 @@ echo Grid::widget(
 				array('label'=>array(Yii::t('app','N/O'),'#select_filter'),'width'=>'50','type'=>'ch'),
 				array('label'=>Yii::t('app','Cap.'),'width'=>'100','type'=>'ed'),
 			),
-		 	//'image_path' => "./assets/".'x'."/css/imgs/"
+		 	'image_path' => $imgPath
 		),			
 	    'options'=>array(
 			'id'    => 'myTestGrid',
