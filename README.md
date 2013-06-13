@@ -127,6 +127,7 @@ echo Grid::widget(
 );
 ```
 
-The clientOptions->parent must be the same as the options->id !
-The skin is currently default to dhx_terrace.
-For a complete list of clientOptions check out the dhtmlx.com webpage
+* The clientOptions->parent must be the same as the options->id !
+* The skin is currently default to dhx_terrace.
+* For a complete list of clientOptions check out the dhtmlx.com webpage
+* While you set auto_height to false, you need to add in options->style:"height:400px"
