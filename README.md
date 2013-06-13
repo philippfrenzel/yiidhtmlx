@@ -17,6 +17,9 @@ Chart renders an DHTMLX chart component.
 For example,
 
 ```php
+
+use yiidhtmlx\Chart;
+
 Chart::widget(array(
 	   'options'=>array(
 		   'id'    => 'myTestChart',
@@ -45,29 +48,39 @@ Chart renders an DHTMLX chart component.
 
 For example,
 ```php
+
+use yiidhtmlx\Grid;
+
 echo Grid::widget(
 	array(
 		'clientOptions'=>array(
 		 	'parent' => 'myTestGrid',
-		 	'auto_height' => true, //no scrolling
+		 	'auto_height' => true,
 		 	'auto_width' => true,
-		 	'skin' => "dhx_web",
+		 	'skin' => "dhx_terrace",
 		 	'columns' => array(
-		 		array('label'=>'Category','width'=>50,'type'=>'ed'),
-				array('label'=>'Amount','type'=>'ed'),
-		 	),
-		 	'image_path' => "./css/imgs/"
+		 		array('label'=>'id','width'=>'40','type'=>'ro'),
+				array('label'=>array(Yii::t('app','Address'),'#text_filter'),'type'=>'ed'),
+				array('label'=>array(Yii::t('app','Name'),'#text_filter'),'type'=>'ed'),
+				array('label'=>array(Yii::t('app','N/O'),'#select_filter'),'width'=>'50','type'=>'ch'),
+				array('label'=>Yii::t('app','Cap.'),'width'=>'100','type'=>'ed'),
+			),
+		 	//'image_path' => "./assets/".'x'."/css/imgs/"
 		),			
 	    'options'=>array(
 			'id'    => 'myTestGrid',
 		),
 		'clientDataOptions'=>array(
 			'type'=>'json',
-			'url'=>'data/data.json'))
+			'url'=>Html::url(array('/location/jsongridlocationdata'))
 		),
 		'clientEvents'=>array(
-			'click'=>'alert("clicked"'),
+			'onRowSelect'=>'doOnRowSelect',
 		)		
 	)
 );
 ```
+
+The clientOptions->parent must be the same as the options->id !
+The skin is currently default to dhx_terrace.
+For a complete list of clientOptions check out the dhtmlx.com webpage
