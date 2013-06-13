@@ -68,8 +68,7 @@ class Grid extends Widget
 	protected function initOptions()
 	{
 		$this->options = array_merge(array(
-			'class' => 'yiidhtmlx',
+			'class' => 'dhtmlxGrid',
 		), $this->options);
-		//$this->addCssClass($this->options, 'bg-color-blueLight');
 	}
 }

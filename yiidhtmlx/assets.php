@@ -17,6 +17,16 @@ return array(
 		),
 		'depends' => array('yiidhtmlx/core'),
 	),
+	'yiidhtmlx/menu' => array(
+		'sourcePath' => __DIR__ . '/assets/dhtmlxChart',
+		'js' => array(
+			'dhtmlxmenu.js',
+		),
+		'css'=>array(
+			'/skins/dhtmlxmenu_dhx_terrace.css'
+		),
+		'depends' => array('yiidhtmlx/core'),
+	),	
 	'yiidhtmlx/gridObject' => array(
 		'sourcePath' => __DIR__ . '/assets/dhtmlxGrid',
 		'js' => array(
@@ -28,6 +38,17 @@ return array(
 		'css'=>array(
 			'dhtmlxgrid.css',
 			'skins/dhtmlxgrid_dhx_terrace.css'
+		),
+		'depends' => array('yiidhtmlx/core'),
+	),
+	'yiidhtmlx/treeObject' => array(
+		'sourcePath' => __DIR__ . '/assets/dhtmlxTree',
+		'js' => array(
+			'dhtmlxtree.js',
+			'ext/dhtmlxtree_dragin.js',
+		),
+		'css'=>array(
+			'dhtmlxtree.css',
 		),
 		'depends' => array('yiidhtmlx/core'),
 	)

@@ -77,7 +77,7 @@ class Chart extends Widget
 	protected function initOptions()
 	{
 		$this->options = array_merge(array(
-			'class' => 'yiidhtmlx',
+			'class' => 'dhtmlxChart',
 		), $this->options);
 		//$this->addCssClass($this->options, 'bg-color-blueLight');
 	}
