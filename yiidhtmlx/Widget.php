@@ -72,14 +72,6 @@ class Widget extends BaseWidget
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
 			$js = "var dhtmlx$id = new dhtmlX$name($options);\n";
-			if($name === 'TreeObject')
-			{
-				if($this->enableContextMenu != '')
-				{
-					$dhtmlxMenuObject = $this->enableContextMenu;
-					$js.="dhtmlx$id.enableContextMenu($dhtmlxMenuObject);\n";
-				}
-			}
 			$view->registerJs($js,View::POS_READY);
 		}
 
@@ -94,6 +86,11 @@ class Widget extends BaseWidget
 				{
 					$js[] = "dhtmlx$id.setXMLAutoLoading('$url');";
 					$js[] = "dhtmlx$id.setDataMode('$type');";
+				}
+				if($this->enableContextMenu != '')
+				{
+					$dhtmlxMenuObject = $this->enableContextMenu;
+					$js.="dhtmlx$id.enableContextMenu($dhtmlxMenuObject);\n";
 				}
 				$js[] = "dhtmlx$id.load$type('$url');";	
 			}
