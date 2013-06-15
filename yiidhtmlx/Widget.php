@@ -90,7 +90,7 @@ class Widget extends BaseWidget
 				if($this->enableContextMenu != '')
 				{
 					$dhtmlxMenuObject = $this->enableContextMenu;
-					$js.="dhtmlx$id.enableContextMenu($dhtmlxMenuObject);\n";
+					$js[] = "dhtmlx$id.enableContextMenu($dhtmlxMenuObject);\n";
 				}
 				$js[] = "dhtmlx$id.load$type('$url');";	
 			}
