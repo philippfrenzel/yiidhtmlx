@@ -79,8 +79,15 @@ class Widget extends BaseWidget
 			$js = array();
 			$type = empty($this->clientDataOptions['type']) ? 'json' : $this->clientDataOptions['type'];
 			$url = empty($this->clientDataOptions['url']) ? '' : $this->clientDataOptions['url'];
-			$js[] = "dhtmlx$id.load('$url', '$type');";
-			//$js[] = "dhtmlx$id.refresh();";
+			if($name === 'TreeObject')
+			{
+				$type = strtoupper($type);
+				$js[] = "dhtmlx$id.load$type('$url');";	
+			}
+			else
+			{
+				$js[] = "dhtmlx$id.load('$url', '$type');";
+			}//$js[] = "dhtmlx$id.refresh();";
 			$view->registerJs(implode("\n", $js),View::POS_READY);
 		}
 
