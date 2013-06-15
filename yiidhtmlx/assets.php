@@ -21,6 +21,7 @@ return array(
 		'sourcePath' => __DIR__ . '/assets/dhtmlxMenu',
 		'js' => array(
 			'dhtmlxmenu.js',
+			'ext/dhtmlxmenu_ext.js'
 		),
 		'css'=>array(
 			'skins/dhtmlxmenu_dhx_terrace.css'
