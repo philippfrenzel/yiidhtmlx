@@ -45,7 +45,6 @@ return array(
 		'sourcePath' => __DIR__ . '/assets/dhtmlxTree',
 		'js' => array(
 			'dhtmlxtree.js',
-			'ext/dhtmlxtree_dragin.js',
 			'ext/dhtmlxtree_json.js',
 			'ext/dhtmlxtree_dragin.js',
 			'ext/dhtmlxtree_xw.js',
