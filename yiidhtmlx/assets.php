@@ -23,7 +23,7 @@ return array(
 			'dhtmlxmenu.js',
 		),
 		'css'=>array(
-			'/skins/dhtmlxmenu_dhx_terrace.css'
+			'skins/dhtmlxmenu_dhx_terrace.css'
 		),
 		'depends' => array('yiidhtmlx/core'),
 	),	
