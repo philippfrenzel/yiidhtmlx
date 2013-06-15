@@ -44,6 +44,12 @@ use yii\helpers\Html;
 
 class Tree extends Widget
 {
+	
+	/**
+	* @var boolean autoloading default true
+	*/
+	public $AutoLoading = true;
+
 	/**
 	 * Initializes the widget.
 	 */

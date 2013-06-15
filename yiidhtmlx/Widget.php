@@ -82,6 +82,8 @@ class Widget extends BaseWidget
 			if($name === 'TreeObject')
 			{
 				$type = strtoupper($type);
+				if($this->AutoLoading)
+					$js[] = "dhtmlx$id.setXMLAutoLoading('$url');";
 				$js[] = "dhtmlx$id.load$type('$url');";	
 			}
 			else
