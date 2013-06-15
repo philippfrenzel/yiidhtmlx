@@ -51,6 +51,11 @@ class Tree extends Widget
 	public $AutoLoading = true;
 
 	/**
+	* @var object name of the dhtmlxmenuobject, default empty
+	*/
+	public $enableContextMenu = '';
+
+	/**
 	 * Initializes the widget.
 	 */
 	public function init()

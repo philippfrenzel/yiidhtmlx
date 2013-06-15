@@ -26,7 +26,8 @@ use yii\helpers\Html;
  *	   ),
  *     'clientOptions' => array(
  *         'value' => '#sales#',
- *		   'label' => '#year#'
+ *		   'label' => '#year#',
+ *		   'contextmenu' => false,
  *     ),
  *     'clientDataOptions'=> array(
  *         'type' => 'json',
@@ -42,6 +43,7 @@ use yii\helpers\Html;
 
 class Menu extends Widget
 {
+
 	/**
 	 * Initializes the widget.
 	 */
