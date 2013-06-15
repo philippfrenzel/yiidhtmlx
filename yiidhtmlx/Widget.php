@@ -79,7 +79,7 @@ class Widget extends BaseWidget
 					$dhtmlxMenuObject = $this->enableContextMenu;
 					$js.="dhtmlx$id.enableContextMenu($dhtmlxMenuObject);";
 				}
-			}*/
+			}
 			$view->registerJs($js,View::POS_READY);
 		}
 
