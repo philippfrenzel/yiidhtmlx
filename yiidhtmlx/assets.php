@@ -48,6 +48,7 @@ return array(
 			'ext/dhtmlxtree_dragin.js',
 			'ext/dhtmlxtree_json.js',
 			'ext/dhtmlxtree_dragin.js',
+			'ext/dhtmlxtree_xw.js',
 		),
 		'css'=>array(
 			'dhtmlxtree.css',
