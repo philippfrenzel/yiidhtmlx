@@ -18,7 +18,7 @@ return array(
 		'depends' => array('yiidhtmlx/core'),
 	),
 	'yiidhtmlx/menuObject' => array(
-		'sourcePath' => __DIR__ . '/assets/dhtmlxChart',
+		'sourcePath' => __DIR__ . '/assets/dhtmlxMenu',
 		'js' => array(
 			'dhtmlxmenu.js',
 		),
