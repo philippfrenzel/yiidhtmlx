@@ -136,3 +136,76 @@ echo Grid::widget(
 * The skin is currently default to dhx_terrace.
 * For a complete list of clientOptions check out the dhtmlx.com webpage
 * While you set auto_height to false, you need to add in options->style:"height:400px"
+
+Tree and Contextmenu
+====================
+
+The following sample let's you attach an right mouse menu to the tree
+
+```php
+
+$imgPath = Yii::$app->assetManager->getBundle('yiidhtmlx/core')->baseUrl . "/dhtmlxTree/imgs/csh_dhx_terrace/";
+$imgMenuPath = Yii::$app->assetManager->getBundle('yiidhtmlx/core')->baseUrl . "/dhtmlxMenu/imgs/dhxmenu_dhx_terrace/";
+
+echo Menu::widget(
+	array(
+		'clientOptions'=>array(
+		 	'parent' => 'myCMSTreeMenu',
+		 	'skin' => "dhx_terrace",
+		 	'context' => true,
+		 	'image_path' => $imgMenuPath,
+		 	'items' => array(
+		 		array('id'=>'createchild','text'=>'Create new Child','img'=>'img/dhtmlx/s4.gif'),
+		 		array('id'=>'gotoparent','text'=>'Go to Parent','img'=>'img/dhtmlx/s3.gif')
+		 	)
+		),			
+	    'options'=>array(
+			'id'    => 'myCMSTreeMenu',
+		),
+		'clientEvents'=>array(
+			'onClick' => 'doOnMenuSelect',
+		)		
+	)
+);
+
+echo Tree::widget(
+	array(
+		'enableContextMenu'=>'dhtmlxmyCMSTreeMenu',
+		'clientOptions'=>array(
+		 	'parent' => 'myCMSTree',
+		 	'skin' => "terrace",
+		 	'image_path' => $imgPath,
+		 	'width' => '100%',
+		 	'height' => '200px',
+		 	'checkbox' => false,
+		 	'smart_parsing' => true,
+		),			
+	    'options'=>array(
+			'id'    => 'myCMSTree',
+		),
+		'clientDataOptions'=>array(
+			'type'=>'json',
+			'url'=>Html::url(array('/pages/jsontreeview','rootId'=>$rootId))
+		),
+		'clientEvents'=>array(
+			'onClick' => 'doOnRowSelect',
+		)		
+	)
+);
+
+$jumpTarget = Html::url(array('/pages/view','id'=>''));
+$jumpJS = <<<DEL
+
+function doOnRowSelect(id,ind) {
+	window.location = "$jumpTarget"+id;	
+};
+
+function doOnMenuSelect(id,type) {
+	var Nodeid = dhtmlxmyCMSTree.contextID;
+	alert(id);	
+	alert(Nodeid);
+};
+DEL;
+$this->registerJs($jumpJS); //where $this is the current view!
+
+```
