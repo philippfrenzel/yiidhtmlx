@@ -43,6 +43,11 @@ use yii\helpers\Html;
 class Grid extends Widget
 {
 	/**
+	* @var object name of the dhtmlxmenuobject, default empty
+	*/
+	public $enableContextMenu = '';
+	
+	/**
 	 * Initializes the widget.
 	 */
 	public function init()

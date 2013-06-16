@@ -79,6 +79,18 @@ class Widget extends BaseWidget
 			$js = array();
 			$type = empty($this->clientDataOptions['type']) ? 'json' : $this->clientDataOptions['type'];
 			$url = empty($this->clientDataOptions['url']) ? '' : $this->clientDataOptions['url'];
+			
+			//check for context menu
+			if($name === 'TreeObject' OR $name === 'GridObject')
+			{
+				if($this->enableContextMenu != '')
+				{
+					$dhtmlxMenuObject = $this->enableContextMenu;
+					$js[] = "dhtmlx$id.enableContextMenu($dhtmlxMenuObject);\n";
+				}
+			}
+
+			//load data for tree in a different way
 			if($name === 'TreeObject')
 			{
 				$type = strtoupper($type);
@@ -87,17 +99,12 @@ class Widget extends BaseWidget
 					$js[] = "dhtmlx$id.setXMLAutoLoading('$url');";
 					$js[] = "dhtmlx$id.setDataMode('$type');";
 				}
-				if($this->enableContextMenu != '')
-				{
-					$dhtmlxMenuObject = $this->enableContextMenu;
-					$js[] = "dhtmlx$id.enableContextMenu($dhtmlxMenuObject);\n";
-				}
 				$js[] = "dhtmlx$id.load$type('$url');";	
 			}
 			else
 			{
 				$js[] = "dhtmlx$id.load('$url', '$type');";
-			}//$js[] = "dhtmlx$id.refresh();";
+			}
 			$view->registerJs(implode("\n", $js),View::POS_READY);
 		}
 
