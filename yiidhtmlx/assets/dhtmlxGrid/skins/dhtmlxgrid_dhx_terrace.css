@@ -10,7 +10,7 @@ div.gridbox_dhx_terrace .ftr tr{
 }
 
 div.gridbox_dhx_terrace table.obj tr td{
-	
+	font-family:Arial;
 	font-size:13px;
 	color:#262626;
 	border-color:#e6e6e6;
@@ -48,7 +48,7 @@ div.gridbox_dhx_terrace table.hdr td {
 	background-color:#f9f9f9;
 	
 	
-	
+	font-family:Arial;
 	font-size:11px;
 	color:#262626;
 	vertical-align:top;
@@ -96,14 +96,14 @@ div.gridbox_dhx_terrace .odd_dhx_terrace{
 }
 
 .gridbox_dhx_terrace .dhx_combo_edit{
-    
+    font-family:Arial;
     font-size:13px;
     line-height:32px;
 }
 .dhx_combo_select, .dhx_textarea{
 	margin-left:20px;
 	line-height:20px;
-	
+	font-family:Arial;
     font-size:13px;
 }
 

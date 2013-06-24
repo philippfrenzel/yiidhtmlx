@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -15,7 +15,7 @@ dhtmlXGridObject.prototype.createFormInputRow=function(a){for(var b=(this.global
 dhtmlXGridObject.prototype.formCreateInputCollection=function(){if(this.parentForm==!1)return!1;for(var a=0;a<this.formInputs.length;a++)this.parentForm.removeChild(this.formInputs[a]);this.formInputs=[];if(this.FormSubmitSerialization)this.createFormInput("serialized",this.serialize());else if(this.FormSubmitOnlySelected)if(this.FormSubmitOnlyRowID)this.createFormInput("selected",this.getSelectedId());else for(a=0;a<this.selectedRows.length;a++)this.createFormInputRow(this.selectedRows[a]);else this._submitAR&&
 (this._added_rows.length&&this.createFormInput("rowsadded",this._added_rows.join(",")),this._deleted_rows.length&&this.createFormInput("rowsdeleted",this._deleted_rows.join(","))),this.forEachRow(function(a){this.getRowById(a);this.createFormInputRow(this.rowsAr[a])})};dhtmlXGridObject.prototype.detectParentFormPresent=function(){for(var a=!1,b=this.entBox;b&&b.tagName&&b!=document.body;)if(b.tagName.toLowerCase()=="form"){a=b;break}else b=b.parentNode;return a};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

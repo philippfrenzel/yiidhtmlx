@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -22,9 +22,9 @@ dhtmlXTreeObject.prototype.openAllItemsDynamic=function(a){this.ClosedElem=[];th
 dhtmlXTreeObject.prototype._openAllNodeChilds=function(a){(a.XMLload==0||a.unParsed)&&this.ClosedElem.push(a);for(var b=0;b<a.childsCount;b++)this._getOpenState(a.childNodes[b])<0&&this._HideShow(a.childNodes[b],2),a.childNodes[b].childsCount>0&&this._openAllNodeChilds(a.childNodes[b]),(a.childNodes[b].XMLload==0||a.childNodes[b].unParsed)&&this.ClosedElem.push(a.childNodes[b])};
 dhtmlXTreeObject.prototype._loadAndOpen=function(a){if(a.G_node)a._openItem(a.G_node),a._openAllNodeChilds(a.G_node),a.G_node=null;if(a.ClosedElem.length>0)a.G_node=a.ClosedElem.shift();if(a.G_node)a.G_node.unParsed?a.reParse(a.G_node):window.setTimeout(function(){a._loadDynXML(a.G_node.id)},100);else{a.onXLE=a.onLoadReserve;if(a.onXLE)a.onXLE(a);a.callEvent("onAllOpenDynamic",[a])}};
 dhtmlXTreeObject.prototype.openItemsDynamic=function(a,b){if(this.onXLE!=this._stepOpen)this._opnItmsDnmcFlg=convertStringToBoolean(b),this.onLoadReserve=this.onXLE,this.onXLE=this._stepOpen,this.ClosedElem=a.split(",").reverse(),this._stepOpen(this)};
-dhtmlXTreeObject.prototype._stepOpen=function(a){if(a.ClosedElem.length){a.G_node=a.ClosedElem.pop();var b=a._globalIdStorageFind(a.G_node);b.XMLload===0?a.openItem(a.G_node):(a.openItem(a.G_node),a._stepOpen(a))}else a.onXLE=a.onLoadReserve,a._opnItmsDnmcFlg&&a.selectItem(a.G_node,!0),a.onXLE&&arguments[1]&&a.onXLE.apply(a,arguments),a.callEvent("onOpenDynamicEnd",[])};
+dhtmlXTreeObject.prototype._stepOpen=function(a){if(a.ClosedElem.length){a.G_node=a.ClosedElem.pop();a.skipLock=!0;var b=a._globalIdStorageFind(a.G_node);b&&(b.XMLload===0?a.openItem(a.G_node):(a.openItem(a.G_node),a._stepOpen(a)));a.skipLock=!1}else a.onXLE=a.onLoadReserve,a._opnItmsDnmcFlg&&a.selectItem(a.G_node,!0),a.onXLE&&arguments[1]&&a.onXLE.apply(a,arguments),a.callEvent("onOpenDynamicEnd",[])};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

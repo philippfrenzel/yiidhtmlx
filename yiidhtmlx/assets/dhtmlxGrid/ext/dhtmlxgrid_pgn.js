@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -32,7 +32,7 @@ a.rowsBufferOutSize=parseInt(b[1]);a.changePage();a.aToolBar.setItemText("perpag
 "ar_right_abs.gif",this.imgURL+"ar_right_abs_dis.gif"),this.aToolBar.setWidth("rightabs","20"));this._WTDef[2]&&(this.aToolBar.addButtonSelect("pages",NaN,"select page",[],null,null,!0,!0),this.aToolBar.setWidth("pages","75"));var b;if(b=this._WTDef[3]){this.aToolBar.addButtonSelect("perpagenum",NaN,"select size",[],null,null,!0,!0);typeof b!="object"&&(b=[5,10,15,20,25,30]);for(var c=0;c<b.length;c++)this.aToolBar.addListOption("perpagenum","perpagenum_"+b[c],NaN,"button",b[c]+" "+this.i18n.paging.perpage);
 this.aToolBar.setWidth("perpagenum","135")}return this.aToolBar};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

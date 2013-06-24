@@ -3,7 +3,7 @@ Copyright DHTMLX LTD. http://www.dhtmlx.com
 To use this component please contact sales@dhtmlx.com to obtain license
 */
 /*
-2013 April 17
+2013 June 20
 */
 
 
@@ -5563,7 +5563,7 @@ dhtmlXChart.prototype={
 			if(this.callEvent("onLegendClick",[e,series,obj])){
 				var config = this._settings;
 				var values = config.legend.values;
-				var toggle = (values&&values[series].toggle)||config.legend.toggle;
+				var toggle = (values&&(typeof values[series].toggle != "undefined"))?values[series].toggle:config.legend.toggle;
 			    if((typeof series != "undefined")&&this._series.length>1){
 				    // hide action
 				    if(toggle){

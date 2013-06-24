@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -14,7 +14,7 @@ dhtmlXTreeObject.prototype._lastVisibleChild=function(a){return this._getOpenSta
 dhtmlXTreeObject.prototype._searchItemByKey=function(a){if(a.keyCode==8)return this._textSearchString="",!0;var b=String.fromCharCode(a.keyCode).toUpperCase();return b.match(/[A-Z,a-z,0-9\ ]/)?(this._textSearchString+=b,this._textSearchInProgress=!0,(this.getSelectedItemText()||"").match(RegExp("^"+this._textSearchString,"i"))||this.findItem("^"+this._textSearchString,0),this._textSearchInProgress=!1,a.preventDefault&&a.preventDefault(),(a||event).cancelBubble=!0,!1):!0};
 dhtmlXTreeObject.prototype.assignKeys=function(a){this._navKeys=a};dhtmlXTreeObject.prototype.enableKeySearch=function(a){if(this._textSearch=convertStringToBoolean(a)){this._textSearchString="";var b=this;this._markItem2=this._markItem;this._markItem=function(a){if(!b._textSearchInProgress)b._textSearchString="";b._markItem2(a)}}};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

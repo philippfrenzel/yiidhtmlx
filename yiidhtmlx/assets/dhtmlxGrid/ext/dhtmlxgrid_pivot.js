@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -20,7 +20,7 @@ dhtmlXGridObject.prototype._getUniList=function(a){if(!this._pUNI[a]){for(var b=
 dhtmlXGridObject.prototype._reFillPivotLists=function(){for(var a=[],b=[],e=0;e<3;e++)a.push(this._pgridSelect[e]),b.push(a[e].value);var c=this._reFfillPivotLists,d={};d[b[1]]=d[b[2]]=!0;this._fillPivotList(a[0],this._column_list,d,b[0]);d={};d[b[0]]=d[b[2]]=!0;this._fillPivotList(a[1],this._column_list,d,b[1]);d={};d[b[1]]=d[b[0]]=!0;this._fillPivotList(a[2],this._column_list,d,b[2]);this._reFfillPivotLists=c};
 dhtmlXGridObject.prototype.makePivotSelect=function(a,b){var e=document.createElement("SELECT");this._fillPivotList(e,a,b);e.style.cssText="width:150px; height:20px; font-family:Tahoma; font-size:8pt; font-weight:normal;";return e};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -9,7 +9,7 @@ function eXcell_wbut(b){this.cell=b;this.grid=this.cell.parentNode.grid;this.edi
 "5px"):(a.style.fontSize="8px",a.style.width="10px",a.style.marginTop="-5px");a.type="button";a.name="Lookup";a.value="...";var e=this.obj,f=this.cell.cellIndex,g=this.cell.parentNode.idd,h=this.grid,c=this;this.dhx_m_func=this.grid.getWButFunction(this.cell._cellIndex);a.onclick=function(){c.dhx_m_func(c,c.cell.parentNode.idd,c.cell._cellIndex,b)};this.cell.appendChild(a)};this.detach=function(){this.setValue(this.obj.value);return this.val!=this.getValue()}}eXcell_wbut.prototype=new eXcell;
 dhtmlXGridObject.prototype.getWButFunction=function(b){return this._wbtfna?this._wbtfna[b]:function(){}};dhtmlXGridObject.prototype.setWButFunction=function(b,d){if(!this._wbtfna)this._wbtfna=[];this._wbtfna[b]=d};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -14,7 +14,7 @@ dhtmlXGridCellObject.prototype.setValue=function(a){typeof a!="number"&&(!a||a.t
 dhtmlXGridCellObject.prototype.setCTxtValue=function(a){this.cell.innerHTML="";this.cell.appendChild(document.createTextNode(a));this.grid.callEvent("onCellChanged",[this.cell.parentNode.idd,this.cell._cellIndex,a])};dhtmlXGridCellObject.prototype.setLabel=function(a){this.cell.innerHTML=a};dhtmlXGridCellObject.prototype.getMath=function(){return this._val?this.val:this.getValue()};
 function eXcell(){this.val=this.obj=null;this.changeState=function(){return!1};this.edit=function(){this.val=this.getValue()};this.detach=function(){return!1};this.getPosition=function(a){for(var b=a,c=0,d=0;b.tagName!="BODY";)c+=b.offsetLeft,d+=b.offsetTop,b=b.offsetParent;return[c,d]}}eXcell.prototype=new dhtmlXGridCellObject;
 function eXcell_ed(a){if(a)this.cell=a,this.grid=this.cell.parentNode.grid;this.edit=function(){this.cell.atag=!this.grid.multiLine&&(_isKHTML||_isMacOS||_isFF)?"INPUT":"TEXTAREA";this.val=this.getValue();this.obj=document.createElement(this.cell.atag);this.obj.setAttribute("autocomplete","off");this.obj.style.height=this.cell.offsetHeight-(_isIE?4:4)+"px";this.obj.className="dhx_combo_edit";this.obj.wrap="soft";this.obj.style.textAlign=this.cell.style.textAlign;this.obj.onclick=function(a){(a||event).cancelBubble=
-!0};this.obj.onmousedown=function(a){(a||event).cancelBubble=!0};this.obj.value=this.val;this.cell.innerHTML="";this.cell.appendChild(this.obj);this.obj.onselectstart=function(a){a||(a=event);return a.cancelBubble=!0};_isIE&&this.obj.focus();this.obj.focus()};this.getValue=function(){return this.cell.firstChild&&this.cell.atag&&this.cell.firstChild.tagName==this.cell.atag?this.cell.firstChild.value:this.cell._clearCell?"":this.cell.innerHTML.toString()._dhx_trim()};this.detach=function(){this.setValue(this.obj.value);
+!0};this.obj.onmousedown=function(a){(a||event).cancelBubble=!0};this.obj.value=this.val;this.cell.innerHTML="";this.cell.appendChild(this.obj);this.obj.onselectstart=function(a){a||(a=event);return a.cancelBubble=!0};_isIE&&(this.obj.focus(),this.obj.blur());this.obj.focus()};this.getValue=function(){return this.cell.firstChild&&this.cell.atag&&this.cell.firstChild.tagName==this.cell.atag?this.cell.firstChild.value:this.cell._clearCell?"":this.cell.innerHTML.toString()._dhx_trim()};this.detach=function(){this.setValue(this.obj.value);
 return this.val!=this.getValue()}}eXcell_ed.prototype=new eXcell;function eXcell_edtxt(a){if(a)this.cell=a,this.grid=this.cell.parentNode.grid;this.getValue=function(){return this.cell.firstChild&&this.cell.atag&&this.cell.firstChild.tagName==this.cell.atag?this.cell.firstChild.value:this.cell._clearCell?"":_isIE?this.cell.innerText:this.cell.textContent};this.setValue=function(a){!a||a.toString()._dhx_trim()==""?(a=" ",this.cell._clearCell=!0):this.cell._clearCell=!1;this.setCTxtValue(a)}}
 eXcell_edtxt.prototype=new eXcell_ed;function eXcell_edn(a){if(a)this.cell=a,this.grid=this.cell.parentNode.grid;this.getValue=function(){return this.cell.firstChild&&this.cell.firstChild.tagName=="TEXTAREA"?this.cell.firstChild.value:this.cell._clearCell?"":this.cell._orig_value||this.grid._aplNFb(this.cell.innerHTML.toString()._dhx_trim(),this.cell._cellIndex)};this.detach=function(){var a=this.obj.value;this.setValue(a);return this.val!=this.getValue()}}eXcell_edn.prototype=new eXcell_ed;
 eXcell_edn.prototype.setValue=function(a){if(!a||a.toString()._dhx_trim()=="")return this.cell._clearCell=!0,this.setCValue("&nbsp;",0);else this.cell._clearCell=!1,this.cell._orig_value=a;this.setCValue(this.grid._aplNF(a,this.cell._cellIndex),a)};
@@ -60,7 +60,7 @@ function dhtmlXGridComboObject(){this.keys=new dhtmlxArray;this.values=new dhtml
 a)return this.keys._dhx_removeAt(b),this.values._dhx_removeAt(b),!0};this.size=function(){for(var a=0,b=0;b<this.keys.length;b++)this.keys[b]!=null&&a++;return a};this.getKeys=function(){for(var a=[],b=0;b<this.keys.length;b++)this.keys[b]!=null&&(a[a.length]=this.keys[b]);return a};this.save=function(){this._save=[];for(var a=0;a<this.keys.length;a++)this._save[a]=[this.keys[a],this.values[a]]};this.restore=function(){if(this._save){this.keys[a]=[];this.values[a]=[];for(var a=0;a<this._save.length;a++)this.keys[a]=
 this._save[a][0],this.values[a]=this._save[a][1]}};return this}function Hashtable(){this.keys=new dhtmlxArray;this.values=new dhtmlxArray;return this}Hashtable.prototype=new dhtmlXGridComboObject;
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

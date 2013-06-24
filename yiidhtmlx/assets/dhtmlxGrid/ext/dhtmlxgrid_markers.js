@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -12,7 +12,7 @@ this.markedRowsArr._dhx_find(a)==-1&&(this.markedRowsArr[this.markedRowsArr.leng
 dhtmlXGridObject.prototype.unmarkAll=function(){if(this.markedRowsArr){for(var a=0;a<this.markedRowsArr.length;a++){var b=this.markedRowsArr[a];if(this.rowsAr[b])for(var c=0;c<this.markedCellsArr[b].length;c++)this.callEvent("onCellUnMarked",[b,this.markedCellsArr[b][c]]),this.cells(b,this.markedCellsArr[b][c]).cell.className=this.cells(b,this.markedCellsArr[b][c]).cell.className.replace(/cellselected/g,"")}this.markedRowsArr=new dhtmlxArray(0);this.markedCellsArr=[]}return!0};
 dhtmlXGridObject.prototype.getMarked=function(){var a=[];if(this.markedRowsArr)for(var b=0;b<this.markedRowsArr.length;b++)for(var c=this.markedRowsArr[b],d=0;d<this.markedCellsArr[c].length;d++)a[a.length]=[c,this.markedCellsArr[c][d]];return a};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

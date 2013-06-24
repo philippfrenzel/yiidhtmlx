@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -32,7 +32,7 @@ dhtmlXGridObject.prototype.updateGroups=function(){if(this._gmask&&this._gmask._
 dhtmlXGridObject.prototype._b_processing=function(a,d,b){var c=0,e=0;this._ecache[this.cellType[d]]||this.cells5({parentNode:{grid:this}},this.cellType[d]);for(var f=this.rowsCol.length-1;f>=0;f--)this.rowsCol[f]._cntr?(this.cells5(this.rowsCol[f].childNodes[b],this.cellType[d]).setValue(c),e=c=0):(c=a(c,this.cells3(this.rowsCol[f],d).getValue()*1,e),e++)};dhtmlXGridObject.prototype._g_stat_total=function(a,d){return a+d};
 dhtmlXGridObject.prototype._g_stat_min=function(a,d,b){b||(a=Infinity);return Math.min(a,d)};dhtmlXGridObject.prototype._g_stat_max=function(a,d,b){b||(a=-Infinity);return Math.max(a,d)};dhtmlXGridObject.prototype._g_stat_average=function(a,d,b){return(a*b+d)/(b+1)};dhtmlXGridObject.prototype._g_stat_count=function(a){return a++};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

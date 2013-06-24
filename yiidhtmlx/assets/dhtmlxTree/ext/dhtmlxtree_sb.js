@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -10,7 +10,7 @@ b){return a.span.innerHTML.toUpperCase()<b.span.innerHTML.toUpperCase()?1:a.span
 dhtmlXTreeObject.prototype._reorderXMLBranch=function(c){var e=c.getAttribute("order");if(e!="none"){var f=e==1,b=c.childNodes.length;if(b){for(var d=[],g=0,a=0;a<b;a++)c.childNodes[a].nodeType==1&&(d[g]=c.childNodes[a],g++);for(a=b-1;a!=0;a--)c.removeChild(c.childNodes[a]);f?d.sort(function(a,b){return a.getAttribute("text")>b.getAttribute("text")?1:a.getAttribute("text")==b.getAttribute("text")?0:-1}):d.sort(function(a,b){return a.getAttribute("text")<b.getAttribute("text")?1:a.getAttribute("text")==
 b.getAttribute("text")?0:-1});for(a=0;a<g;a++)d[a].setAttribute("order",e),c.appendChild(d[a]);c.setAttribute("order","none")}}};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

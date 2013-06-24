@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -12,10 +12,10 @@ dhtmlXGridObject.prototype.loadHiddenColumnsFromCookie=function(b){for(var a=thi
 dhtmlXGridObject.prototype.loadSortingFromCookie=function(b){var a=this._getCookie(b,2),a=(a||"").split(",");a.length>1&&a[0]<this._cCount&&(this.sortRows(a[0],null,a[1]),this.setSortImgState(!0,a[0],a[1]))};dhtmlXGridObject.prototype.saveOrderToCookie=function(b,a){if(!this._c_order){this._c_order=[];for(var c=this._cCount,d=0;d<c;d++)this._c_order[d]=d}this.setCookie(b,a,3,(this._c_order||[]).slice(0,this._cCount).join(","));this.saveSortingToCookie()};
 dhtmlXGridObject.prototype.loadOrderFromCookie=function(b){var a=this._getCookie(b,3),a=(a||"").split(",");if(a.length>1&&a.length<=this._cCount)for(var c=0;c<a.length;c++)if(!this._c_order&&a[c]!=c||this._c_order&&a[c]!=this._c_order[c]){var d=a[c];if(this._c_order)for(var e=0;e<this._c_order.length;e++)if(this._c_order[e]==a[c]){d=e;break}this.moveColumn(d*1,c)}};
 dhtmlXGridObject.prototype.loadSizeFromCookie=function(b){var a=this._getCookie(b,1);if(a)this.initCellWidth=a.split(",");if((a=this._getCookie(b,0))&&a.length){if(!this._fake&&this._hrrar)for(var c=0;c<a.length;c++)this._hrrar[c]&&(a[c]=0);this.cellWidthType=="px"?this.cellWidthPX=a.split(","):this.cellWidthPC=a.split(",")}this.setSizes();return!0};dhtmlXGridObject.prototype.clearConfigCookie=function(b){if(!b)b=this.entBox.id;var a="gridSettings"+b+"=||||";document.cookie=a};
-dhtmlXGridObject.prototype.clearSizeCookie=dhtmlXGridObject.prototype.clearConfigCookie;dhtmlXGridObject.prototype.setCookie=function(b,a,c,d){if(!b)b=this.entBox.id;var e=this.getCookie(b),e=(e||"||||").split("|");e[c]=d;var f="gridSettings"+b+"="+e.join("|")+(a?"; "+a:"");document.cookie=f};
-dhtmlXGridObject.prototype.getCookie=function(b,a){if(!b)b=this.entBox.id;var b=(a||"gridSettings")+b,c=b+"=";if(document.cookie.length>0){var d=document.cookie.indexOf(c);if(d!=-1){d+=c.length;var e=document.cookie.indexOf(";",d);if(e==-1)e=document.cookie.length;return document.cookie.substring(d,e)}}};dhtmlXGridObject.prototype._getCookie=function(b,a){return(this.getCookie(b)||"||||").split("|")[a]};
+dhtmlXGridObject.prototype.clearSizeCookie=dhtmlXGridObject.prototype.clearConfigCookie;dhtmlXGridObject.prototype.setCookie=function(b,a,c,d){if(!b)b=this.entBox.id;var e=this.getCookie(b),e=(e||"||||").split("|");e[c]=d;var f="gridSettings"+b+"="+e.join("|").replace(/,/g,"-")+(a?"; "+a:"");document.cookie=f};
+dhtmlXGridObject.prototype.getCookie=function(b,a){if(!b)b=this.entBox.id;var b=(a||"gridSettings")+b,c=b+"=";if(document.cookie.length>0){var d=document.cookie.indexOf(c);if(d!=-1){d+=c.length;var e=document.cookie.indexOf(";",d);if(e==-1)e=document.cookie.length;return document.cookie.substring(d,e)}}};dhtmlXGridObject.prototype._getCookie=function(b,a){return(this.getCookie(b)||"||||").replace(/-/g,",").split("|")[a]};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

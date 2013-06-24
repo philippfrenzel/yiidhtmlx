@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -12,7 +12,7 @@ dhtmlXTreeObject.prototype._lockIdFind=function(a,b,c){return!this.skipLock&&!c&
 dhtmlXTreeObject.prototype._moveNodeTo=function(a,b,c){return b.treeNod.isLocked&&b.treeNod.isLocked(b.id)?!1:this._moveNodeToA(a,b,c)};dhtmlXTreeObject.prototype.lockTree=function(a){if(convertStringToBoolean(a))this._initTreeLocker();else if(this._TreeLocker)this._TreeLocker.parentNode.removeChild(this._TreeLocker),this._TreeLocker=null};
 dhtmlXTreeObject.prototype._initTreeLocker=function(){if(!this._TreeLocker){this.parentObject.style.overflow="hidden";if(this.parentObject.style.position!="absolute")this.parentObject.style.position="relative";var a=document.createElement("div");a.style.position="absolute";a.style.left="0px";a.style.top="0px";a.className="dhx_tree_opacity";a.style.width=this.allTree.offsetWidth+"px";a.style.backgroundColor="#FFFFFF";a.style.height=this.allTree.offsetHeight+"px";this._TreeLocker=a;this.parentObject.appendChild(this._TreeLocker)}};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

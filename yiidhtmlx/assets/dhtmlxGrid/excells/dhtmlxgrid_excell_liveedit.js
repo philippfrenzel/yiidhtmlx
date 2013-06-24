@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -9,7 +9,7 @@ this.grid.callEvent("onEditCell",[2,this.cell.parentNode.idd,this.cell._cellInde
 eXcell_liveedit.prototype.setValue=function(b){var a=this;this.cell.innerHTML='<input type="text" value="" style="width:100%;" />';this.cell.inputObj=this.cell.firstChild;this.cell.inputObj=this.cell.firstChild;this.cell.inputObj.value=b;this.cell.inputObj.onfocus=function(){a.onFocus()};this.cell.inputObj.onblur=function(){a.onFocus()};this.cell.inputObj.onchange=function(){a.onChange()}};
 if(window.eXcell_math)eXcell_liveedit.prototype.setValueA=eXcell_liveedit.prototype.setValue,eXcell_liveedit.prototype.setValue=eXcell_math.prototype._NsetValue;
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

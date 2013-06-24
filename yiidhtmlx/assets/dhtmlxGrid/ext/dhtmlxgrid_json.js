@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -19,7 +19,7 @@ dhtmlXGridObject.prototype._process_tree_json=function(a,b,f,h){this._parsing=!0
 b[c],g,h)}}else if(b.rows)for(c=0;c<b.rows.length;c++){g=b.rows[c].id;e=this._h2.add(g,f);e.buff={idd:g,data:b.rows[c],_parser:this._process_json_row,_locator:this._get_json_data};if(b.rows[c].open)e.state="minus";this.rowsAr[g]=e.buff;this._process_tree_json(b.rows[c],b.rows[c],g,h)}if(d)f!=0&&this._h2.change(f,"state","minus"),this._updateTGRState(this._h2.get[f]),this._h2_to_buff(),f!=0&&(this._srnd||this.pagingOn)?this._renderSort():this.render_dataset(),this._slowParse===!1&&this.forEachRow(function(a){this.render_row_tree(0,
 a)}),this._parsing=!1};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

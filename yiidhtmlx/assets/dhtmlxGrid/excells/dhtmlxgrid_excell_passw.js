@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -8,7 +8,7 @@ function eXcell_passw(b){if(b)this.cell=b,this.grid=this.cell.parentNode.grid;th
 !0};this.obj.value=this.cell._rval||"";this.cell.appendChild(this.obj);if(_isFF&&(this.obj.style.overflow="visible",this.grid.multiLine&&this.obj.offsetHeight>=18&&this.obj.offsetHeight<40))this.obj.style.height="36px",this.obj.style.overflow="scroll";this.obj.onselectstart=function(a){a||(a=event);return a.cancelBubble=!0};this.obj.focus();this.obj.focus()};this.getValue=function(){return this.cell._rval};this.setValue=function(a){var b="*****";this.cell.innerHTML=b;this.cell._rval=a};this.detach=
 function(){this.setValue(this.obj.value);return this.val!=this.getValue()}}eXcell_passw.prototype=new eXcell;
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

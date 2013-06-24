@@ -1,4 +1,4 @@
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -23,7 +23,7 @@ this._get_srnd_p_last(d.id,a,b)}else if(a.pop(),!a.length)return this._get_prev_
 this.selectionBar),_isFF))this.allTree.childNodes[0].width="100%",this.allTree.childNodes[0].style.overflow="hidden"};this._HideShow=function(a,b){if(this.XMLsource&&!a.XMLload){if(b!=1)a.XMLload=1,this._loadDynXML(a.id)}else if(a.span||this._buildSRND(a),a.unParsed&&(this.reParse(a),this.prepareSR(a.id)),a.childsCount!=0){var c=a.htmlNode.childNodes[0].childNodes,d=c.length;if(d>1){if((c[1].style.display!="none"||b==1)&&b!=2){this.allTree.childNodes[0].border="1";this.allTree.childNodes[0].border=
 "0";var e="none";a._open=!1}else e="",a._open=!0;for(var g=1;g<d;g++)c[g].style.display=e;this._renderState()}this._correctPlus(a)}}};
 
-//v.3.6 build 130417
+//v.3.6 build 130619
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
