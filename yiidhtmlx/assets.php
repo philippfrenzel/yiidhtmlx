@@ -17,6 +17,16 @@ return array(
 		),
 		'depends' => array('yiidhtmlx/core'),
 	),
+	'yiidhtmlx/popup' => array(
+		'sourcePath' => __DIR__ . '/assets/dhtmlxPopup',
+		'js' => array(
+			'dhtmlxpopup.js',
+		),
+		'css'=>array(
+			'skins/dhtmlxpopup_dhx_terrace.css'
+		),
+		'depends' => array('yiidhtmlx/core'),
+	),
 	'yiidhtmlx/menuObject' => array(
 		'sourcePath' => __DIR__ . '/assets/dhtmlxMenu',
 		'js' => array(
