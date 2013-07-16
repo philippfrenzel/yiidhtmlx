@@ -64,7 +64,10 @@ class Widget extends BaseWidget
 	{		
 		$id = $this->options['id'];
 		$view = $this->getView();
-		$view->registerAssetBundle("yiidhtmlx/$name");
+
+		/** @var \yii\web\AssetBundle $assetClass */
+		$assetClass = 'yiidhtmlx\\' . ucfirst($name).'Asset';
+		$assetClass::register($view);
 
 		//for the js object generation, the first letter needs to be in upper case
 		$name = ucfirst($name);

@@ -38,20 +38,12 @@ Package is although registered at packagist.org - so you can just add one line o
 
 ```json
 "require": {
-        "yiisoft/yii2": "dev-master",
-        "yiisoft/yii2-composer":"dev-master",
         "philippfrenzel/yiidhtmlx":"*"
 },
 ```
 
 MetroUI already loaded?
 - As I use assetparser extension to parse the less files into my distribution, i commented the assets.php to avoid static css loading. If you need the css-files to be loaded statically, pls. uncomment the entries!
-
-Add the following line to your index.php in /www
-
-```php
-Yii::setAlias('@yiidhtmlx', __DIR__ . '/../vendor/philippfrenzel/yiidhtmlx/yiidhtmlx/');
-```
 
 Chart
 =====
