@@ -62,15 +62,17 @@ class Widget extends BaseWidget
 	*/
 	protected function registerPlugin($name)
 	{		
+		//for the js object generation, the first letter needs to be in upper case
+		$name = ucfirst($name);
+
 		$id = $this->options['id'];
 		$view = $this->getView();
 
 		/** @var \yii\web\AssetBundle $assetClass */
-		$assetClass = 'yiidhtmlx\\' . ucfirst($name).'Asset';
+		$assetClass = 'yiidhtmlx\\' . $name.'Asset';
 		$assetClass::register($view);
 
-		//for the js object generation, the first letter needs to be in upper case
-		$name = ucfirst($name);
+		
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);

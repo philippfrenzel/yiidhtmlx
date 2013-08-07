@@ -90,9 +90,9 @@ For example,
 use yiidhtmlx\Grid;
 
 //needs to be registered manualy as the base url is only available later
-$this->registerAssetBundle('yiidhtmlx/core');
+$this->registerAssetBundle('yiidhtmlx/WidgetAsset');
 
-$imgPath = Yii::$app->assetManager->getBundle('yiidhtmlx/core')->baseUrl . "/dhtmlxGrid/imgs/";
+$imgPath = Yii::$app->assetManager->getBundle('yiidhtmlx/WidgetAsset')->baseUrl . "/dhtmlxGrid/imgs/";
 
 echo Grid::widget(
 	array(
@@ -136,8 +136,8 @@ The following sample let's you attach an right mouse menu to the tree
 
 ```php
 
-$imgPath = Yii::$app->assetManager->getBundle('yiidhtmlx/core')->baseUrl . "/dhtmlxTree/imgs/csh_dhx_terrace/";
-$imgMenuPath = Yii::$app->assetManager->getBundle('yiidhtmlx/core')->baseUrl . "/dhtmlxMenu/imgs/dhxmenu_dhx_terrace/";
+$imgPath = Yii::$app->assetManager->getBundle('yiidhtmlx/WidgetAsset')->baseUrl . "/dhtmlxTree/imgs/csh_dhx_terrace/";
+$imgMenuPath = Yii::$app->assetManager->getBundle('yiidhtmlx/WidgetAsset')->baseUrl . "/dhtmlxMenu/imgs/dhxmenu_dhx_terrace/";
 
 echo Menu::widget(
 	array(
