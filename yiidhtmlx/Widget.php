@@ -101,8 +101,8 @@ class Widget extends BaseWidget
 				$type = strtoupper($type);
 				if($this->AutoLoading)
 				{
+					$js[] = "dhtmlx$id.setXMLAutoLoading('$url');";
 					$js[] = "dhtmlx$id.setDataMode('$type');";
-					//$js[] = "dhtmlx$id.setXMLAutoLoading('$url');";					
 				}
 				$js[] = "dhtmlx$id.load$type('$url');";	
 			}
