@@ -16,7 +16,6 @@ class ChartAsset extends AssetBundle
         'dhtmlxChart/dhtmlxchart.css'
     );
     public $js = array(
-        'dhtmlxChart/dhtmlxcommon.js'
     );
     public $depends = array(
         '\yiidhtmlx\WidgetAsset',
