@@ -13,11 +13,11 @@ class MenuObjectAsset extends AssetBundle
 {
     public $sourcePath = '@yiidhtmlx/assets';
     public $css = array(
-        '/dhtmlxMenu/skins/dhtmlxmenu_dhx_terrace.css'
+        'dhtmlxMenu/skins/dhtmlxmenu_dhx_terrace.css'
     );
     public $js = array(
-        '/dhtmlxMenu/dhtmlxmenu.js',
-        '/dhtmlxMenu/ext/dhtmlxmenu_ext.js',
+        'dhtmlxMenu/dhtmlxmenu.js',
+        'dhtmlxMenu/ext/dhtmlxmenu_ext.js',
     );
     public $depends = array(
         '\yiidhtmlx\WidgetAsset',

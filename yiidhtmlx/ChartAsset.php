@@ -13,10 +13,10 @@ class ChartAsset extends AssetBundle
 {
     public $sourcePath = '@yiidhtmlx/assets';
     public $css = array(
-        '/dhtmlxChart/dhtmlxchart.css'
+        'dhtmlxChart/dhtmlxchart.css'
     );
     public $js = array(
-        '/dhtmlxChart/dhtmlxcommon.js'
+        'dhtmlxChart/dhtmlxcommon.js'
     );
     public $depends = array(
         '\yiidhtmlx\WidgetAsset',

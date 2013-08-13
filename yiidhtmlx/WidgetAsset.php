@@ -8,10 +8,6 @@ namespace yiidhtmlx;
 
 use yii\web\AssetBundle;
 
-/**
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
 class WidgetAsset extends AssetBundle
 {
     public $sourcePath = '@yiidhtmlx/assets';
