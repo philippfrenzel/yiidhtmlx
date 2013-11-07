@@ -11,7 +11,7 @@
 namespace yiidhtmlx;
 
 use Yii;
-use yii\base\View;
+use yii\web\View;
 use yii\helpers\Json;
 use yii\base\Widget as BaseWidget;
 
