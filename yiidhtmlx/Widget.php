@@ -96,6 +96,15 @@ class Widget extends BaseWidget
 			}
 
 			//load data for tree in a different way
+			if($name === 'GridObject')
+			{
+				if($this->enablePaging)
+				{
+					$js[] = "dhtmlx$id.enablePaging(true,10,5,'pagingArea',true,'recinfoArea');";
+				}
+			}
+
+			//load data for tree in a different way
 			if($name === 'TreeObject')
 			{
 				$type = strtoupper($type);
