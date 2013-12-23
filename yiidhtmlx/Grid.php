@@ -67,12 +67,12 @@ class Grid extends Widget
 	 */
 	public function run()
 	{
+		echo Html::beginTag('div', ['id'=>'recinfoArea'.$this->options['id']]) . "\n";
+		echo Html::endTag('div')."\n";
 		echo Html::beginTag('div', $this->options) . "\n";
 		echo Html::endTag('div')."\n";
 		echo Html::beginTag('div', ['id'=>'pagingArea'.$this->options['id']]) . "\n";
-		echo Html::endTag('div')."\n";
-		echo Html::beginTag('div', ['id'=>'recinfoArea'.$this->options['id']]) . "\n";
-		echo Html::endTag('div')."\n";
+		echo Html::endTag('div')."\n";		
 		
 		$this->registerPlugin('gridObject');
 	}
