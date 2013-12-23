@@ -52,6 +52,13 @@ class Grid extends Widget
 	 * @var boolean default false
 	 */
 	public $enablePaging = false;
+
+
+	/**
+	 * [$enableSmartRendering description]
+	 * @var boolean default true
+	 */
+	public $enableSmartRendering = true;
 	
 	/**
 	 * Initializes the widget.
