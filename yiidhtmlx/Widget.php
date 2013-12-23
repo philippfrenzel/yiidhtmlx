@@ -103,7 +103,7 @@ class Widget extends BaseWidget
 					$js[] = "dhtmlx$id.init();";
 					$js[] = "dhtmlx$id.enablePaging(true,10,5,'pagingArea$id',true,'recinfoArea$id');";
 					$js[] = "dhtmlx$id.setPagingSkin('bricks');";
-					$js[] = "dhtmlx$id.enableSmartRendering(true,10);";					
+					//$js[] = "dhtmlx$id.enableSmartRendering(true,10);"; removed SmartRendering as it's not working with pagination			
 				}
 			}
 
