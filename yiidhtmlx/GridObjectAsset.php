@@ -14,7 +14,7 @@ class GridObjectAsset extends AssetBundle
     public $sourcePath = '@yiidhtmlx/assets';
     public $css = array(
         'dhtmlxGrid/dhtmlxgrid.css',
-        'dhtmlxGrid/skins/dhtmlxgrid_skins.css',
+        'dhtmlxGrid/dhtmlxgrid_skins.css',
         'dhtmlxGrid/skins/dhtmlxgrid_dhx_terrace.css',        
     );
     public $js = array(

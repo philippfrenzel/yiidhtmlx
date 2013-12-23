@@ -1,119 +1,2214 @@
-//v.3.6 build 130619
-
-/*
-Copyright DHTMLX LTD. http://www.dhtmlx.com
-To use this component please contact sales@dhtmlx.com to obtain license
+/**
+*   @desc: a constructor, creates a new dhtmlxMenu object, baseId defines a base object for the top menu level
+*   @param: baseId - id of the html element to which a menu will be attached, in case of a contextual menu - if specified, will used as a contextual zone
+*   @type: public
 */
-function dhtmlXMenuObject(b,c){var a=this;this.addBaseIdAsContextZone=null;this.isDhtmlxMenuObject=!0;this.skin=c!=null?c:typeof dhtmlx!="undefined"&&typeof dhtmlx.skin=="string"?dhtmlx.skin:"dhx_skyblue";this.imagePath="";this._isIE6=!1;if(_isIE)this._isIE6=window.XMLHttpRequest==null?!0:!1;if(b==null)this.base=document.body;else{var d=typeof b=="string"?document.getElementById(b):b;if(d!=null){this.base=d;if(!this.base.id)this.base.id=(new Date).valueOf();for(;this.base.childNodes.length>0;)this.base.removeChild(this.base.childNodes[0]);
-this.base.className+=" dhtmlxMenu_"+this.skin+"_Middle dir_left";this.base._autoSkinUpdate=!0;if(this.base.oncontextmenu)this.base._oldContextMenuHandler=this.base.oncontextmenu;this.addBaseIdAsContextZone=this.base.id;this.base.onselectstart=function(a){a=a||event;return a.returnValue=!1};this.base.oncontextmenu=function(a){a=a||event;return a.returnValue=!1}}else this.base=document.body}this.topId="dhxWebMenuTopId";if(!this.extendedModule){for(var f=function(){alert(this.i18n.dhxmenuextalert)},
-e="setItemEnabled,setItemDisabled,isItemEnabled,_changeItemState,getItemText,setItemText,loadFromHTML,hideItem,showItem,isItemHidden,_changeItemVisible,setUserData,getUserData,setOpenMode,setWebModeTimeout,enableDynamicLoading,_updateLoaderIcon,getItemImage,setItemImage,clearItemImage,setAutoShowMode,setAutoHideMode,setContextMenuHideAllMode,getContextMenuHideAllMode,setVisibleArea,setTooltip,getTooltip,setHotKey,getHotKey,setItemSelected,setTopText,setRTL,setAlign,setHref,clearHref,getCircuit,_clearAllSelectedSubItemsInPolygon,_checkArrowsState,_addUpArrow,_addDownArrow,_removeUpArrow,_removeDownArrow,_isArrowExists,_doScrollUp,_doScrollDown,_countPolygonItems,setOverflowHeight,_getRadioImgObj,_setRadioState,_radioOnClickHandler,getRadioChecked,setRadioChecked,addRadioButton,_getCheckboxState,_setCheckboxState,_readLevel,_updateCheckboxImage,_checkboxOnClickHandler,setCheckboxState,getCheckboxState,addCheckbox,serialize".split(","),
-g=0;g<e.length;g++)this[e[g]]||(this[e[g]]=f);e=null}this.fixedPosition=!1;this.menuLastClicked=this.menuSelected=-1;this.idPrefix="";this.itemTagName="item";this.itemTextTagName="itemtext";this.userDataTagName="userdata";this.itemTipTagName="tooltip";this.itemHotKeyTagName="hotkey";this.itemHrefTagName="href";this.dirTopLevel="bottom";this.dirSubLevel="right";this.menuY2=this.menuY1=this.menuX2=this.menuX1=null;this.menuMode="web";this.menuTimeoutMsec=400;this.menuTimeoutHandler=null;this.autoOverflow=
-!1;this.idPull={};this.itemPull={};this.userData={};this.radio={};this._rtl=!1;this._align="left";this.menuTouched=!1;this.zInd=this.zIndInit=1200;this.zIndStep=50;this.menuModeTopLevelTimeout=!0;this.menuModeTopLevelTimeoutTime=200;this._topLevelBottomMargin=1;this._topLevelRightMargin=0;this._topLevelOffsetLeft=1;this._arrowFFFix=_isIE?document.compatMode=="BackCompat"?0:-4:-4;this.setSkin=function(a){var b=this.skin;this.skin=a;switch(this.skin){case "dhx_black":case "dhx_blue":case "dhx_skyblue":case "dhx_web":this._topLevelBottomMargin=
-2;this._topLevelOffsetLeft=this._topLevelRightMargin=1;this._arrowFFFix=_isIE?document.compatMode=="BackCompat"?0:-4:-4;break;case "dhx_web":this._arrowFFFix=0;break;case "dhx_terrace":this._topLevelOffsetLeft=this._topLevelRightMargin=this._topLevelBottomMargin=0,this._arrowFFFix=_isIE?document.compatMode=="BackCompat"?0:-4:-4}if(this.base._autoSkinUpdate)this.base.className=this.base.className.replace("dhtmlxMenu_"+b+"_Middle","")+" dhtmlxMenu_"+this.skin+"_Middle";for(var c in this.idPull)this.idPull[c].className=
-String(this.idPull[c].className).replace(b,this.skin)};this.setSkin(this.skin);this.dLoad=!1;this.dLoadUrl="";this.dLoadSign="?";this.loaderIcon=!1;this.limit=0;this._scrollUpTM=null;this._scrollUpTMTime=20;this._scrollUpTMStep=3;this._scrollDownTM=null;this._scrollDownTMTime=20;this._scrollDownTMStep=3;this.context=!1;this.contextZones={};this.contextMenuZoneId=!1;this.contextHideAllMode=this.contextAutoHide=this.contextAutoShow=!0;this._selectedSubItems=[];this._openedPolygons=[];this._addSubItemToSelected=
-function(a,b){for(var c=!0,d=0;d<this._selectedSubItems.length;d++)this._selectedSubItems[d][0]==a&&this._selectedSubItems[d][1]==b&&(c=!1);c==!0&&this._selectedSubItems.push([a,b]);return c};this._removeSubItemFromSelected=function(a,b){for(var c=[],d=!1,e=0;e<this._selectedSubItems.length;e++)this._selectedSubItems[e][0]==a&&this._selectedSubItems[e][1]==b?d=!0:c[c.length]=this._selectedSubItems[e];if(d==!0)this._selectedSubItems=c;return d};this._getSubItemToDeselectByPolygon=function(a){for(var b=
-[],c=0;c<this._selectedSubItems.length;c++)if(this._selectedSubItems[c][1]==a){b[b.length]=this._selectedSubItems[c][0];for(var b=b.concat(this._getSubItemToDeselectByPolygon(this._selectedSubItems[c][0])),d=!0,e=0;e<this._openedPolygons.length;e++)this._openedPolygons[e]==this._selectedSubItems[c][0]&&(d=!1);d==!0&&(this._openedPolygons[this._openedPolygons.length]=this._selectedSubItems[c][0]);this._selectedSubItems[c][0]=-1;this._selectedSubItems[c][1]=-1}return b};this._hidePolygon=function(a){if(this.idPull["polygon_"+
-a]!=null){if(typeof this._menuEffect!="undefined"&&this._menuEffect!==!1)this._hidePolygonEffect("polygon_"+a);else{if(this.idPull["polygon_"+a].style.display=="none")return;this.idPull["polygon_"+a].style.display="none";if(this.idPull["arrowup_"+a]!=null)this.idPull["arrowup_"+a].style.display="none";if(this.idPull["arrowdown_"+a]!=null)this.idPull["arrowdown_"+a].style.display="none";this._updateItemComplexState(a,!0,!1);if(this._isIE6&&this.idPull["polygon_"+a+"_ie6cover"]!=null)this.idPull["polygon_"+
-a+"_ie6cover"].style.display="none"}a=String(a).replace(this.idPrefix,"");a==this.topId&&(a=null);this.callEvent("onHide",[a]);a!=null&&this.skin=="dhx_terrace"&&this.itemPull[this.idPrefix+a].parent==this.idPrefix+this.topId&&this._improveTerraceButton(this.idPrefix+a,!0)}};this._showPolygon=function(a,b){var c=this._countVisiblePolygonItems(a);if(c!=0){var d="polygon_"+a;if(this.idPull[d]!=null&&this.idPull[a]!=null&&(!this.menuModeTopLevelTimeout||this.menuMode!="web"||this.context||this.idPull[a]._mouseOver||
-b!=this.dirTopLevel)){this.fixedPosition||this._autoDetectVisibleArea();var e=0,f=0,g=null,i=null;this.idPull[d].style.visibility="hidden";this.idPull[d].style.left="0px";this.idPull[d].style.top="0px";this.idPull[d].style.display="";this.idPull[d].style.zIndex=this.zInd;if(this.autoOverflow)if(this.idPull[d].firstChild.offsetHeight>this.menuY1+this.menuY2){var m=Math.floor((this.menuY2-this.menuY1-35)/24);this.limit=m}else this.limit=0,this.idPull["arrowup_"+a]!=null&&this._removeUpArrow(String(a).replace(this.idPrefix,
-"")),this.idPull["arrowdown_"+a]!=null&&this._removeDownArrow(String(a).replace(this.idPrefix,""));if(this.limit>0&&this.limit<c)this.idPull["arrowup_"+a]==null&&this._addUpArrow(String(a).replace(this.idPrefix,"")),this.idPull["arrowdown_"+a]==null&&this._addDownArrow(String(a).replace(this.idPrefix,"")),g=this.idPull["arrowup_"+a],g.style.visibility="hidden",g.style.display="",g.style.zIndex=this.zInd,e=g.offsetHeight,i=this.idPull["arrowdown_"+a],i.style.visibility="hidden",i.style.display="",
-i.style.zIndex=this.zInd,f=i.offsetHeight;if(this.limit>0)this.limit<c?(this.idPull[d].style.height=24*this.limit+"px",this.idPull[d].scrollTop=0):this.idPull[d].style.height="";this.zInd+=this.zIndStep;if(this.itemPull[a]!=null)var C="polygon_"+this.itemPull[a].parent;else this.context&&(C=this.idPull[this.idPrefix+this.topId]);var q=this.idPull[a].tagName!=null?getAbsoluteLeft(this.idPull[a]):this.idPull[a][0],t=this.idPull[a].tagName!=null?getAbsoluteTop(this.idPull[a]):this.idPull[a][1],u=this.idPull[a].tagName!=
-null?this.idPull[a].offsetWidth:0,B=this.idPull[a].tagName!=null?this.idPull[a].offsetHeight:0,l=0,n=0,s=this.idPull[d].offsetWidth,v=this.idPull[d].offsetHeight+e+f;b=="bottom"&&(l=this._rtl?q+(u!=null?u:0)-s:this._align=="right"?q+u-s:q-1+(b==this.dirTopLevel?this._topLevelRightMargin:0),n=t-1+B+this._topLevelBottomMargin);b=="right"&&(l=q+u-1,n=t+2);b=="left"&&(l=q-this.idPull[d].offsetWidth+2,n=t+2);b=="top"&&(l=q-1,n=t-v+2);if(this.fixedPosition)var w=65536,y=65536;else if(w=this.menuX2!=null?
-this.menuX2:0,y=this.menuY2!=null?this.menuY2:0,w==0)window.innerWidth?(w=window.innerWidth,y=window.innerHeight):(w=document.body.offsetWidth,y=document.body.scrollHeight);l+s>w&&!this._rtl&&(l=q-s+2);l<this.menuX1&&this._rtl&&(l=q+u-2);l<0&&(l=0);n+v>y&&this.menuY2!=null&&(n=Math.max(t+B-v+2,this._isVisibleArea?this.menuY1+2:2),this.context&&this.idPrefix+this.topId==a&&i!=null&&(n-=2),this.itemPull[a]!=null&&!this.context&&this.itemPull[a].parent==this.idPrefix+this.topId&&(n-=this.base.offsetHeight));
-this.idPull[d].style.left=l+"px";this.idPull[d].style.top=n+e+"px";if(typeof this._menuEffect!="undefined"&&this._menuEffect!==!1)this._showPolygonEffect(d);else{this.idPull[d].style.visibility="";if(this.limit>0&&this.limit<c)g.style.left=l+"px",g.style.top=n+"px",g.style.width=s+this._arrowFFFix+"px",g.style.visibility="",i.style.left=l+"px",i.style.top=n+v-f+"px",i.style.width=s+this._arrowFFFix+"px",i.style.visibility="",this._checkArrowsState(a);if(this._isIE6){var r=d+"_ie6cover";if(this.idPull[r]==
-null){var x=document.createElement("IFRAME");x.className="dhtmlxMenu_IE6CoverFix_"+this.skin;x.frameBorder=0;x.setAttribute("src","javascript:false;");document.body.insertBefore(x,document.body.firstChild);this.idPull[r]=x}this.idPull[r].style.left=l+"px";this.idPull[r].style.top=n+"px";this.idPull[r].style.width=s+"px";this.idPull[r].style.height=v+"px";this.idPull[r].style.zIndex=this.idPull[d].style.zIndex-1;this.idPull[r].style.display=""}}a=String(a).replace(this.idPrefix,"");a==this.topId&&
-(a=null);this.callEvent("onShow",[a]);a!=null&&this.skin=="dhx_terrace"&&this.itemPull[this.idPrefix+a].parent==this.idPrefix+this.topId&&this._improveTerraceButton(this.idPrefix+a,!1)}}};this._redistribSubLevelSelection=function(a,b){for(;this._openedPolygons.length>0;)this._openedPolygons.pop();var c=this._getSubItemToDeselectByPolygon(b);this._removeSubItemFromSelected(-1,-1);for(var d=0;d<c.length;d++)if(this.idPull[c[d]]!=null&&c[d]!=a&&this.itemPull[c[d]].state=="enabled")this.idPull[c[d]].className=
-"sub_item";for(d=0;d<this._openedPolygons.length;d++)this._openedPolygons[d]!=b&&this._hidePolygon(this._openedPolygons[d]);if(this.itemPull[a].state=="enabled"){this.idPull[a].className="sub_item_selected";if(this.itemPull[a].complex&&this.dLoad&&this.itemPull[a].loaded=="no"){this.loaderIcon==!0&&this._updateLoaderIcon(a,!0);var e=new dtmlXMLLoaderObject(this._xmlParser,window);this.itemPull[a].loaded="get";this.callEvent("onXLS",[]);e.loadXML(this.dLoadUrl+this.dLoadSign+"action=loadMenu&parentId="+
-a.replace(this.idPrefix,"")+"&etc="+(new Date).getTime())}if((this.itemPull[a].complex||this.dLoad&&this.itemPull[a].loaded=="yes")&&this.itemPull[a].complex&&this.idPull["polygon_"+a]!=null)this._updateItemComplexState(a,!0,!0),this._showPolygon(a,this.dirSubLevel);this._addSubItemToSelected(a,b);this.menuSelected=a}};this._doOnClick=function(a,b,c){this.menuLastClicked=a;if(this.itemPull[this.idPrefix+a].href_link!=null&&this.itemPull[this.idPrefix+a].state=="enabled"){var d=document.createElement("FORM"),
-e=String(this.itemPull[this.idPrefix+a].href_link).split("?");d.action=e[0];if(e[1]!=null)for(var f=String(e[1]).split("&"),g=0;g<f.length;g++){var i=String(f[g]).split("="),m=document.createElement("INPUT");m.type="hidden";m.name=i[0]||"";m.value=i[1]||"";d.appendChild(m)}if(this.itemPull[this.idPrefix+a].href_target!=null)d.target=this.itemPull[this.idPrefix+a].href_target;d.style.display="none";document.body.appendChild(d);d.submit();d!=null&&(document.body.removeChild(d),d=null)}else if(b.charAt(0)!=
-"c"&&b.charAt(1)!="d"&&b.charAt(2)!="s"){if(this.checkEvent("onClick"))this.callEvent("onClick",[a,this.contextMenuZoneId,c]);else if(b.charAt(1)=="d"||this.menuMode=="win"&&b.charAt(2)=="t")return;this.context&&this._isContextMenuVisible()&&this.contextAutoHide?this._hideContextMenu():this._clearAndHide&&this._clearAndHide()}};this._doOnTouchMenu=function(a){if(this.menuTouched==!1)this.menuTouched=!0,this.checkEvent("onTouch")&&this.callEvent("onTouch",[a])};this._searchMenuNode=function(a,b){for(var c=
-[],d=0;d<b.length;d++)if(typeof b[d]=="object"){b[d].length==5&&typeof b[d][0]!="object"&&b[d][0].replace(this.idPrefix,"")==a&&d==0&&(c=b);var e=this._searchMenuNode(a,b[d]);e.length>0&&(c=e)}return c};this._getMenuNodes=function(a){var b=[],c;for(c in this.itemPull)this.itemPull[c].parent==a&&(b[b.length]=c);return b};this._genStr=function(a){for(var b="",c="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",d=0;d<a;d++)b+=c.charAt(Math.round(Math.random()*(c.length-1)));return b};
-this.getItemType=function(a){a=this.idPrefix+a;return this.itemPull[a]==null?null:this.itemPull[a].type};this.forEachItem=function(a){for(var b in this.itemPull)a(String(b).replace(this.idPrefix,""))};this._clearAndHide=function(){a.menuSelected=-1;for(a.menuLastClicked=-1;a._openedPolygons.length>0;)a._openedPolygons.pop();for(var b=0;b<a._selectedSubItems.length;b++){var c=a._selectedSubItems[b][0];if(a.idPull[c]!=null&&a.itemPull[c].state=="enabled"){if(a.idPull[c].className=="sub_item_selected")a.idPull[c].className=
-"sub_item";if(a.idPull[c].className=="dhtmlxMenu_"+a.skin+"_TopLevel_Item_Selected")a.idPull[c].className=a.itemPull[c].cssNormal!=null?a.itemPull[c].cssNormal:"dhtmlxMenu_"+a.skin+"_TopLevel_Item_Normal"}a._hidePolygon(c)}a.menuTouched=!1;if(a.context)a.contextHideAllMode?(a._hidePolygon(a.idPrefix+a.topId),a.zInd=a.zIndInit):a.zInd=a.zIndInit+a.zIndStep};this._doOnLoad=function(){};this.loadXML=function(a,b){if(b)this._doOnLoad=function(){b()};this.callEvent("onXLS",[]);this._xmlLoader.loadXML(a)};
-this.loadXMLString=function(a,b){if(b)this._doOnLoad=function(){b()};this._xmlLoader.loadXMLString(a)};this._buildMenu=function(a,b){for(var c=0,d=0;d<a.childNodes.length;d++)if(a.childNodes[d].tagName==this.itemTagName){var e=a.childNodes[d],f={};f.id=this.idPrefix+(e.getAttribute("id")||this._genStr(24));f.title=e.getAttribute("text")||"";f.imgen=e.getAttribute("img")||"";f.imgdis=e.getAttribute("imgdis")||"";f.tip="";f.hotkey="";e.getAttribute("cssNormal")!=null&&(f.cssNormal=e.getAttribute("cssNormal"));
-f.type=e.getAttribute("type")||"item";if(f.type=="checkbox")f.checked=e.getAttribute("checked")!=null,f.imgen="chbx_"+(f.checked?"1":"0"),f.imgdis=f.imgen;if(f.type=="radio")f.checked=e.getAttribute("checked")!=null,f.imgen="rdbt_"+(f.checked?"1":"0"),f.imgdis=f.imgen,f.group=e.getAttribute("group")||this._genStr(24),this.radio[f.group]==null&&(this.radio[f.group]=[]),this.radio[f.group][this.radio[f.group].length]=f.id;f.state=e.getAttribute("enabled")!=null||e.getAttribute("disabled")!=null?e.getAttribute("enabled")==
-"false"||e.getAttribute("disabled")=="true"?"disabled":"enabled":"enabled";f.parent=b!=null?b:this.idPrefix+this.topId;f.complex=this.dLoad?e.getAttribute("complex")!=null?!0:!1:this._buildMenu(e,f.id)>0;this.dLoad&&f.complex&&(f.loaded="no");this.itemPull[f.id]=f;for(var g=0;g<e.childNodes.length;g++){var i=e.childNodes[g].tagName;i!=null&&(i=i.toLowerCase());if(i==this.userDataTagName){var m=e.childNodes[g];m.getAttribute("name")!=null&&(this.userData[f.id+"_"+m.getAttribute("name")]=m.firstChild!=
-null&&m.firstChild.nodeValue!=null?m.firstChild.nodeValue:"")}if(i==this.itemTextTagName)f.title=e.childNodes[g].firstChild.nodeValue;if(i==this.itemTipTagName)f.tip=e.childNodes[g].firstChild.nodeValue;if(i==this.itemHotKeyTagName)f.hotkey=e.childNodes[g].firstChild.nodeValue;if(i==this.itemHrefTagName&&f.type=="item")f.href_link=e.childNodes[g].firstChild.nodeValue,e.childNodes[g].getAttribute("target")!=null&&(f.href_target=e.childNodes[g].getAttribute("target"))}c++}return c};this._xmlParser=
-function(){if(a.dLoad){var b=this.getXMLTopNode("menu");parentId=b.getAttribute("parentId")!=null?b.getAttribute("parentId"):null;if(parentId==null)a._buildMenu(b,null),a._initTopLevelMenu();else{a._buildMenu(b,a.idPrefix+parentId);a._addSubMenuPolygon(a.idPrefix+parentId,a.idPrefix+parentId);if(a.menuSelected==a.idPrefix+parentId){var c=a.idPrefix+parentId,d=a.itemPull[a.idPrefix+parentId].parent==a.idPrefix+a.topId,e=d&&!a.context?a.dirTopLevel:a.dirSubLevel,f=!1;if(d&&a.menuModeTopLevelTimeout&&
-a.menuMode=="web"&&!a.context){var g=a.idPull[a.idPrefix+parentId];if(g._mouseOver==!0){var p=a.menuModeTopLevelTimeoutTime-((new Date).getTime()-g._dynLoadTM);if(p>1)g._menuOpenTM=window.setTimeout(function(){a._showPolygon(c,e)},p),f=!0}}f||a._showPolygon(c,e)}a.itemPull[a.idPrefix+parentId].loaded="yes";a.loaderIcon==!0&&a._updateLoaderIcon(a.idPrefix+parentId,!1)}this.destructor();a.callEvent("onXLE",[])}else b=this.getXMLTopNode("menu"),a._buildMenu(b,null),a.init(),a.callEvent("onXLE",[]),a._doOnLoad()};
-this._xmlLoader=new dtmlXMLLoaderObject(this._xmlParser,window);this._showSubLevelItem=function(a,b){if(document.getElementById("arrow_"+this.idPrefix+a)!=null)document.getElementById("arrow_"+this.idPrefix+a).style.display=b?"none":"";if(document.getElementById("image_"+this.idPrefix+a)!=null)document.getElementById("image_"+this.idPrefix+a).style.display=b?"none":"";if(document.getElementById(this.idPrefix+a)!=null)document.getElementById(this.idPrefix+a).style.display=b?"":"none"};this._hideSubLevelItem=
-function(a){this._showSubLevelItem(a,!0)};this.idPrefix=this._genStr(12);this._bodyClick=function(b){b=b||event;b.button==2||_isOpera&&b.ctrlKey==!0||(a.context?a.contextAutoHide&&(!_isOpera||a._isContextMenuVisible()&&_isOpera)&&a._hideContextMenu():a._clearAndHide&&a._clearAndHide())};this._bodyContext=function(b){var b=b||event,c=String((b.srcElement||b.target).className);if(!(c.search("dhtmlxMenu")!=-1&&c.search("SubLevelArea")!=-1)){for(var d=!0,e=b.target||b.srcElement;e!=null;)e.id!=null&&
-a.isContextZone(e.id)&&(d=!1),e==document.body&&(d=!1),e=e.parentNode;d&&a.hideContextMenu()}};_isIE?(document.body.attachEvent("onclick",this._bodyClick),document.body.attachEvent("oncontextmenu",this._bodyContext)):(window.addEventListener("click",this._bodyClick,!1),window.addEventListener("contextmenu",this._bodyContext,!1));this._UID=this._genStr(32);dhtmlxMenuObjectLiveInstances[this._UID]=this;dhtmlxEventable(this);return this}
-dhtmlXMenuObject.prototype.init=function(){if(this._isInited!=!0)this.dLoad?(this.callEvent("onXLS",[]),this._xmlLoader.loadXML(this.dLoadUrl+this.dLoadSign+"action=loadMenu&etc="+(new Date).getTime())):(this._initTopLevelMenu(),this._isInited=!0)};
-dhtmlXMenuObject.prototype._countVisiblePolygonItems=function(b){var c=0,a;for(a in this.itemPull){var d=this.itemPull[a].parent,f=this.itemPull[a].type;this.idPull[a]!=null&&d==b&&(f=="item"||f=="radio"||f=="checkbox")&&this.idPull[a].style.display!="none"&&c++}return c};
-dhtmlXMenuObject.prototype._redefineComplexState=function(b){if(this.idPrefix+this.topId!=b&&this.idPull["polygon_"+b]!=null&&this.idPull[b]!=null){var c=this._countVisiblePolygonItems(b);c>0&&!this.itemPull[b].complex&&this._updateItemComplexState(b,!0,!1);c==0&&this.itemPull[b].complex&&this._updateItemComplexState(b,!1,!1)}};
-dhtmlXMenuObject.prototype._updateItemComplexState=function(b,c){if(!this.context&&this._getItemLevelType(b.replace(this.idPrefix,""))=="TopLevel")this.itemPull[b].complex=c;else if(!(this.idPull[b]==null||this.itemPull[b]==null))if(this.itemPull[b].complex=c,b!=this.idPrefix+this.topId){var a=null,d=this.idPull[b].childNodes[this._rtl?0:2];d.childNodes[0]&&String(d.childNodes[0].className).search("complex_arrow")===0&&(a=d.childNodes[0]);if(this.itemPull[b].complex){if(a==null){a=document.createElement("DIV");
-a.className="complex_arrow";for(a.id="arrow_"+b;d.childNodes.length>0;)d.removeChild(d.childNodes[0]);d.appendChild(a)}if(this.dLoad&&this.itemPull[b].loaded=="get"&&this.loaderIcon){if(a.className!="complex_arrow_loading")a.className="complex_arrow_loading"}else a.className="complex_arrow"}else!this.itemPull[b].complex&&a!=null&&(d.removeChild(a),this.itemPull[b].hotkey_backup!=null&&this.setHotKey&&this.setHotKey(b.replace(this.idPrefix,""),this.itemPull[b].hotkey_backup))}};
-dhtmlXMenuObject.prototype._getItemLevelType=function(b){return this.itemPull[this.idPrefix+b].parent==this.idPrefix+this.topId?"TopLevel":"SubLevelArea"};
-dhtmlXMenuObject.prototype._redistribTopLevelSelection=function(b){var c=this._getSubItemToDeselectByPolygon("parent");this._removeSubItemFromSelected(-1,-1);for(var a=0;a<c.length;a++)if(c[a]!=b&&this._hidePolygon(c[a]),this.idPull[c[a]]!=null&&c[a]!=b)this.idPull[c[a]].className=this.idPull[c[a]].className.replace(/Selected/g,"Normal");if(this.itemPull[this.idPrefix+b].state=="enabled")this.idPull[this.idPrefix+b].className="dhtmlxMenu_"+this.skin+"_TopLevel_Item_Selected",this._addSubItemToSelected(this.idPrefix+
-b,"parent"),this.menuSelected=this.menuMode=="win"?this.menuSelected!=-1?b:this.menuSelected:b,this.itemPull[this.idPrefix+b].complex&&this.menuSelected!=-1&&this._showPolygon(this.idPrefix+b,this.dirTopLevel)};
-dhtmlXMenuObject.prototype._initTopLevelMenu=function(){this.dirTopLevel="bottom";this.dirSubLevel=this._rtl?"left":"right";if(this.context)this.idPull[this.idPrefix+this.topId]=[0,0],this._addSubMenuPolygon(this.idPrefix+this.topId,this.idPrefix+this.topId);else for(var b=this._getMenuNodes(this.idPrefix+this.topId),c=0;c<b.length;c++)this.itemPull[b[c]].type=="item"&&this._renderToplevelItem(b[c],null),this.itemPull[b[c]].type=="separator"&&this._renderSeparator(b[c],null)};
-dhtmlXMenuObject.prototype._renderToplevelItem=function(b,c){var a=this,d=document.createElement("DIV");d.id=b;d.className=this.itemPull[b].state=="enabled"&&this.itemPull[b].cssNormal!=null?this.itemPull[b].cssNormal:"dhtmlxMenu_"+this.skin+"_TopLevel_Item_"+(this.itemPull[b].state=="enabled"?"Normal":"Disabled");if(this.itemPull[b].title!=""){var f=document.createElement("DIV");f.className="top_level_text";f.innerHTML=this.itemPull[b].title;d.appendChild(f)}if(this.itemPull[b].tip.length>0)d.title=
-this.itemPull[b].tip;if(this.itemPull[b].imgen!=""||this.itemPull[b].imgdis!=""){var e=this.itemPull[b][this.itemPull[b].state=="enabled"?"imgen":"imgdis"];if(e){var g=document.createElement("IMG");g.border="0";g.id="image_"+b;g.src=this.imagePath+e;g.className="dhtmlxMenu_TopLevel_Item_Icon";d.childNodes.length>0&&!this._rtl?d.insertBefore(g,d.childNodes[0]):d.appendChild(g)}}d.onselectstart=function(a){a=a||event;return a.returnValue=!1};d.oncontextmenu=function(a){a=a||event;return a.returnValue=
-!1};if(!this.cont)this.cont=document.createElement("DIV"),this.cont.dir="ltr",this.cont.className=this._align=="right"?"align_right":"align_left",this.base.appendChild(this.cont);c!=null&&(c++,c<0&&(c=0),c>this.cont.childNodes.length-1&&(c=null));c!=null?this.cont.insertBefore(d,this.cont.childNodes[c]):this.cont.appendChild(d);this.idPull[d.id]=d;this.itemPull[b].complex&&!this.dLoad&&this._addSubMenuPolygon(this.itemPull[b].id,this.itemPull[b].id);d.onmouseover=function(){a.menuMode=="web"&&window.clearTimeout(a.menuTimeoutHandler);
-var b=a._getSubItemToDeselectByPolygon("parent");a._removeSubItemFromSelected(-1,-1);for(var c=0;c<b.length;c++)if(b[c]!=this.id&&a._hidePolygon(b[c]),a.idPull[b[c]]!=null&&b[c]!=this.id)if(a.itemPull[b[c]].cssNormal!=null)a.idPull[b[c]].className=a.itemPull[b[c]].cssNormal;else{if(a.idPull[b[c]].className=="sub_item_selected")a.idPull[b[c]].className="sub_item";a.idPull[b[c]].className=a.idPull[b[c]].className.replace(/Selected/g,"Normal")}if(a.itemPull[this.id].state=="enabled"){this.className=
-"dhtmlxMenu_"+a.skin+"_TopLevel_Item_Selected";a._addSubItemToSelected(this.id,"parent");a.menuSelected=a.menuMode=="win"?a.menuSelected!=-1?this.id:a.menuSelected:this.id;if(a.dLoad&&a.itemPull[this.id].loaded=="no"){if(a.menuModeTopLevelTimeout&&a.menuMode=="web"&&!a.context)this._mouseOver=!0,this._dynLoadTM=(new Date).getTime();var d=new dtmlXMLLoaderObject(a._xmlParser,window);a.itemPull[this.id].loaded="get";a.callEvent("onXLS",[]);d.loadXML(a.dLoadUrl+a.dLoadSign+"action=loadMenu&parentId="+
-this.id.replace(a.idPrefix,"")+"&etc="+(new Date).getTime())}if((!a.dLoad||a.dLoad&&(!a.itemPull[this.id].loaded||a.itemPull[this.id].loaded=="yes"))&&a.itemPull[this.id].complex&&a.menuSelected!=-1)if(a.menuModeTopLevelTimeout&&a.menuMode=="web"&&!a.context){this._mouseOver=!0;var e=this.id;this._menuOpenTM=window.setTimeout(function(){a._showPolygon(e,a.dirTopLevel)},a.menuModeTopLevelTimeoutTime)}else a._showPolygon(this.id,a.dirTopLevel)}a._doOnTouchMenu(this.id.replace(a.idPrefix,""))};d.onmouseout=
-function(){if(!(a.itemPull[this.id].complex&&a.menuSelected!=-1)&&a.itemPull[this.id].state=="enabled")d.className=a.itemPull[this.id].cssNormal!=null?a.itemPull[this.id].cssNormal:"dhtmlxMenu_"+a.skin+"_TopLevel_Item_Normal";if(a.menuMode=="web")window.clearTimeout(a.menuTimeoutHandler),a.menuTimeoutHandler=window.setTimeout(function(){a._clearAndHide()},a.menuTimeoutMsec,"JavaScript");if(a.menuModeTopLevelTimeout&&a.menuMode=="web"&&!a.context)this._mouseOver=!1,window.clearTimeout(this._menuOpenTM)};
-d.onclick=function(b){a.menuMode=="web"&&window.clearTimeout(a.menuTimeoutHandler);if(!(a.menuMode!="web"&&a.itemPull[this.id].state=="disabled")){b=b||event;b.cancelBubble=!0;b.returnValue=!1;if(a.menuMode=="win"&&a.itemPull[this.id].complex){if(a.menuSelected==this.id){a.menuSelected=-1;var c=!1}else a.menuSelected=this.id,c=!0;c?a._showPolygon(this.id,a.dirTopLevel):a._hidePolygon(this.id)}var d=a.itemPull[this.id].complex?"c":"-",e=a.itemPull[this.id].state!="enabled"?"d":"-",f={ctrl:b.ctrlKey,
-alt:b.altKey,shift:b.shiftKey};a._doOnClick(this.id.replace(a.idPrefix,""),d+e+"t",f);return!1}};this.skin=="dhx_terrace"&&this._improveTerraceSkin()};dhtmlXMenuObject.prototype.setImagePath=function(){};dhtmlXMenuObject.prototype.setIconsPath=function(b){this.imagePath=b};dhtmlXMenuObject.prototype.setIconPath=dhtmlXMenuObject.prototype.setIconsPath;
-dhtmlXMenuObject.prototype._updateItemImage=function(b){var b=this.idPrefix+b,c=this.itemPull[b].parent==this.idPrefix+this.topId&&!this.context,a=null;if(c)for(var d=0;d<this.idPull[b].childNodes.length;d++)try{this.idPull[b].childNodes[d].className=="dhtmlxMenu_TopLevel_Item_Icon"&&(a=this.idPull[b].childNodes[d])}catch(f){}else try{a=this.idPull[b].childNodes[this._rtl?2:0].childNodes[0]}catch(e){}var g=this.itemPull[b].type=="radio"?this.itemPull[b][this.itemPull[b].state=="enabled"?"imgen":"imgdis"]:
-this.itemPull[b][this.itemPull[b].state=="enabled"?"imgen":"imgdis"];if(g.length>0)if(a!=null)a.src=this.imagePath+g;else if(c)a=document.createElement("IMG"),a.className="dhtmlxMenu_TopLevel_Item_Icon",a.src=this.imagePath+g,a.border="0",a.id="image_"+b,!this._rtl&&this.idPull[b].childNodes.length>0?this.idPull[b].insertBefore(a,this.idPull[b].childNodes[0]):this.idPull[b].appendChild(a);else{a=document.createElement("IMG");a.className="sub_icon";a.src=this.imagePath+g;a.border="0";a.id="image_"+
-b;for(var h=this.idPull[b].childNodes[this._rtl?2:0];h.childNodes.length>0;)h.removeChild(h.childNodes[0]);h.appendChild(a)}else a!=null&&a.parentNode.removeChild(a)};
-dhtmlXMenuObject.prototype.removeItem=function(b,c,a){c||(b=this.idPrefix+b);var d=null;if(b!=this.idPrefix+this.topId){if(this.itemPull[b]==null)return;this.idPull["polygon_"+b]&&this.idPull["polygon_"+b]._tmShow&&window.clearTimeout(this.idPull["polygon_"+b]._tmShow);var f=this.itemPull[b].type;if(f=="separator"){var e=this.idPull["separator_"+b];this.itemPull[b].parent==this.idPrefix+this.topId?(e.onclick=null,e.onselectstart=null,e.id=null):(e.childNodes[0].childNodes[0].onclick=null,e.childNodes[0].childNodes[0].onselectstart=
-null,e.childNodes[0].childNodes[0].id=null,e.childNodes[0].removeChild(e.childNodes[0].childNodes[0]),e.removeChild(e.childNodes[0]));e.parentNode.removeChild(e);this.idPull["separator_"+b]=null;this.itemPull[b]=null;delete this.idPull["separator_"+b]}else{d=this.itemPull[b].parent;e=this.idPull[b];e.onclick=null;e.oncontextmenu=null;e.onmouseover=null;e.onmouseout=null;e.onselectstart=null;for(e.id=null;e.childNodes.length>0;)e.removeChild(e.childNodes[0]);e.parentNode.removeChild(e);this.idPull[b]=
-null;this.itemPull[b]=null;delete this.idPull[b]}delete this.itemPull[b];f=e=null}for(var g in this.itemPull)this.itemPull[g].parent==b&&this.removeItem(g,!0,!0);var h=Array(b);d!=null&&!a&&this.idPull["polygon_"+d]!=null&&this.idPull["polygon_"+d].tbd.childNodes.length==0&&(h.push(d),this._updateItemComplexState(d,!1,!1));for(var j=0;j<h.length;j++)if(this.idPull["polygon_"+h[j]]){var k=this.idPull["polygon_"+h[j]];k.onclick=null;k.oncontextmenu=null;k.tbl.removeChild(k.tbd);k.tbd=null;k.removeChild(k.tbl);
-k.tbl=null;k.id=null;k.parentNode.removeChild(k);k=null;if(this._isIE6){var o="polygon_"+h[j]+"_ie6cover";this.idPull[o]!=null&&(document.body.removeChild(this.idPull[o]),delete this.idPull[o])}this.idPull["arrowup_"+b]!=null&&this._removeArrow&&this._removeArrow("arrowup_"+b);this.idPull["arrowdown_"+b]!=null&&this._removeArrow&&this._removeArrow("arrowdown_"+b);this.idPull["polygon_"+h[j]]=null;delete this.idPull["polygon_"+h[j]]}h=null;this.skin=="dhx_terrace"&&arguments.length==1&&this._improveTerraceSkin()};
-dhtmlXMenuObject.prototype._getAllParents=function(b){var c=[],a;for(a in this.itemPull)if(this.itemPull[a].parent==b&&(c[c.length]=this.itemPull[a].id,this.itemPull[a].complex))for(var d=this._getAllParents(this.itemPull[a].id),f=0;f<d.length;f++)c[c.length]=d[f];return c};
-dhtmlXMenuObject.prototype.renderAsContextMenu=function(){this.context=!0;if(this.base._autoSkinUpdate==!0)this.base.className=this.base.className.replace("dhtmlxMenu_"+this.skin+"_Middle",""),this.base._autoSkinUpdate=!1;this.addBaseIdAsContextZone!=null&&this.addContextZone(this.addBaseIdAsContextZone)};
-dhtmlXMenuObject.prototype.addContextZone=function(b){if(b==document.body)var b="document.body."+this.idPrefix,c=document.body;else c=document.getElementById(b);var a=!1,d;for(d in this.contextZones)a=a||d==b||this.contextZones[d]==c;if(a==!0)return!1;this.contextZones[b]=c;var f=this;if(_isOpera)this.operaContext=function(a){f._doOnContextMenuOpera(a,f)},c.addEventListener("mouseup",this.operaContext,!1);else{if(c.oncontextmenu!=null&&!c._oldContextMenuHandler)c._oldContextMenuHandler=c.oncontextmenu;
-c.oncontextmenu=function(a){for(var b in dhtmlxMenuObjectLiveInstances)b!=f._UID&&dhtmlxMenuObjectLiveInstances[b].context&&dhtmlxMenuObjectLiveInstances[b]._hideContextMenu();a=a||event;a.cancelBubble=!0;a.returnValue=!1;f._doOnContextBeforeCall(a,this);return!1}}};
-dhtmlXMenuObject.prototype._doOnContextMenuOpera=function(b,c){for(var a in dhtmlxMenuObjectLiveInstances)a!=c._UID&&dhtmlxMenuObjectLiveInstances[a].context&&dhtmlxMenuObjectLiveInstances[a]._hideContextMenu();b.cancelBubble=!0;b.returnValue=!1;b.button==0&&b.ctrlKey==!0&&c._doOnContextBeforeCall(b,this);return!1};
-dhtmlXMenuObject.prototype.removeContextZone=function(b){if(!this.isContextZone(b))return!1;b==document.body&&(b="document.body."+this.idPrefix);var c=this.contextZones[b];_isOpera?c.removeEventListener("mouseup",this.operaContext,!1):(c.oncontextmenu=c._oldContextMenuHandler!=null?c._oldContextMenuHandler:null,c._oldContextMenuHandler=null);try{this.contextZones[b]=null,delete this.contextZones[b]}catch(a){}return!0};
-dhtmlXMenuObject.prototype.isContextZone=function(b){if(b==document.body&&this.contextZones["document.body."+this.idPrefix]!=null)return!0;var c=!1;this.contextZones[b]!=null&&this.contextZones[b]==document.getElementById(b)&&(c=!0);return c};dhtmlXMenuObject.prototype._isContextMenuVisible=function(){return this.idPull["polygon_"+this.idPrefix+this.topId]==null?!1:this.idPull["polygon_"+this.idPrefix+this.topId].style.display==""};
-dhtmlXMenuObject.prototype._showContextMenu=function(b,c,a){this._clearAndHide();if(this.idPull["polygon_"+this.idPrefix+this.topId]==null)return!1;window.clearTimeout(this.menuTimeoutHandler);this.idPull[this.idPrefix+this.topId]=[b,c];this._showPolygon(this.idPrefix+this.topId,"bottom");this.callEvent("onContextMenu",[a])};
-dhtmlXMenuObject.prototype._hideContextMenu=function(){if(this.idPull["polygon_"+this.idPrefix+this.topId]==null)return!1;this._clearAndHide();this._hidePolygon(this.idPrefix+this.topId);this.zInd=this.zIndInit};
-dhtmlXMenuObject.prototype._doOnContextBeforeCall=function(b,c){this.contextMenuZoneId=c.id;this._clearAndHide();this._hideContextMenu();var a=b.srcElement||b.target,d=_isIE||_isOpera||_KHTMLrv?b.offsetX:b.layerX,f=_isIE||_isOpera||_KHTMLrv?b.offsetY:b.layerY,e=getAbsoluteLeft(a)+d,g=getAbsoluteTop(a)+f;this.checkEvent("onBeforeContextMenu")?this.callEvent("onBeforeContextMenu",[c.id,b])&&this.contextAutoShow&&(this._showContextMenu(e,g,c.id),this.callEvent("onAfterContextMenu",[c.id,b])):this.contextAutoShow&&
-(this._showContextMenu(e,g,c.id),this.callEvent("onAfterContextMenu",[c.id]))};dhtmlXMenuObject.prototype.showContextMenu=function(b,c){this._showContextMenu(b,c,!1)};dhtmlXMenuObject.prototype.hideContextMenu=function(){this._hideContextMenu()};
-dhtmlXMenuObject.prototype._autoDetectVisibleArea=function(){if(!this._isVisibleArea)this.menuX1=document.body.scrollLeft,this.menuX2=this.menuX1+(window.innerWidth||document.body.clientWidth),this.menuY1=Math.max((_isIE?document.documentElement:document.getElementsByTagName("html")[0]).scrollTop,document.body.scrollTop),this.menuY2=this.menuY1+(_isIE?Math.max(document.documentElement.clientHeight||0,document.documentElement.offsetHeight||0,document.body.clientHeight||0):window.innerHeight)};
-dhtmlXMenuObject.prototype.getItemPosition=function(b){var b=this.idPrefix+b,c=-1;if(this.itemPull[b]==null)return c;for(var a=this.itemPull[b].parent,d=this.idPull["polygon_"+a]!=null?this.idPull["polygon_"+a].tbd:this.cont,f=0;f<d.childNodes.length;f++)if(d.childNodes[f]==this.idPull["separator_"+b]||d.childNodes[f]==this.idPull[b])c=f;return c};
-dhtmlXMenuObject.prototype.setItemPosition=function(b,c){b=this.idPrefix+b;if(this.idPull[b]!=null){var a=this.itemPull[b].parent==this.idPrefix+this.topId,d=this.idPull[b],f=this.getItemPosition(b.replace(this.idPrefix,"")),e=this.itemPull[b].parent,g=this.idPull["polygon_"+e]!=null?this.idPull["polygon_"+e].tbd:this.cont;g.removeChild(g.childNodes[f]);c<0&&(c=0);a&&c<1&&(c=1);c<g.childNodes.length?g.insertBefore(d,g.childNodes[c]):g.appendChild(d)}};
-dhtmlXMenuObject.prototype.getParentId=function(b){b=this.idPrefix+b;return this.itemPull[b]==null?null:(this.itemPull[b].parent!=null?this.itemPull[b].parent:this.topId).replace(this.idPrefix,"")};
-dhtmlXMenuObject.prototype.addNewSibling=function(b,c,a,d,f,e){var g=this.idPrefix+(c!=null?c:this._genStr(24)),h=this.idPrefix+(b!=null?this.getParentId(b):this.topId);this._addItemIntoGlobalStrorage(g,h,a,"item",d,f,e);h==this.idPrefix+this.topId&&!this.context?this._renderToplevelItem(g,this.getItemPosition(b)):this._renderSublevelItem(g,this.getItemPosition(b))};
-dhtmlXMenuObject.prototype.addNewChild=function(b,c,a,d,f,e,g){if(b==null)if(this.context)b=this.topId;else{this.addNewSibling(b,a,d,f,e,g);c!=null&&this.setItemPosition(a,c);return}a=this.idPrefix+(a!=null?a:this._genStr(24));this.setHotKey&&this.setHotKey(b,"");b=this.idPrefix+b;this._addItemIntoGlobalStrorage(a,b,d,"item",f,e,g);this.idPull["polygon_"+b]==null&&this._renderSublevelPolygon(b,b);this._renderSublevelItem(a,c-1);this._redefineComplexState(b)};
-dhtmlXMenuObject.prototype._addItemIntoGlobalStrorage=function(b,c,a,d,f,e,g){var h={id:b,title:a,imgen:e!=null?e:"",imgdis:g!=null?g:"",type:d,state:f==!0?"disabled":"enabled",parent:c,complex:!1,hotkey:"",tip:""};this.itemPull[h.id]=h};
-dhtmlXMenuObject.prototype._addSubMenuPolygon=function(b,c){for(var a=this._renderSublevelPolygon(b,c),d=this._getMenuNodes(c),f=0;f<d.length;f++)this.itemPull[d[f]].type=="separator"?this._renderSeparator(d[f],null):this._renderSublevelItem(d[f],null);for(var e=b==c?"topLevel":"subLevel",f=0;f<d.length;f++)this.itemPull[d[f]].complex&&this._addSubMenuPolygon(b,this.itemPull[d[f]].id)};
-dhtmlXMenuObject.prototype._renderSublevelPolygon=function(b,c){var a=document.createElement("DIV");a.className="dhtmlxMenu_"+this.skin+"_SubLevelArea_Polygon "+(this._rtl?"dir_right":"");a.dir="ltr";a.oncontextmenu=function(a){a=a||event;a.returnValue=!1;a.cancelBubble=!0;return!1};a.id="polygon_"+c;a.onclick=function(a){a=a||event;a.cancelBubble=!0};a.style.display="none";document.body.insertBefore(a,document.body.firstChild);var d=document.createElement("TABLE");d.className="dhtmlxMebu_SubLevelArea_Tbl";
-d.cellSpacing=0;d.cellPadding=0;d.border=0;var f=document.createElement("TBODY");d.appendChild(f);a.appendChild(d);a.tbl=d;a.tbd=f;this.idPull[a.id]=a;this.sxDacProc!=null&&(this.idPull["sxDac_"+c]=new this.sxDacProc(a,a.className),_isIE?(this.idPull["sxDac_"+c]._setSpeed(this.dacSpeedIE),this.idPull["sxDac_"+c]._setCustomCycle(this.dacCyclesIE)):(this.idPull["sxDac_"+c]._setSpeed(this.dacSpeed),this.idPull["sxDac_"+c]._setCustomCycle(this.dacCycles)));return a};
-dhtmlXMenuObject.prototype._renderSublevelItem=function(b,c){var a=this,d=document.createElement("TR");d.className=this.itemPull[b].state=="enabled"?"sub_item":"sub_item_dis";var f=document.createElement("TD");f.className="sub_item_icon";var e=this.itemPull[b][this.itemPull[b].state=="enabled"?"imgen":"imgdis"];if(e!=""){var g=this.itemPull[b].type;if(g=="checkbox"||g=="radio"){var h=document.createElement("DIV");h.id="image_"+this.itemPull[b].id;h.className="sub_icon "+e;f.appendChild(h)}if(!(g==
-"checkbox"||g=="radio"))h=document.createElement("IMG"),h.id="image_"+this.itemPull[b].id,h.className="sub_icon",h.src=this.imagePath+e,f.appendChild(h)}var j=document.createElement("TD");j.className="sub_item_text";if(this.itemPull[b].title!=""){var k=document.createElement("DIV");k.className="sub_item_text";k.innerHTML=this.itemPull[b].title;j.appendChild(k)}else j.innerHTML="&nbsp;";var o=document.createElement("TD");o.className="sub_item_hk";if(this.itemPull[b].complex){var z=document.createElement("DIV");
-z.className="complex_arrow";z.id="arrow_"+this.itemPull[b].id;o.appendChild(z)}else if(this.itemPull[b].hotkey.length>0&&!this.itemPull[b].complex){var A=document.createElement("DIV");A.className="sub_item_hk";A.innerHTML=this.itemPull[b].hotkey;o.appendChild(A)}else o.innerHTML="&nbsp;";d.appendChild(this._rtl?o:f);d.appendChild(j);d.appendChild(this._rtl?f:o);d.id=this.itemPull[b].id;d.parent=this.itemPull[b].parent;if(this.itemPull[b].tip.length>0)d.title=this.itemPull[b].tip;if(!this._hideTMData)this._hideTMData=
-{};d.onselectstart=function(a){a=a||event;return a.returnValue=!1};d.onmouseover=function(){a._hideTMData[this.id]&&window.clearTimeout(a._hideTMData[this.id]);a.menuMode=="web"&&window.clearTimeout(a.menuTimeoutHandler);this._visible||a._redistribSubLevelSelection(this.id,this.parent);this._visible=!0};d.onmouseout=function(){if(a.menuMode=="web")a.menuTimeoutHandler&&window.clearTimeout(a.menuTimeoutHandler),a.menuTimeoutHandler=window.setTimeout(function(){a&&a._clearAndHide&&a._clearAndHide()},
-a.menuTimeoutMsec,"JavaScript");var b=this;a._hideTMData[this.id]&&window.clearTimeout(a._hideTMData[this.id]);a._hideTMData[this.id]=window.setTimeout(function(){b._visible=!1},50)};d.onclick=function(b){if(a.checkEvent("onClick")||!a.itemPull[this.id].complex){b=b||event;b.cancelBubble=!0;b.returnValue=!1;tc=a.itemPull[this.id].complex?"c":"-";td=a.itemPull[this.id].state=="enabled"?"-":"d";var c={ctrl:b.ctrlKey,alt:b.altKey,shift:b.shiftKey};switch(a.itemPull[this.id].type){case "checkbox":a._checkboxOnClickHandler(this.id.replace(a.idPrefix,
-""),tc+td+"n",c);break;case "radio":a._radioOnClickHandler(this.id.replace(a.idPrefix,""),tc+td+"n",c);break;case "item":a._doOnClick(this.id.replace(a.idPrefix,""),tc+td+"n",c)}return!1}};var p=this.idPull["polygon_"+this.itemPull[b].parent];c!=null&&(c++,c<0&&(c=0),c>p.tbd.childNodes.length-1&&(c=null));c!=null&&p.tbd.childNodes[c]!=null?p.tbd.insertBefore(d,p.tbd.childNodes[c]):p.tbd.appendChild(d);this.idPull[d.id]=d};
-dhtmlXMenuObject.prototype._renderSeparator=function(b,c){var a=this.context?"SubLevelArea":this.itemPull[b].parent==this.idPrefix+this.topId?"TopLevel":"SubLevelArea";if(!(a=="TopLevel"&&this.context)){var d=this;if(a!="TopLevel"){var f=document.createElement("TR");f.className="sub_sep";var e=document.createElement("TD");e.colSpan="3";f.appendChild(e)}var g=document.createElement("DIV");g.id="separator_"+b;g.className=a=="TopLevel"?"top_sep":"sub_sep";g.onselectstart=function(a){a=a||event;a.returnValue=
-!1};g.onclick=function(a){a=a||event;a.cancelBubble=!0;var b={ctrl:a.ctrlKey,alt:a.altKey,shift:a.shiftKey};d._doOnClick(this.id.replace("separator_"+d.idPrefix,""),"--s",b)};if(a=="TopLevel"){if(c!=null)c++,c<0&&(c=0),this.cont.childNodes[c]!=null?this.cont.insertBefore(g,this.cont.childNodes[c]):this.cont.appendChild(g);else{var h=this.cont.childNodes[this.cont.childNodes.length-1];String(h).search("TopLevel_Text")==-1?this.cont.appendChild(g):this.cont.insertBefore(g,h)}this.idPull[g.id]=g}else{var j=
-this.idPull["polygon_"+this.itemPull[b].parent];c!=null&&(c++,c<0&&(c=0),c>j.tbd.childNodes.length-1&&(c=null));c!=null&&j.tbd.childNodes[c]!=null?j.tbd.insertBefore(f,j.tbd.childNodes[c]):j.tbd.appendChild(f);e.appendChild(g);this.idPull[g.id]=f}}};dhtmlXMenuObject.prototype.addNewSeparator=function(b,c){var c=this.idPrefix+(c!=null?c:this._genStr(24)),a=this.idPrefix+this.getParentId(b);this._addItemIntoGlobalStrorage(c,a,"","separator",!1,"","");this._renderSeparator(c,this.getItemPosition(b))};
-dhtmlXMenuObject.prototype.hide=function(){this._clearAndHide()};dhtmlXMenuObject.prototype.clearAll=function(){this.removeItem(this.idPrefix+this.topId,!0);this._isInited=!1;this.idPrefix=this._genStr(12);this.itemPull={}};
-dhtmlXMenuObject.prototype.unload=function(){_isIE?(document.body.detachEvent("onclick",this._bodyClick),document.body.detachEvent("oncontextmenu",this._bodyContext)):(window.removeEventListener("click",this._bodyClick,!1),window.removeEventListener("contextmenu",this._bodyContext,!1));this._bodyContext=this._bodyClick=null;this.removeItem(this.idPrefix+this.topId,!0);this.idPull=this.itemPull=null;if(this.context)for(var b in this.contextZones)this.removeContextZone(b);if(this.cont!=null)this.cont.className=
-"",this.cont.parentNode.removeChild(this.cont),this.cont=null;if(this.base!=null){this.base.className="";if(!this.context)this.base.oncontextmenu=this.base._oldContextMenuHandler||null;this.base=this.base.onselectstart=null}this.setSkin=null;this.detachAllEvents();if(this._xmlLoader)this._xmlLoader.destructor(),this._xmlLoader=null;this.extendedModule=this.serialize=this.addCheckbox=this.getCheckboxState=this.setCheckboxState=this.addRadioButton=this.setRadioChecked=this.getRadioChecked=this.userData=
-this.setOverflowHeight=this.contextZones=this.getCircuit=this.clearHref=this.setHref=this.setAlign=this.setRTL=this.setTopText=this.setItemSelected=this.getHotKey=this.setHotKey=this.getTooltip=this.setTooltip=this.setVisibleArea=this.getContextMenuHideAllMode=this.setContextMenuHideAllMode=this.setAutoHideMode=this.setAutoShowMode=this.clearItemImage=this.setItemImage=this.getItemImage=this.enableDynamicLoading=this.setWebModeTimeout=this.setOpenMode=this.getUserData=this.setUserData=this.isItemHidden=
-this.showItem=this.hideItem=this.loadFromHTML=this.setItemText=this.getItemText=this.isItemEnabled=this.setItemDisabled=this.setItemEnabled=this._removeArrow=this._checkboxOnClickHandler=this._updateCheckboxImage=this._readLevel=this._setCheckboxState=this._getCheckboxState=this._radioOnClickHandler=this._setRadioState=this._getRadioImgObj=this._countPolygonItems=this._doScrollDown=this._doScrollUp=this._isArrowExists=this._removeDownArrow=this._removeUpArrow=this._addDownArrow=this._addUpArrow=this._checkArrowsState=
-this._clearAllSelectedSubItemsInPolygon=this._updateLoaderIcon=this._changeItemVisible=this._changeItemState=this.hideContextMenu=this.showContextMenu=this.hide=this.detachAllEvents=this.radio=this.items=this.unload=this.dhx_Event=this.detachEvent=this.eventCatcher=this.checkEvent=this.callEvent=this.attachEvent=this.addNewSeparator=this.addNewChild=this.addNewSibling=this.getParentId=this.setItemPosition=this.getItemPosition=this.clearAll=this._hideContextMenu=this._renderSeparator=this._renderSublevelItem=
-this._renderSublevelPolygon=this._addSubMenuPolygon=this._addItemIntoGlobalStrorage=this._autoDetectVisibleArea=this._doOnContextBeforeCall=this._showContextMenu=this._isContextMenuVisible=this.isContextZone=this.removeContextZone=this.addContextZone=this.renderAsContextMenu=this._getAllParents=this.removeItem=this._updateItemImage=this.setIconPath=this.setIconsPath=this.setImagePath=this._renderToplevelItem=this._initTopLevelMenu=this._redistribTopLevelSelection=this._getItemLevelType=this._updateItemComplexState=
-this._redefineComplexState=this._countVisiblePolygonItems=this._hideSubLevelItem=this._showSubLevelItem=this._xmlParser=this._buildMenu=this.loadXMLString=this.loadXML=this.init=this.forEachItem=this.getItemType=this._doOnLoad=this._clearAndHide=this._genStr=this._getMenuNodes=this._searchMenuNode=this._doOnTouchMenu=this._doOnClick=this._redistribSubLevelSelection=this._showPolygon=this._hidePolygon=this._getSubItemToDeselectByPolygon=this._removeSubItemFromSelected=this._addSubItemToSelected=this._openedPolygons=
-this._selectedSubItems=this._enableDacSupport=this.zIndStep=this.zIndInit=this.zInd=this.dacSpeedIE=this.dacSpeed=this.dacCyclesIE=this.dacCycles=this.topId=this.skin=this.userDataTagName=this.itemTipTagName=this.itemTextTagName=this.itemTagName=this.itemHrefTagName=this.itemHotKeyTagName=this.isDhtmlxMenuObject=this.menuTouched=this.menuTimeoutMsec=this.menuTimeoutHandler=this.menuModeTopLevelTimeoutTime=this.menuModeTopLevelTimeout=this.menuMode=this.imagePath=this.idPrefix=this.menuLastClicked=
-this.menuSelected=this.limit=this.dirTopLevel=this.dirSubLevel=this.fixedPosition=this.loaderIcon=this.dLoadUrl=this.dLoadSign=this.dLoad=this.contextMenuZoneId=this.contextHideAllMode=this.contextAutoShow=this.contextAutoHide=this.context=this.addBaseIdAsContextZone=this._topLevelRightMargin=this._topLevelBottomMargin=this._topLevelOffsetLeft=this._topLevelBottomMargin=this._scrollUpTMTime=this._scrollUpTMStep=this._scrollDownTMTime=this._scrollDownTMStep=this._rtl=this._isInited=this._isIE6=this._arrowFFFix=
-this._align=null;dhtmlxMenuObjectLiveInstances[this._UID]=null;try{delete dhtmlxMenuObjectLiveInstances[this._UID]}catch(c){}this._UID=null};var dhtmlxMenuObjectLiveInstances={};dhtmlXMenuObject.prototype.i18n={dhxmenuextalert:"dhtmlxmenu_ext.js required"};
-(function(){dhtmlx.extend_api("dhtmlXMenuObject",{_init:function(b){return[b.parent,b.skin]},align:"setAlign",top_text:"setTopText",context:"renderAsContextMenu",icon_path:"setIconsPath",open_mode:"setOpenMode",rtl:"setRTL",skin:"setSkin",dynamic:"enableDynamicLoading",xml:"loadXML",items:"items",overflow:"setOverflowHeight"},{items:function(b,c){for(var a=1E5,d=null,f=0;f<b.length;f++){var e=b[f];e.type=="separator"?(this.addNewSeparator(d,a,e.id),d=e.id):(this.addNewChild(c,a,e.id,e.text,e.disabled,
-e.img,e.img_disabled),d=e.id,e.items&&this.items(e.items,e.id))}}})})();
-dhtmlXMenuObject.prototype._improveTerraceSkin=function(){for(var b in this.itemPull)if(this.itemPull[b].parent==this.idPrefix+this.topId&&this.idPull[b]!=null){var c=!1,a=!1;this.idPull[b].parentNode.firstChild==this.idPull[b]&&(c=!0);this.idPull[b].parentNode.lastChild==this.idPull[b]&&(a=!0);for(var d in this.itemPull)this.itemPull[d].type=="separator"&&this.itemPull[d].parent==this.idPrefix+this.topId&&(this.idPull[b].nextSibling==this.idPull["separator_"+d]&&(a=!0),this.idPull[b].previousSibling==
-this.idPull["separator_"+d]&&(c=!0));this.idPull[b].style.borderLeft=c?"1px solid #cecece":"0px solid white";this.idPull[b].style.borderTopLeftRadius=this.idPull[b].style.borderBottomLeftRadius=c?"5px":"0px";this.idPull[b].style.borderTopRightRadius=this.idPull[b].style.borderBottomRightRadius=a?"5px":"0px";this.idPull[b]._bl=c;this.idPull[b]._br=a}};
-dhtmlXMenuObject.prototype._improveTerraceButton=function(b,c){c?(this.idPull[b].style.borderBottomLeftRadius=this.idPull[b]._bl?"5px":"0px",this.idPull[b].style.borderBottomRightRadius=this.idPull[b]._br?"5px":"0px"):(this.idPull[b].style.borderBottomLeftRadius="0px",this.idPull[b].style.borderBottomRightRadius="0px")};
+function dhtmlXMenuObject(baseId, skin) {
+	var main_self = this;
+	
+	this.addBaseIdAsContextZone = null;
+	
+	this.isDhtmlxMenuObject = true;
+	
+	// skin settings
+	this.skin = (skin != null ? skin : (typeof(dhtmlx) != "undefined" && typeof(dhtmlx.skin) == "string" ? dhtmlx.skin : "dhx_skyblue"));
+	this.imagePath = "";
+	
+	// iframe
+	this._isIE6 = false;
+	if (_isIE) this._isIE6 = (window.XMLHttpRequest==null?true:false);
+	
+	if (baseId == null) {
+		this.base = document.body;
+	} else {
+		var baseObj = (typeof(baseId)=="string"?document.getElementById(baseId):baseId);
+		if (baseObj != null) {
+			this.base = baseObj;
+			if (!this.base.id) this.base.id = (new Date()).valueOf();
+			while (this.base.childNodes.length > 0) { this.base.removeChild(this.base.childNodes[0]); }
+			this.base.className += " dhtmlxMenu_"+this.skin+"_Middle dir_left";
+			this.base._autoSkinUpdate = true;
+			 // preserv default oncontextmenu for future restorin in case of context menu
+			if (this.base.oncontextmenu) this.base._oldContextMenuHandler = this.base.oncontextmenu;
+			//
+			this.addBaseIdAsContextZone = this.base.id;
+			this.base.onselectstart = function(e) { e = e || event; e.returnValue = false; return false; }
+			this.base.oncontextmenu = function(e) { e = e || event; e.returnValue = false; return false; }
+		} else {
+			this.base = document.body;
+		}
+	}
+	// this.topId = topId;
+	this.topId = "dhxWebMenuTopId";
+	
+	// 
+	if (!this.extendedModule) {
+		// add notify for menu
+		var t = function(){alert(this.i18n.dhxmenuextalert);};
+		var extMethods = new Array("setItemEnabled", "setItemDisabled", "isItemEnabled", "_changeItemState", "getItemText", "setItemText",
+				"loadFromHTML", "hideItem", "showItem", "isItemHidden", "_changeItemVisible", "setUserData", "getUserData",
+				"setOpenMode", "setWebModeTimeout", "enableDynamicLoading", "_updateLoaderIcon", "getItemImage", "setItemImage",
+				"clearItemImage", "setAutoShowMode", "setAutoHideMode", "setContextMenuHideAllMode", "getContextMenuHideAllMode",
+				"setVisibleArea", "setTooltip", "getTooltip", "setHotKey", "getHotKey", "setItemSelected", "setTopText", "setRTL",
+				"setAlign", "setHref", "clearHref", "getCircuit", "_clearAllSelectedSubItemsInPolygon", "_checkArrowsState",
+				"_addUpArrow", "_addDownArrow", "_removeUpArrow", "_removeDownArrow", "_isArrowExists", "_doScrollUp", "_doScrollDown",
+				"_countPolygonItems", "setOverflowHeight", "_getRadioImgObj", "_setRadioState", "_radioOnClickHandler",
+				"getRadioChecked", "setRadioChecked", "addRadioButton", "_getCheckboxState", "_setCheckboxState", "_readLevel",
+				"_updateCheckboxImage", "_checkboxOnClickHandler", "setCheckboxState", "getCheckboxState", "addCheckbox", "serialize");
+		for (var q=0; q<extMethods.length; q++) if (!this[extMethods[q]]) this[extMethods[q]] = t;
+		extMethods = null;
+	}
+	
+	// should be used for frameset in IE
+	this.fixedPosition = false;
+	
+	this.menuSelected = -1;
+	this.menuLastClicked = -1;
+	this.idPrefix = "";
+	this.itemTagName = "item";
+	this.itemTextTagName = "itemtext";
+	this.userDataTagName = "userdata";
+	this.itemTipTagName = "tooltip";
+	this.itemHotKeyTagName = "hotkey";
+	this.itemHrefTagName = "href";
+	this.dirTopLevel = "bottom";
+	this.dirSubLevel = "right";
+	this.menuX1 = null;
+	this.menuX2 = null;
+	this.menuY1 = null;
+	this.menuY2 = null;
+	this.menuMode = "web";
+	this.menuTimeoutMsec = 400;
+	this.menuTimeoutHandler = null;
+	this.autoOverflow = false;
+	this.idPull = {};
+	this.itemPull = {};
+	this.userData = {};
+	this.radio = {};
+	//
+	this._rtl = false;
+	this._align = "left";
+	//
+	this.menuTouched = false;
+	//
+	this.zIndInit = 1200;
+	this.zInd = this.zIndInit;
+	this.zIndStep = 50;
+	//
+	this.menuModeTopLevelTimeout = true; // shows sublevel polygons from toplevel items with delay
+	this.menuModeTopLevelTimeoutTime = 200; // msec
+	//
+	// default skin
+	// this.skin = "Standard";
+	
+	// skin-based params
+	this._topLevelBottomMargin = 1;
+	this._topLevelRightMargin = 0;
+	this._topLevelOffsetLeft = 1;
+	this._arrowFFFix = (_isIE?(document.compatMode=="BackCompat"?0:-4):-4); // border fixer for FF for arrows polygons
+	
+	/**
+	*   @desc: changes menu skin
+	*   @param: skin - skin name
+	*   @type: public
+	*/
+	this.setSkin = function(skin) {
+		var oldSkin = this.skin;
+		this.skin = skin;
+		switch (this.skin){
+			case "dhx_black":
+			case "dhx_blue":
+			case "dhx_skyblue":
+			case "dhx_web":
+				this._topLevelBottomMargin = 2;
+				this._topLevelRightMargin = 1;
+				this._topLevelOffsetLeft = 1;
+				this._arrowFFFix = (_isIE?(document.compatMode=="BackCompat"?0:-4):-4);
+				break;
+			case "dhx_web":
+				this._arrowFFFix = 0;
+				break;
+			case "dhx_terrace":
+				this._topLevelBottomMargin = 0;
+				this._topLevelRightMargin = 0;
+				this._topLevelOffsetLeft = 0;
+				this._arrowFFFix = (_isIE?(document.compatMode=="BackCompat"?0:-4):-4);
+				break;
+		}
+		if (this.base._autoSkinUpdate) {
+			this.base.className = this.base.className.replace("dhtmlxMenu_"+oldSkin+"_Middle", "")+" dhtmlxMenu_"+this.skin+"_Middle";
+		}
+		
+		for (var a in this.idPull) {
+			this.idPull[a].className = String(this.idPull[a].className).replace(oldSkin, this.skin);
+			
+		}
+	}
+	this.setSkin(this.skin);
+	//
+	this.dLoad = false;
+	this.dLoadUrl = "";
+	this.dLoadSign = "?";
+	this.loaderIcon = false;
+	this.limit = 0;
+	//
+	this._scrollUpTM = null;
+	this._scrollUpTMTime = 20;
+	this._scrollUpTMStep = 3;
+	this._scrollDownTM = null;
+	this._scrollDownTMTime = 20;
+	this._scrollDownTMStep = 3;
+	/* context menu */
+	this.context = false;
+	this.contextZones = {};
+	this.contextMenuZoneId = false;
+	this.contextAutoShow = true;	/* default open action */
+	this.contextAutoHide = true;	/* default close action */
+	this.contextHideAllMode = true; /* true will hide all opened contextual menu polygons on mouseout, false - all except topleft */
+	
+	this._selectedSubItems = new Array();
+	this._openedPolygons = new Array();
+	this._addSubItemToSelected = function(item, polygon) {
+		var t = true;
+		for (var q=0; q<this._selectedSubItems.length; q++) { if ((this._selectedSubItems[q][0] == item) && (this._selectedSubItems[q][1] == polygon)) { t = false; } }
+		if (t == true) { this._selectedSubItems.push(new Array(item, polygon)); }
+		return t;
+	}
+	this._removeSubItemFromSelected = function(item, polygon) {
+		var m = new Array();
+		var t = false;
+		for (var q=0; q<this._selectedSubItems.length; q++) { if ((this._selectedSubItems[q][0] == item) && (this._selectedSubItems[q][1] == polygon)) { t = true; } else { m[m.length] = this._selectedSubItems[q]; } }
+		if (t == true) { this._selectedSubItems = m; }
+		return t;
+	}
+	this._getSubItemToDeselectByPolygon = function(polygon) {
+		var m = new Array();
+		for (var q=0; q<this._selectedSubItems.length; q++) {
+			if (this._selectedSubItems[q][1] == polygon) {
+				m[m.length] = this._selectedSubItems[q][0];
+				m = m.concat(this._getSubItemToDeselectByPolygon(this._selectedSubItems[q][0]));
+				var t = true;
+				for (var w=0; w<this._openedPolygons.length; w++) { if (this._openedPolygons[w] == this._selectedSubItems[q][0]) { t = false; } }
+				if (t == true) { this._openedPolygons[this._openedPolygons.length] = this._selectedSubItems[q][0]; }
+				this._selectedSubItems[q][0] = -1;
+				this._selectedSubItems[q][1] = -1;
+			}
+		}
+		return m;
+	}
+	/* end */
+	/* define polygon's position for dinamic content rendering and shows it, added in version 0.3 */
+	this._hidePolygon = function(id) {
+		if (this.idPull["polygon_" + id] != null) {
+			if (typeof(this._menuEffect) != "undefined" && this._menuEffect !== false) {
+				this._hidePolygonEffect("polygon_"+id);
+			} else {
+				// already hidden
+				if (this.idPull["polygon_"+id].style.display == "none") return;
+				//
+				this.idPull["polygon_"+id].style.display = "none";
+				if (this.idPull["arrowup_"+id] != null) { this.idPull["arrowup_"+id].style.display = "none"; }
+				if (this.idPull["arrowdown_"+id] != null) { this.idPull["arrowdown_"+id].style.display = "none"; }
+				this._updateItemComplexState(id, true, false);
+				// hide ie6 cover
+				if (this._isIE6) { if (this.idPull["polygon_"+id+"_ie6cover"] != null) { this.idPull["polygon_"+id+"_ie6cover"].style.display = "none"; } }
+			}
+			// call event
+			id = String(id).replace(this.idPrefix, "");
+			if (id == this.topId) id = null;
+			this.callEvent("onHide", [id]);
+			
+			// corners
+			if (id != null && this.skin == "dhx_terrace" && this.itemPull[this.idPrefix+id].parent == this.idPrefix+this.topId) {
+				this._improveTerraceButton(this.idPrefix+id, true);
+			}
+			
+			
+		}
+	}
+	this._showPolygon = function(id, openType) {
+		
+		var itemCount = this._countVisiblePolygonItems(id);
+		if (itemCount == 0) return;
+		var pId = "polygon_"+id;
+		if ((this.idPull[pId] != null) && (this.idPull[id] != null)) {
+		
+			if (this.menuModeTopLevelTimeout && this.menuMode == "web" && !this.context) {
+				if (!this.idPull[id]._mouseOver && openType == this.dirTopLevel) return;
+			}
+			
+			// detect visible area
+			if (!this.fixedPosition) this._autoDetectVisibleArea();
+			
+			// show arrows
+			var arrUpH = 0;
+			var arrDownH = 0;
+			//
+			var arrowUp = null;
+			var arrowDown = null;
+			
+			// show polygon
+			this.idPull[pId].style.visibility = "hidden";
+			this.idPull[pId].style.left = "0px";
+			this.idPull[pId].style.top = "0px";
+			this.idPull[pId].style.display = "";
+			this.idPull[pId].style.zIndex = this.zInd;
+			
+			//
+			if (this.autoOverflow) {
+				if (this.idPull[pId].firstChild.offsetHeight > this.menuY1+this.menuY2) {
+					var t0 = Math.floor((this.menuY2-this.menuY1-35)/24);
+					this.limit = t0;
+				} else {
+					this.limit = 0;
+					
+					if (this.idPull["arrowup_"+id] != null) this._removeUpArrow(String(id).replace(this.idPrefix,""));
+					if (this.idPull["arrowdown_"+id] != null) this._removeDownArrow(String(id).replace(this.idPrefix,""));
+				}
+			}
+			
+			//#menu_overflow:06062008#{
+			if (this.limit > 0 && this.limit < itemCount)  {
+				
+				// add overflow arrows if they not exists
+				if (this.idPull["arrowup_"+id] == null) this._addUpArrow(String(id).replace(this.idPrefix,""));
+				if (this.idPull["arrowdown_"+id] == null) this._addDownArrow(String(id).replace(this.idPrefix,""));
+				
+				// configure up arrow
+				arrowUp = this.idPull["arrowup_"+id];
+				arrowUp.style.visibility = "hidden";
+				arrowUp.style.display = "";
+				arrowUp.style.zIndex = this.zInd;
+				arrUpH = arrowUp.offsetHeight;
+				
+				// configure bottom arrow
+				arrowDown = this.idPull["arrowdown_"+id];
+				arrowDown.style.visibility = "hidden";
+				arrowDown.style.display = "";
+				arrowDown.style.zIndex = this.zInd;
+				arrDownH = arrowDown.offsetHeight;
+			}
+			//#}
+			
+			if (this.limit > 0) {
+				if (this.limit < itemCount)  {
+					// set fixed size
+					// this.idPull[pId].style.height = this.idPull[pId].tbd.childNodes[0].offsetHeight*this.limit+"px";// + arrUpH + arrDownH;
+					this.idPull[pId].style.height = 24*this.limit+"px";
+					this.idPull[pId].scrollTop = 0;
+				} else {
+					// remove fixed size
+					this.idPull[pId].style.height = "";
+				}
+			}
+			//
+			this.zInd += this.zIndStep;
+			//
+			// console.log(this.idPull)
+			if (this.itemPull[id] != null) {
+				var parPoly = "polygon_"+this.itemPull[id]["parent"];
+			} else if (this.context) {
+				var parPoly = this.idPull[this.idPrefix+this.topId];
+			}
+			/*
+			// debug info
+			if (parPoly == null) {
+				alert("Implementation error. Please report support@dhtmlx.com");
+			}
+			*/
+			//
+			//
+			// define position
+			var srcX = (this.idPull[id].tagName != null ? getAbsoluteLeft(this.idPull[id]) : this.idPull[id][0]);
+			var srcY = (this.idPull[id].tagName != null ? getAbsoluteTop(this.idPull[id]) : this.idPull[id][1]);
+			var srcW = (this.idPull[id].tagName != null ? this.idPull[id].offsetWidth : 0);
+			var srcH = (this.idPull[id].tagName != null ? this.idPull[id].offsetHeight : 0);
+			
+			var x = 0;
+			var y = 0;
+			var w = this.idPull[pId].offsetWidth;
+			var h = this.idPull[pId].offsetHeight + arrUpH + arrDownH;
+			
+			//console.log(srcY,h,window.innerHeight,document.body.scrollTop)
+			/*
+			var bottomOverflow = (srcY+h > window.innerHeight+document.body.scrollTop);
+			if (bottomOverflow) {
+				if (openType == "bottom") openType = "top";
+				if (openType == "right" || openType == "left") {
+					srcY = srcY-h;
+				}
+			}
+			*/
+			// pos
+			if (openType == "bottom") {
+				if (this._rtl) {
+					x = srcX + (srcW!=null?srcW:0) - w;
+				} else {
+					if (this._align == "right") {
+						x = srcX + srcW - w;
+					} else {
+						x = srcX - 1 + (openType==this.dirTopLevel?this._topLevelRightMargin:0);
+					}
+				}
+				y = srcY - 1 + srcH + this._topLevelBottomMargin;
+			}
+			if (openType == "right") { x = srcX + srcW - 1; y = srcY + 2; }
+			if (openType == "left") { x = srcX - this.idPull[pId].offsetWidth + 2; y = srcY + 2; }
+			if (openType == "top") { x = srcX - 1; y = srcY - h + 2; }
+			
+			// overflow check
+			if (this.fixedPosition) {
+				// use fixed document.body/window dimension if required
+				var mx = 65536;
+				var my = 65536;
+			} else {
+				var mx = (this.menuX2!=null?this.menuX2:0);
+				var my = (this.menuY2!=null?this.menuY2:0);
+				
+				if (mx == 0) {
+					if (window.innerWidth) {
+						mx = window.innerWidth;
+						my = window.innerHeight;
+					} else {
+						mx = document.body.offsetWidth;
+						my = document.body.scrollHeight;
+					}
+				}
+			}
+			if (x+w > mx && !this._rtl) {
+				// no space on right, open to left
+				x = srcX - w + 2;
+			}
+			if (x < this.menuX1 && this._rtl) {
+				// no space on left, open to right
+				x = srcX + srcW - 2;
+			}
+			if (x < 0) {
+				// menu floats left
+				x = 0;
+			}
+			if (y+h > my && this.menuY2 != null) {
+				y = Math.max(srcY + srcH - h + 2, (this._isVisibleArea?this.menuY1+2:2));
+				// open from top level
+				if (this.context && this.idPrefix+this.topId == id && arrowDown != null) {
+					// autoscroll prevent because menu mouse pointer will right over downarrow
+					y = y-2;
+				}
+				if (this.itemPull[id] != null && !this.context) {
+					if (this.itemPull[id]["parent"] == this.idPrefix+this.topId) y = y - this.base.offsetHeight;
+				}
+			}
+			//
+			this.idPull[pId].style.left = x+"px";
+			this.idPull[pId].style.top = y+arrUpH+"px";
+			//
+			if (typeof(this._menuEffect) != "undefined" && this._menuEffect !== false) {
+				this._showPolygonEffect(pId);
+			} else {
+				this.idPull[pId].style.visibility = "";
+				//#menu_overflow:06062008#{
+				if (this.limit > 0 && this.limit < itemCount)  {
+					// this.idPull[pId].scrollTop = 0;
+					arrowUp.style.left = x+"px";
+					arrowUp.style.top = y+"px";
+					arrowUp.style.width = w+this._arrowFFFix+"px";
+					arrowUp.style.visibility = "";
+					//
+					arrowDown.style.left = x+"px";
+					arrowDown.style.top = y+h-arrDownH+"px";
+					arrowDown.style.width = w+this._arrowFFFix+"px";
+					arrowDown.style.visibility = "";
+					//
+					this._checkArrowsState(id);
+				}
+				//#}
+				// show ie6 cover
+				if (this._isIE6) {
+					var pIdIE6 = pId+"_ie6cover";
+					if (this.idPull[pIdIE6] == null) {
+						var ifr = document.createElement("IFRAME");
+						ifr.className = "dhtmlxMenu_IE6CoverFix_"+this.skin;
+						ifr.frameBorder = 0;
+						ifr.setAttribute("src", "javascript:false;");
+						document.body.insertBefore(ifr, document.body.firstChild);
+						this.idPull[pIdIE6] = ifr;
+					}
+					this.idPull[pIdIE6].style.left = x+"px";
+					this.idPull[pIdIE6].style.top = y+"px";
+					this.idPull[pIdIE6].style.width = w+"px";
+					this.idPull[pIdIE6].style.height = h+"px";
+					this.idPull[pIdIE6].style.zIndex = this.idPull[pId].style.zIndex-1;
+					this.idPull[pIdIE6].style.display = "";
+				}
+			}
+			
+			id = String(id).replace(this.idPrefix, "");
+			if (id == this.topId) id = null;
+			this.callEvent("onShow", [id]);
+			
+			// corners
+			if (id != null && this.skin == "dhx_terrace" && this.itemPull[this.idPrefix+id].parent == this.idPrefix+this.topId) {
+				this._improveTerraceButton(this.idPrefix+id, false);
+			}
+			// this.callEvent("_onPolyShow",[id.replace(this.idPrefix,"")]);
+			
+		}
+	}
+	/* redistrib sublevel selection: select id and deselect other, added in version 0.3 */
+	this._redistribSubLevelSelection = function(id, parentId) {
+		// clear previosly selected items
+		while (this._openedPolygons.length > 0) this._openedPolygons.pop();
+		// this._openedPolygons = new Array();
+		var i = this._getSubItemToDeselectByPolygon(parentId);
+		this._removeSubItemFromSelected(-1, -1);
+		for (var q=0; q<i.length; q++) { if ((this.idPull[i[q]] != null) && (i[q] != id)) { if (this.itemPull[i[q]]["state"] == "enabled") { this.idPull[i[q]].className = "sub_item"; } } }
+		// hide polygons
+		for (var q=0; q<this._openedPolygons.length; q++) { if (this._openedPolygons[q] != parentId) { this._hidePolygon(this._openedPolygons[q]); } }
+		// add new selection into list new
+		if (this.itemPull[id]["state"] == "enabled") {
+			this.idPull[id].className = "sub_item_selected";
+			if (this.itemPull[id]["complex"] && this.dLoad && (this.itemPull[id]["loaded"]=="no")) {
+				if (this.loaderIcon == true) { this._updateLoaderIcon(id, true); }
+				var xmlLoader = new dtmlXMLLoaderObject(this._xmlParser, window);
+				this.itemPull[id]["loaded"] = "get";
+				this.callEvent("onXLS", []);
+				xmlLoader.loadXML(this.dLoadUrl+this.dLoadSign+"action=loadMenu&parentId="+id.replace(this.idPrefix,"")+"&etc="+new Date().getTime());
+			}
+			// show
+			if (this.itemPull[id]["complex"] || (this.dLoad && (this.itemPull[id]["loaded"] == "yes"))) {
+				// make arrow over
+				if ((this.itemPull[id]["complex"]) && (this.idPull["polygon_" + id] != null))  {
+					this._updateItemComplexState(id, true, true);
+					this._showPolygon(id, this.dirSubLevel);
+				}
+			}
+			this._addSubItemToSelected(id, parentId);
+			this.menuSelected = id;
+		}
+	}
+	/* onClickMenu action (click on any end item to perform some actions)
+	   optimized in version 0.3 added type feature (click on disabled items, click on complex nodes)
+	   attachEvent feature from 0.4 */
+	this._doOnClick = function(id, type, casState) {
+		this.menuLastClicked = id;
+		// href
+		if (this.itemPull[this.idPrefix+id]["href_link"] != null && this.itemPull[this.idPrefix+id].state == "enabled") {
+			var form = document.createElement("FORM");
+			var k = String(this.itemPull[this.idPrefix+id]["href_link"]).split("?");
+			form.action = k[0];
+			if (k[1] != null) {
+				var p = String(k[1]).split("&");
+				for (var q=0; q<p.length; q++) {
+					var j = String(p[q]).split("=");
+					var m = document.createElement("INPUT");
+					m.type = "hidden";
+					m.name = (j[0]||"");
+					m.value = (j[1]||"");
+					form.appendChild(m);
+				}
+			}
+			if (this.itemPull[this.idPrefix+id]["href_target"] != null) { form.target = this.itemPull[this.idPrefix+id]["href_target"]; }
+			form.style.display = "none";
+			document.body.appendChild(form);
+			form.submit();
+			if (form != null) {
+				document.body.removeChild(form);
+				form = null;
+			}
+			return;
+		}
+		//
+		// some fixes
+		if (type.charAt(0)=="c") return; // can't click on complex item
+		if (type.charAt(1)=="d") return; // can't click on disabled item
+		if (type.charAt(2)=="s") return; // can't click on separator
+		//
+		if (this.checkEvent("onClick")) {
+			// this.callEvent("onClick", [id, type, this.contextMenuZoneId]);
+			this.callEvent("onClick", [id, this.contextMenuZoneId, casState]);
+		} else {
+			if ((type.charAt(1) == "d") || (this.menuMode == "win" && type.charAt(2) == "t")) return;
+		}
+		if (this.context && this._isContextMenuVisible() && this.contextAutoHide) {
+			this._hideContextMenu();
+		} else {
+			// if menu unloaded from click event
+			if (this._clearAndHide) this._clearAndHide();
+		}
+	}
+	/* onTouchMenu action (select topLevel item), attachEvent added in 0.4 */
+	this._doOnTouchMenu = function(id) {
+		if (this.menuTouched == false) {
+			this.menuTouched = true;
+			if (this.checkEvent("onTouch")) {
+				this.callEvent("onTouch", [id]);
+			}
+		}
+	}
+	// this._onTouchHandler = function(id) { }
+	// this._setOnTouchHandler = function(handler) { this._onTouchHandler = function(id) { handler(id); } }
+	/* return menu array of all nested objects */
+	this._searchMenuNode = function(node, menu) {
+		var m = new Array();
+		for (var q=0; q<menu.length; q++) {
+			if (typeof(menu[q]) == "object") {
+				if (menu[q].length == 5) { if (typeof(menu[q][0]) != "object") { if ((menu[q][0].replace(this.idPrefix, "") == node) && (q == 0)) { m = menu; } } }
+				var j = this._searchMenuNode(node, menu[q]);
+				if (j.length > 0) { m = j; }
+			}
+		}
+		return m;
+	}
+	/* return array of subitems for single menu object */
+	/* modified in version 0.3 */
+	this._getMenuNodes = function(node) {
+		var m = new Array;
+		for (var a in this.itemPull) { if (this.itemPull[a]["parent"] == node) { m[m.length] = a; } }
+		return m;
+	}
+	/* generate random string with specified length */
+	this._genStr = function(w) {
+		var s = ""; var z = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		for (var q=0; q<w; q++) s += z.charAt(Math.round(Math.random() * (z.length-1)));
+		return s;
+	}
+	/**
+	*	@desc: return item type by id
+	*	@param: id
+	*	@type: public
+	*/
+	this.getItemType = function(id) {
+		id = this.idPrefix+id;
+		if (this.itemPull[id] == null) { return null; }
+		return this.itemPull[id]["type"];
+	}
+	/*
+	*	@desc: iterator, calls user-defined handler for each existing item and pass item id into it
+	*	@param: handler - user-defined handler
+	*	@type: public
+	*/
+	this.forEachItem = function(handler) {
+		for (var a in this.itemPull) { handler(String(a).replace(this.idPrefix, "")); }
+	}
+	/* clear selection and hide menu on onbody click event, optimized in version 0.3 */
+	this._clearAndHide = function() {
+		main_self.menuSelected = -1;
+		main_self.menuLastClicked = -1;
+		while (main_self._openedPolygons.length > 0) { main_self._openedPolygons.pop(); }
+		for (var q=0; q<main_self._selectedSubItems.length; q++) {
+			var id = main_self._selectedSubItems[q][0];
+			// clear all selection
+			if (main_self.idPull[id] != null) {
+				if (main_self.itemPull[id]["state"] == "enabled") {
+					if (main_self.idPull[id].className == "sub_item_selected") main_self.idPull[id].className = "sub_item";
+					if (main_self.idPull[id].className == "dhtmlxMenu_"+main_self.skin+"_TopLevel_Item_Selected") {
+						// main_self.idPull[id].className = "dhtmlxMenu_"+main_self.skin+"_TopLevel_Item_Normal";
+						// custom css
+						// console.log(main_self.itemPull[this.id])
+						if (main_self.itemPull[id]["cssNormal"] != null) {
+							// alert(1)
+							main_self.idPull[id].className = main_self.itemPull[id]["cssNormal"];
+						} else {
+							// default css
+							main_self.idPull[id].className = "dhtmlxMenu_"+main_self.skin+"_TopLevel_Item_Normal";
+						}
+					}
+				}
+			}
+			main_self._hidePolygon(id);
+		}
+		// added in 0.4
+		// main_self._hidePolygon(main_self.idPrefix+main_self.topId);
+		main_self.menuTouched = false;
+		//
+		// hide all contextmenu polygons on mouseout
+		if (main_self.context) {
+			if (main_self.contextHideAllMode) {
+				main_self._hidePolygon(main_self.idPrefix+main_self.topId);
+				main_self.zInd = main_self.zIndInit;
+			} else {
+				main_self.zInd = main_self.zIndInit+main_self.zIndStep;
+			}
+		}
+	}
+	/* loading and parsing through xml, optimized in version 0.3 */
+	this._doOnLoad = function() {}
+	/**
+	*   @desc: loads menu data from an xml file and calls onLoadFunction when loading is done
+	*   @param: xmlFile - an xml file with webmenu data
+	*   @param: onLoadFunction - a function that is called after loading is done
+	*   @type: public
+	*/
+	this.loadXML = function(xmlFile, onLoadFunction) {
+		if (onLoadFunction) this._doOnLoad = function() { onLoadFunction(); };
+		this.callEvent("onXLS", []);
+		this._xmlLoader.loadXML(xmlFile);
+	}
+	/**
+	*   @desc: loads menu data from an xml string and calls onLoadFunction when loading is done
+	*   @param: xmlFile - an xml string with webmenu data
+	*   @param: onLoadFunction - function that is called after loading is done
+	*   @type: public
+	*/
+	this.loadXMLString = function(xmlString, onLoadFunction) {
+		if (onLoadFunction) this._doOnLoad = function() { onLoadFunction(); };
+		this._xmlLoader.loadXMLString(xmlString);
+	}
+	this._buildMenu = function(t, parentId) {
+		// if (parentId==null) { parentId = this.topId;}
+		var u = 0;
+		for (var q=0; q<t.childNodes.length; q++) {
+			if (t.childNodes[q].tagName == this.itemTagName) {
+				var r = t.childNodes[q];
+				var item = {};
+				// basic
+				item["id"] = this.idPrefix+(r.getAttribute("id")||this._genStr(24));
+				item["title"] = r.getAttribute("text")||"";
+				// images
+				item["imgen"] = r.getAttribute("img")||"";
+				item["imgdis"] = r.getAttribute("imgdis")||"";
+				item["tip"] = "";
+				item["hotkey"] = "";
+				// custom css
+				if (r.getAttribute("cssNormal") != null) { item["cssNormal"] = r.getAttribute("cssNormal"); }
+				// type
+				item["type"] = r.getAttribute("type")||"item";
+//#menu_checks:06062008{
+				if (item["type"] == "checkbox") {
+					item["checked"] = (r.getAttribute("checked")!=null);
+					// set classname
+					item["imgen"] = "chbx_"+(item["checked"]?"1":"0");
+					item["imgdis"] = item["imgen"];
+				}
+//#}
+//#menu_radio:06062008{
+				if (item["type"] == "radio") {
+					item["checked"] = (r.getAttribute("checked")!=null);
+					item["imgen"] = "rdbt_"+(item["checked"]?"1":"0");
+					item["imgdis"] = item["imgen"];
+					item["group"] = r.getAttribute("group")||this._genStr(24);
+					if (this.radio[item["group"]]==null) { this.radio[item["group"]] = new Array(); }
+					this.radio[item["group"]][this.radio[item["group"]].length] = item["id"];
+				}
+//#}
+				// enable/disable
+				item["state"] = (r.getAttribute("enabled")!=null||r.getAttribute("disabled")!=null?(r.getAttribute("enabled")=="false"||r.getAttribute("disabled")=="true"?"disabled":"enabled"):"enabled");
+				item["parent"] = (parentId!=null?parentId:this.idPrefix+this.topId);
+				// item["complex"] = (((this.dLoad)&&(parentId!=null))?(r.getAttribute("complex")!=null?true:false):(this._buildMenu(r,item["id"])>0));
+				item["complex"] = (this.dLoad?(r.getAttribute("complex")!=null?true:false):(this._buildMenu(r,item["id"])>0));
+				if (this.dLoad && item["complex"]) { item["loaded"] = "no"; }
+				this.itemPull[item["id"]] = item;
+				// check for user data
+				for (var w=0; w<r.childNodes.length; w++) {
+					// added in 0.4
+					var tagNm = r.childNodes[w].tagName;
+					if (tagNm != null) { tagNm = tagNm.toLowerCase(); }
+					//
+					if (tagNm == this.userDataTagName) {
+						var d = r.childNodes[w];
+						if (d.getAttribute("name")!=null) { this.userData[item["id"]+"_"+d.getAttribute("name")] = (d.firstChild!=null&&d.firstChild.nodeValue!=null?d.firstChild.nodeValue:""); }
+					}
+					// extended text, added in 0.4
+					if (tagNm == this.itemTextTagName) { item["title"] = r.childNodes[w].firstChild.nodeValue; }
+					// tooltips, added in 0.4
+					if (tagNm == this.itemTipTagName) { item["tip"] = r.childNodes[w].firstChild.nodeValue; }
+					// hotkeys, added in 0.4
+					if (tagNm == this.itemHotKeyTagName) { item["hotkey"] = r.childNodes[w].firstChild.nodeValue; }
+					// hrefs
+					if (tagNm == this.itemHrefTagName && item["type"] == "item") {
+						item["href_link"] = r.childNodes[w].firstChild.nodeValue;
+						if (r.childNodes[w].getAttribute("target") != null) { item["href_target"] = r.childNodes[w].getAttribute("target"); }
+					}
+				}
+				u++;
+			}
+		}
+		return u;
+	}
+	/* parse incoming xml */
+	this._xmlParser = function() {
+		if (main_self.dLoad) {
+			var t = this.getXMLTopNode("menu");
+			parentId = (t.getAttribute("parentId")!=null?t.getAttribute("parentId"):null);
+			if (parentId == null) {
+				// alert(1)
+				// main_self.idPrefix = main_self._genStr(12);
+				main_self._buildMenu(t, null);
+				main_self._initTopLevelMenu();
+			} else {
+				main_self._buildMenu(t, main_self.idPrefix+parentId);
+				main_self._addSubMenuPolygon(main_self.idPrefix+parentId, main_self.idPrefix+parentId);//, main_self.idPull[main_self.idPrefix+parentId]);
+				if (main_self.menuSelected == main_self.idPrefix+parentId) {
+					var pId = main_self.idPrefix+parentId;
+					var isTop = main_self.itemPull[main_self.idPrefix+parentId]["parent"]==main_self.idPrefix+main_self.topId;
+					var level = ((isTop&&(!main_self.context))?main_self.dirTopLevel:main_self.dirSubLevel);
+					var isShow = false;
+					if (isTop && main_self.menuModeTopLevelTimeout && main_self.menuMode == "web" && !main_self.context) {
+						var item = main_self.idPull[main_self.idPrefix+parentId];
+						if (item._mouseOver == true) {
+							var delay = main_self.menuModeTopLevelTimeoutTime - (new Date().getTime()-item._dynLoadTM);
+							if (delay > 1) {
+								item._menuOpenTM = window.setTimeout(function(){ main_self._showPolygon(pId, level); }, delay);
+								isShow = true;
+							}
+						}
+					}
+					if (!isShow) { main_self._showPolygon(pId, level); }
+				}
+				main_self.itemPull[main_self.idPrefix+parentId]["loaded"] = "yes";
+				// console.log(main_self.loaderIcon)
+				if (main_self.loaderIcon == true) { main_self._updateLoaderIcon(main_self.idPrefix+parentId, false); }
+			}
+			this.destructor();
+			main_self.callEvent("onXLE",[]);
+		} else {
+			var t = this.getXMLTopNode("menu");
+			// alert(3)
+			// main_self.idPrefix = main_self._genStr(12);
+			main_self._buildMenu(t, null);
+			main_self.init();
+			main_self.callEvent("onXLE",[]);
+			main_self._doOnLoad();
+		}
+	}
+	this._xmlLoader = new dtmlXMLLoaderObject(this._xmlParser, window);
+	/* show sublevel item */
+	this._showSubLevelItem = function(id,back) {
+		if (document.getElementById("arrow_" + this.idPrefix + id) != null) { document.getElementById("arrow_" + this.idPrefix + id).style.display = (back?"none":""); }
+		if (document.getElementById("image_" + this.idPrefix + id) != null) { document.getElementById("image_" + this.idPrefix + id).style.display = (back?"none":""); }
+		if (document.getElementById(this.idPrefix + id) != null) { document.getElementById(this.idPrefix + id).style.display = (back?"":"none"); }
+	}
+	/* hide sublevel item */
+	this._hideSubLevelItem = function(id) {
+		this._showSubLevelItem(id,true)
+	}
+	// generating id prefix
+	this.idPrefix = this._genStr(12);
+	
+	/* attach body events */
+	this._bodyClick = function(e) {
+		e = e||event;
+		if (e.button == 2 || (_isOpera && e.ctrlKey == true)) return;
+		if (main_self.context) {
+			if (main_self.contextAutoHide && (!_isOpera || (main_self._isContextMenuVisible() && _isOpera))) main_self._hideContextMenu();
+		} else {
+			if (main_self._clearAndHide) main_self._clearAndHide();
+		}
+	}
+	this._bodyContext = function(e) {
+		e = e||event;
+		var t = String((e.srcElement||e.target).className);
+		if (t.search("dhtmlxMenu") != -1 && t.search("SubLevelArea") != -1) return;
+		var toHide = true;
+		var testZone = e.target || e.srcElement;
+		while (testZone != null) {
+			if (testZone.id != null) if (main_self.isContextZone(testZone.id)) toHide = false;
+			if (testZone == document.body) toHide = false;
+			testZone = testZone.parentNode;
+		}
+		if (toHide) main_self.hideContextMenu();
+	}
+	
+	if (typeof(window.addEventListener) != "undefined") {
+		window.addEventListener("click", this._bodyClick, false);
+		window.addEventListener("contextmenu", this._bodyContext, false);
+	} else {
+		document.body.attachEvent("onclick", this._bodyClick);
+		document.body.attachEvent("oncontextmenu", this._bodyContext);
+	}
+	
+	// add menu to global store
+	this._UID = this._genStr(32);
+	dhtmlxMenuObjectLiveInstances[this._UID] = this;
+	
+	/* events */
+	dhtmlxEventable(this);
+	//
+	return this;
+}
+dhtmlXMenuObject.prototype.init = function() {
+	if (this._isInited == true) return;
+	if (this.dLoad) {
+		this.callEvent("onXLS", []);
+		// this._xmlLoader.loadXML(this.dLoadUrl+"?action=loadMenu&parentId="+this.topId+"&topId="+this.topId);
+		this._xmlLoader.loadXML(this.dLoadUrl+this.dLoadSign+"action=loadMenu&etc="+new Date().getTime()); // &&parentId=topId&"+this.topId+"&topId="+this.topId);
+	} else {
+		this._initTopLevelMenu();
+		this._isInited = true;
+	}
+}
+dhtmlXMenuObject.prototype._countVisiblePolygonItems = function(id) {
+	/*
+	var count = 0;
+	if ((this.idPull["polygon_"+id] != null) && (this.idPull[id] != null)) {
+		for (var q=0; q<this.idPull["polygon_"+id].childNodes.length; q++) {
+			var node = this.idPull["polygon_"+id].childNodes[q];
+			count += (((node.style.display=="none")||(node.className=="dhtmlxMenu_SubLevelArea_Separator"))?0:1);
+		}
+	}
+	*/
+	/* updated in 0.4 */
+	var count = 0;
+	// console.log(this.idPull)
+	for (var a in this.itemPull) {
+		//console.log(a)
+		var par = this.itemPull[a]["parent"];
+		var tp = this.itemPull[a]["type"];
+		if (this.idPull[a] != null) {
+			// console.log(this.idPull[a])
+			// alert(1111)
+			if (par == id && (tp == "item" || tp == "radio" || tp == "checkbox") && this.idPull[a].style.display != "none") {
+				count++;
+			}
+		}
+	}
+	return count;
+}
+dhtmlXMenuObject.prototype._redefineComplexState = function(id) {
+	// alert(id)
+	if (this.idPrefix+this.topId == id) { return; }
+	if ((this.idPull["polygon_"+id] != null) && (this.idPull[id] != null)) {
+		var u = this._countVisiblePolygonItems(id);
+		if ((u > 0) && (!this.itemPull[id]["complex"])) { this._updateItemComplexState(id, true, false); }
+		if ((u == 0) && (this.itemPull[id]["complex"])) { this._updateItemComplexState(id, false, false); }
+	}
+}
+/* complex arrow manipulations, over added in 0.4 */
+dhtmlXMenuObject.prototype._updateItemComplexState = function(id, state, over) {
+	// 0.2 FIX :: topLevel's items can have complex items with arrow
+	if ((!this.context) && (this._getItemLevelType(id.replace(this.idPrefix,"")) == "TopLevel")) {
+		// 30.06.2008 fix > complex state for top level item, state only, no arrow
+		this.itemPull[id]["complex"] = state;
+		return;
+	}
+	if ((this.idPull[id] == null) || (this.itemPull[id] == null)) { return; }
+	// 0.2 FIX :: end
+	this.itemPull[id]["complex"] = state;
+	// fixed in 0.4 for context
+	if (id == this.idPrefix+this.topId) return;
+	// end fix
+	// try to retrieve arrow img object
+	var arrowObj = null;
+	
+	
+	var item = this.idPull[id].childNodes[this._rtl?0:2];
+	if (item.childNodes[0]) if (String(item.childNodes[0].className).search("complex_arrow") === 0) arrowObj = item.childNodes[0];
+	
+	if (this.itemPull[id]["complex"]) {
+		// create arrow
+		if (arrowObj == null) {
+			arrowObj = document.createElement("DIV");
+			arrowObj.className = "complex_arrow";
+			arrowObj.id = "arrow_"+id;
+			while (item.childNodes.length > 0) item.removeChild(item.childNodes[0]);
+			item.appendChild(arrowObj);
+		}
+		// over state added in 0.4
+		
+		if (this.dLoad && (this.itemPull[id]["loaded"] == "get") && this.loaderIcon) {
+			// change arrow to loader
+			if (arrowObj.className != "complex_arrow_loading") arrowObj.className = "complex_arrow_loading";
+		} else {
+			arrowObj.className = "complex_arrow";
+		}
+		
+		return;
+	}
+	
+	if ((!this.itemPull[id]["complex"]) && (arrowObj!=null)) {
+		item.removeChild(arrowObj);
+		if (this.itemPull[id]["hotkey_backup"] != null && this.setHotKey) { this.setHotKey(id.replace(this.idPrefix, ""), this.itemPull[id]["hotkey_backup"]); }
+	}
+	
+}
 
-//v.3.6 build 130619
-
-/*
-Copyright DHTMLX LTD. http://www.dhtmlx.com
-To use this component please contact sales@dhtmlx.com to obtain license
+/* return css-part level type */
+dhtmlXMenuObject.prototype._getItemLevelType = function(id) {
+	return (this.itemPull[this.idPrefix+id]["parent"]==this.idPrefix+this.topId?"TopLevel":"SubLevelArea");
+}
+/****************************************************************************************************************************************************/
+/*								 	"TOPLEVEL" LOW-LEVEL RENDERING						    */
+/* redistrib selection in case of top node in real-time mode */
+dhtmlXMenuObject.prototype._redistribTopLevelSelection = function(id, parent) {
+	// kick polygons and decelect before selected menues
+	var i = this._getSubItemToDeselectByPolygon("parent");
+	this._removeSubItemFromSelected(-1, -1);
+	for (var q=0; q<i.length; q++) {
+		if (i[q] != id) { this._hidePolygon(i[q]); }
+		if ((this.idPull[i[q]] != null) && (i[q] != id)) { this.idPull[i[q]].className = this.idPull[i[q]].className.replace(/Selected/g, "Normal"); }
+	}
+	// check if enabled
+	if (this.itemPull[this.idPrefix+id]["state"] == "enabled") {
+		this.idPull[this.idPrefix+id].className = "dhtmlxMenu_"+this.skin+"_TopLevel_Item_Selected";
+		//
+		this._addSubItemToSelected(this.idPrefix+id, "parent");
+		this.menuSelected = (this.menuMode=="win"?(this.menuSelected!=-1?id:this.menuSelected):id);
+		if ((this.itemPull[this.idPrefix+id]["complex"]) && (this.menuSelected != -1)) { this._showPolygon(this.idPrefix+id, this.dirTopLevel); }
+	}
+}
+dhtmlXMenuObject.prototype._initTopLevelMenu = function() {
+	// console.log(this.idPull);
+	this.dirTopLevel = "bottom";
+	this.dirSubLevel = (this._rtl?"left":"right");
+	if (this.context) {
+		this.idPull[this.idPrefix+this.topId] = new Array(0,0);
+		this._addSubMenuPolygon(this.idPrefix+this.topId, this.idPrefix+this.topId);
+	} else {
+		var m = this._getMenuNodes(this.idPrefix + this.topId);
+		for (var q=0; q<m.length; q++) {
+			if (this.itemPull[m[q]]["type"] == "item") this._renderToplevelItem(m[q], null);
+			if (this.itemPull[m[q]]["type"] == "separator") this._renderSeparator(m[q], null);
+		}
+	}
+}
+/* add top menu item, complex define that submenues are in presence */
+dhtmlXMenuObject.prototype._renderToplevelItem = function(id, pos) {
+	var main_self = this;
+	var m = document.createElement("DIV");
+	m.id = id;
+	// custom css
+	if (this.itemPull[id]["state"] == "enabled" && this.itemPull[id]["cssNormal"] != null) {
+		m.className = this.itemPull[id]["cssNormal"];
+	} else {
+		m.className = "dhtmlxMenu_"+this.skin+"_TopLevel_Item_"+(this.itemPull[id]["state"]=="enabled"?"Normal":"Disabled");
+	}
+	
+	// text
+	if (this.itemPull[id]["title"] != "") {
+		var t1 = document.createElement("DIV");
+		t1.className = "top_level_text";
+		t1.innerHTML = this.itemPull[id]["title"];
+		m.appendChild(t1);
+	}
+	// tooltip
+	if (this.itemPull[id]["tip"].length > 0) m.title = this.itemPull[id]["tip"];
+	//
+	// image in top level
+	if ((this.itemPull[id]["imgen"]!="")||(this.itemPull[id]["imgdis"]!="")) {
+		var imgTop=this.itemPull[id][(this.itemPull[id]["state"]=="enabled")?"imgen":"imgdis"];
+		if (imgTop) {
+			var img = document.createElement("IMG");
+			img.border = "0";
+			img.id = "image_"+id;
+			img.src= this.imagePath+imgTop;
+			img.className = "dhtmlxMenu_TopLevel_Item_Icon";
+			if (m.childNodes.length > 0 && !this._rtl) m.insertBefore(img, m.childNodes[0]); else m.appendChild(img);
+		}
+	}
+	m.onselectstart = function(e) { e = e || event; e.returnValue = false; return false; }
+	m.oncontextmenu = function(e) { e = e || event; e.returnValue = false; return false; }
+	// add container for top-level items if not exists yet
+	if (!this.cont) {
+		this.cont = document.createElement("DIV");
+		this.cont.dir = "ltr";
+		this.cont.className = (this._align=="right"?"align_right":"align_left");
+		this.base.appendChild(this.cont);
+	}
+	// insert
+	/*
+	if (pos != null) { pos++; if (pos < 0) pos = 0; if (pos > this.base.childNodes.length - 1) pos = null; }
+	if (pos != null) this.base.insertBefore(m, this.base.childNodes[pos]); else this.base.appendChild(m);
+	*/
+	if (pos != null) { pos++; if (pos < 0) pos = 0; if (pos > this.cont.childNodes.length - 1) pos = null; }
+	if (pos != null) this.cont.insertBefore(m, this.cont.childNodes[pos]); else this.cont.appendChild(m);
+	
+	
+	//
+	this.idPull[m.id] = m;
+	// create submenues
+	if (this.itemPull[id]["complex"] && (!this.dLoad)) this._addSubMenuPolygon(this.itemPull[id]["id"], this.itemPull[id]["id"]);
+	// events
+	m.onmouseover = function() {
+		if (main_self.menuMode == "web") { window.clearTimeout(main_self.menuTimeoutHandler); }
+		// kick polygons and decelect before selected menues
+		var i = main_self._getSubItemToDeselectByPolygon("parent");
+		main_self._removeSubItemFromSelected(-1, -1);
+		for (var q=0; q<i.length; q++) {
+			if (i[q] != this.id) { main_self._hidePolygon(i[q]); }
+			if ((main_self.idPull[i[q]] != null) && (i[q] != this.id)) {
+				// custom css
+				if (main_self.itemPull[i[q]]["cssNormal"] != null) {
+					main_self.idPull[i[q]].className = main_self.itemPull[i[q]]["cssNormal"];
+				} else {
+					if (main_self.idPull[i[q]].className == "sub_item_selected") main_self.idPull[i[q]].className = "sub_item";
+					main_self.idPull[i[q]].className = main_self.idPull[i[q]].className.replace(/Selected/g, "Normal");
+				}
+			}
+		}
+		// check if enabled
+		if (main_self.itemPull[this.id]["state"] == "enabled") {
+			this.className = "dhtmlxMenu_"+main_self.skin+"_TopLevel_Item_Selected";
+			//
+			main_self._addSubItemToSelected(this.id, "parent");
+			main_self.menuSelected = (main_self.menuMode=="win"?(main_self.menuSelected!=-1?this.id:main_self.menuSelected):this.id);
+			if (main_self.dLoad && (main_self.itemPull[this.id]["loaded"]=="no")) {
+				if (main_self.menuModeTopLevelTimeout && main_self.menuMode == "web" && !main_self.context) {
+					this._mouseOver = true;
+					this._dynLoadTM = new Date().getTime();
+				}
+				var xmlLoader = new dtmlXMLLoaderObject(main_self._xmlParser, window);
+				main_self.itemPull[this.id]["loaded"] = "get";
+				main_self.callEvent("onXLS", []);
+				xmlLoader.loadXML(main_self.dLoadUrl+main_self.dLoadSign+"action=loadMenu&parentId="+this.id.replace(main_self.idPrefix,"")+"&etc="+new Date().getTime());
+			}
+			if ((!main_self.dLoad) || (main_self.dLoad && (!main_self.itemPull[this.id]["loaded"] || main_self.itemPull[this.id]["loaded"]=="yes"))) {
+				if ((main_self.itemPull[this.id]["complex"]) && (main_self.menuSelected != -1)) {
+					if (main_self.menuModeTopLevelTimeout && main_self.menuMode == "web" && !main_self.context) {
+						this._mouseOver = true;
+						var showItemId = this.id;
+						this._menuOpenTM = window.setTimeout(function(){main_self._showPolygon(showItemId, main_self.dirTopLevel);}, main_self.menuModeTopLevelTimeoutTime);
+					} else {
+						main_self._showPolygon(this.id, main_self.dirTopLevel);
+					}
+				}
+			}
+		}
+		main_self._doOnTouchMenu(this.id.replace(main_self.idPrefix, ""));
+	}
+	m.onmouseout = function() {
+		if (!((main_self.itemPull[this.id]["complex"]) && (main_self.menuSelected != -1)) && (main_self.itemPull[this.id]["state"]=="enabled")) {
+			// custom css
+			// console.log(main_self.itemPull[this.id])
+			if (main_self.itemPull[this.id]["cssNormal"] != null) {
+				// alert(1)
+				m.className = main_self.itemPull[this.id]["cssNormal"];
+			} else {
+				// default css
+				m.className = "dhtmlxMenu_"+main_self.skin+"_TopLevel_Item_Normal";
+			}
+		}
+		if (main_self.menuMode == "web") {
+			window.clearTimeout(main_self.menuTimeoutHandler);
+			main_self.menuTimeoutHandler = window.setTimeout(function(){main_self._clearAndHide();}, main_self.menuTimeoutMsec, "JavaScript");
+		}
+		if (main_self.menuModeTopLevelTimeout && main_self.menuMode == "web" && !main_self.context) {
+			this._mouseOver = false;
+			window.clearTimeout(this._menuOpenTM);
+		}
+	}
+	m.onclick = function(e) {
+		if (main_self.menuMode == "web") { window.clearTimeout(main_self.menuTimeoutHandler); }
+		// fix, added in 0.4
+		if (main_self.menuMode != "web" && main_self.itemPull[this.id]["state"] == "disabled") { return; }
+		//
+		e = e || event;
+		e.cancelBubble = true;
+		e.returnValue = false;
+		
+		if (main_self.menuMode == "win") {
+			if (main_self.itemPull[this.id]["complex"]) {
+				if (main_self.menuSelected == this.id) { main_self.menuSelected = -1; var s = false; } else { main_self.menuSelected = this.id; var s = true; }
+				if (s) { main_self._showPolygon(this.id, main_self.dirTopLevel); } else { main_self._hidePolygon(this.id); }
+			}
+		}
+		var tc = (main_self.itemPull[this.id]["complex"]?"c":"-");
+		var td = (main_self.itemPull[this.id]["state"]!="enabled"?"d":"-");
+		var cas = {"ctrl": e.ctrlKey, "alt": e.altKey, "shift": e.shiftKey};
+		main_self._doOnClick(this.id.replace(main_self.idPrefix, ""), tc+td+"t", cas);
+		return false;
+	}
+	
+	if (this.skin == "dhx_terrace") {
+		this._improveTerraceSkin();
+	}
+}
+/****************************************************************************************************************************************************/
+/**
+*   @desc: empty function, now more used from 90226
+*   @type: public
 */
+dhtmlXMenuObject.prototype.setImagePath = function() { /* no more used */ }
+/**
+*   @desc: defines an url where necessary user embedded icons are located
+*   @param: path - url to images
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.setIconsPath = function(path) { this.imagePath = path; }
+/**
+*   @desc: alias for setIconsPath
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.setIconPath = dhtmlXMenuObject.prototype.setIconsPath;
+/* real-time update icon in menu */
+dhtmlXMenuObject.prototype._updateItemImage = function(id, levelType) {
+	// search existsing image
+	
+	id = this.idPrefix+id;
+	var isTopLevel = (this.itemPull[id]["parent"] == this.idPrefix+this.topId && !this.context);
+	
+	// search existing image
+	var imgObj = null;
+	if (isTopLevel) {
+		for (var q=0; q<this.idPull[id].childNodes.length; q++) {
+			try { if (this.idPull[id].childNodes[q].className == "dhtmlxMenu_TopLevel_Item_Icon") imgObj = this.idPull[id].childNodes[q]; } catch(e) {}
+		}
+	} else {
+		try { var imgObj = this.idPull[id].childNodes[this._rtl?2:0].childNodes[0]; } catch(e) { }
+	}
+	
+	if (this.itemPull[id]["type"] == "radio") {
+		var imgSrc = this.itemPull[id][(this.itemPull[id]["state"]=="enabled"?"imgen":"imgdis")];
+		// console.log(this.itemPull[this.idPrefix+id])
+	} else {
+		var imgSrc = this.itemPull[id][(this.itemPull[id]["state"]=="enabled"?"imgen":"imgdis")];
+	}
+	
+	if (imgSrc.length > 0) {
+		if (imgObj != null) {
+			imgObj.src = this.imagePath+imgSrc;
+		} else {
+			if (isTopLevel) {
+				var imgObj = document.createElement("IMG");
+				imgObj.className = "dhtmlxMenu_TopLevel_Item_Icon";
+				imgObj.src = this.imagePath+imgSrc;
+				imgObj.border = "0";
+				imgObj.id = "image_"+id;
+				if (!this._rtl && this.idPull[id].childNodes.length > 0) this.idPull[id].insertBefore(imgObj,this.idPull[id].childNodes[0]); else this.idPull[id].appendChild(imgObj);
+				
+			} else {
+				
+				var imgObj = document.createElement("IMG");
+				imgObj.className = "sub_icon";
+				imgObj.src = this.imagePath+imgSrc;
+				imgObj.border = "0";
+				imgObj.id = "image_"+id;
+				var item = this.idPull[id].childNodes[this._rtl?2:0];
+				while (item.childNodes.length > 0) item.removeChild(item.childNodes[0]);
+				item.appendChild(imgObj);
+				
+			}
+		}
+	} else {
+		if (imgObj != null) imgObj.parentNode.removeChild(imgObj);
+	}
+}
+/**
+*   @desc: removes an item from the menu with all nested sublevels
+*   @param: id - id of the item for removing
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.removeItem = function(id, _isTId, _recCall) {
+	if (!_isTId) id = this.idPrefix + id;
+	
+	var pId = null;
+	
+	if (id != this.idPrefix+this.topId) {
+		
+		if (this.itemPull[id] == null) return;
+		
+		// effects
+		if (this.idPull["polygon_"+id] && this.idPull["polygon_"+id]._tmShow) window.clearTimeout(this.idPull["polygon_"+id]._tmShow);
+		
+		// separator top
+		var t = this.itemPull[id]["type"];
+		
+		if (t == "separator") {
+			var item = this.idPull["separator_"+id];
+			if (this.itemPull[id]["parent"] == this.idPrefix+this.topId) {
+				item.onclick = null;
+				item.onselectstart = null;
+				item.id = null;
+				item.parentNode.removeChild(item);
+			} else {
+				item.childNodes[0].childNodes[0].onclick = null;
+				item.childNodes[0].childNodes[0].onselectstart = null;
+				item.childNodes[0].childNodes[0].id = null;
+				item.childNodes[0].removeChild(item.childNodes[0].childNodes[0]);
+				item.removeChild(item.childNodes[0]);
+				item.parentNode.removeChild(item);
+			}
+			this.idPull["separator_"+id] = null;
+			this.itemPull[id] = null;
+			delete this.idPull["separator_"+id];
+			delete this.itemPull[id];
+			item = null;
+		} else {
+			// item checkbox radio
+			pId = this.itemPull[id]["parent"];
+			var item = this.idPull[id];
+			item.onclick = null;
+			item.oncontextmenu = null;
+			item.onmouseover = null;
+			item.onmouseout = null;
+			item.onselectstart = null;
+			item.id = null;
+			while (item.childNodes.length > 0) item.removeChild(item.childNodes[0]);
+			item.parentNode.removeChild(item);
+			this.idPull[id] = null;
+			this.itemPull[id] = null;
+			delete this.idPull[id];
+			delete this.itemPull[id];
+			item = null;
+			
+		}
+		t = null;
+	}
+	
+	// clear nested items
+	for (var a in this.itemPull) if (this.itemPull[a]["parent"] == id) this.removeItem(a, true, true);
+	
+	// check if empty polygon left
+	var p2 = new Array(id);
+	if (pId != null && !_recCall) {
+		if (this.idPull["polygon_"+pId] != null) {
+			if (this.idPull["polygon_"+pId].tbd.childNodes.length == 0) {
+				p2.push(pId);
+				this._updateItemComplexState(pId, false, false);
+			}
+		}
+	}
+	
+	// delete nested polygons and parent's if any
+	for (var q=0; q<p2.length; q++) {
+		if (this.idPull["polygon_"+p2[q]]) {
+			var p = this.idPull["polygon_"+p2[q]];
+			p.onclick = null;
+			p.oncontextmenu = null;
+			p.tbl.removeChild(p.tbd);
+			p.tbd = null;
+			p.removeChild(p.tbl);
+			p.tbl = null;
+			p.id = null;
+			p.parentNode.removeChild(p);
+			p = null;
+			if (this._isIE6) {
+				var pc = "polygon_"+p2[q]+"_ie6cover";
+				if (this.idPull[pc] != null) { document.body.removeChild(this.idPull[pc]); delete this.idPull[pc]; }
+			}
+			if (this.idPull["arrowup_"+id] != null && this._removeArrow) this._removeArrow("arrowup_"+id);
+			if (this.idPull["arrowdown_"+id] != null && this._removeArrow) this._removeArrow("arrowdown_"+id);
+			//
+			this.idPull["polygon_"+p2[q]] = null;
+			delete this.idPull["polygon_"+p2[q]];
+		}
+	}
+	p2 = null;
+	
+	// update corners
+	if (this.skin == "dhx_terrace" && arguments.length == 1) this._improveTerraceSkin();
+	
+}
+/* collect parents for remove complex item */
+dhtmlXMenuObject.prototype._getAllParents = function(id) {
+	var parents = new Array();
+	for (var a in this.itemPull) {
+		if (this.itemPull[a]["parent"] == id) {
+			parents[parents.length] = this.itemPull[a]["id"];
+			if (this.itemPull[a]["complex"]) {
+				var t = this._getAllParents(this.itemPull[a]["id"]);
+				for (var q=0; q<t.length; q++) { parents[parents.length] = t[q]; }
+			}
+		}
+	}
+	return parents;
+}
+
+//#menu_context:06062008{
+	
+/****************************************************************************************************************************************************/
+/*								 	CONTEXT STUFF								    */
+/* render dhtmlxMenu as context menu of base object */
+/**
+*   @desc: renders menu as contextual
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.renderAsContextMenu = function() {
+	this.context = true;
+	if (this.base._autoSkinUpdate == true) {
+		this.base.className = this.base.className.replace("dhtmlxMenu_"+this.skin+"_Middle","");
+		this.base._autoSkinUpdate = false;
+	}
+	if (this.addBaseIdAsContextZone != null) { this.addContextZone(this.addBaseIdAsContextZone); }
+}
+/**
+*   @desc: adds a contextual zone to a contextual menu
+*   @param: zoneId - id of the object on page to render as a contextual zone
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.addContextZone = function(zoneId) {
+	if (zoneId == document.body) {
+		zoneId = "document.body."+this.idPrefix;
+		var zone = document.body;
+	} else {
+		var zone = document.getElementById(zoneId);
+	}
+	var zoneExists = false;
+	for (var a in this.contextZones) { zoneExists = zoneExists || (a == zoneId) || (this.contextZones[a] == zone); }
+	if (zoneExists == true) return false;
+	this.contextZones[zoneId] = zone;
+	var main_self = this;
+	if (_isOpera) {
+		this.operaContext = function(e){ main_self._doOnContextMenuOpera(e, main_self); }
+		zone.addEventListener("mouseup", this.operaContext, false);
+		//
+	} else {
+		if (zone.oncontextmenu != null && !zone._oldContextMenuHandler) zone._oldContextMenuHandler = zone.oncontextmenu;
+		zone.oncontextmenu = function(e) {
+			// autoclose any other opened context menues
+			for (var q in dhtmlxMenuObjectLiveInstances) {
+				if (q != main_self._UID) {
+					if (dhtmlxMenuObjectLiveInstances[q].context) {
+						dhtmlxMenuObjectLiveInstances[q]._hideContextMenu();
+					}
+				}
+			}
+			//
+			e = e||event;
+			e.cancelBubble = true;
+			e.returnValue = false;
+			main_self._doOnContextBeforeCall(e, this);
+			return false;
+		}
+	}
+}
+dhtmlXMenuObject.prototype._doOnContextMenuOpera = function(e, main_self) {
+	// autoclose any other opened context menues
+	for (var q in dhtmlxMenuObjectLiveInstances) {
+		if (q != main_self._UID) {
+			if (dhtmlxMenuObjectLiveInstances[q].context) {
+				dhtmlxMenuObjectLiveInstances[q]._hideContextMenu();
+			}
+		}
+	}
+	//
+	e.cancelBubble = true;
+	e.returnValue = false;
+	if (e.button == 0 && e.ctrlKey == true) { main_self._doOnContextBeforeCall(e, this); }
+	return false;
+}
+/**
+*   @desc: removes an object from contextual zones list
+*   @param: zoneId - id of a contextual zone
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.removeContextZone = function(zoneId) {
+	if (!this.isContextZone(zoneId)) return false;
+	if (zoneId == document.body) zoneId = "document.body."+this.idPrefix;
+	var zone = this.contextZones[zoneId];
+	if (_isOpera) {
+		zone.removeEventListener("mouseup", this.operaContext, false);
+	} else {
+		zone.oncontextmenu = (zone._oldContextMenuHandler!=null?zone._oldContextMenuHandler:null);
+		zone._oldContextMenuHandler = null;
+	}
+	try {
+		this.contextZones[zoneId] = null;
+		delete this.contextZones[zoneId];
+ 	} catch(e){}
+	return true;
+}
+/**
+*   @desc: returns true if an object is used as a contextual zone for the menu
+*   @param: zoneId - id of the object to check
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.isContextZone = function(zoneId) {
+	if (zoneId == document.body && this.contextZones["document.body."+this.idPrefix] != null) return true;
+	var isZone = false;
+	if (this.contextZones[zoneId] != null) { if (this.contextZones[zoneId] == document.getElementById(zoneId)) isZone = true; }
+	return isZone;
+}
+dhtmlXMenuObject.prototype._isContextMenuVisible = function() {
+	if (this.idPull["polygon_"+this.idPrefix+this.topId] == null) return false;
+	return (this.idPull["polygon_"+this.idPrefix+this.topId].style.display == "");
+}
+dhtmlXMenuObject.prototype._showContextMenu = function(x, y, zoneId) {
+	// hide any opened context menu/polygons
+	this._clearAndHide();
+	// this._hideContextMenu();
+	// open
+	if (this.idPull["polygon_"+this.idPrefix+this.topId] == null) return false;
+	window.clearTimeout(this.menuTimeoutHandler);
+	this.idPull[this.idPrefix+this.topId] = new Array(x, y);
+	this._showPolygon(this.idPrefix+this.topId, "bottom");
+	this.callEvent("onContextMenu", [zoneId]);
+}
+dhtmlXMenuObject.prototype._hideContextMenu = function() {
+	if (this.idPull["polygon_"+this.idPrefix+this.topId] == null) return false;
+	this._clearAndHide();
+	this._hidePolygon(this.idPrefix+this.topId);
+	this.zInd = this.zIndInit;
+}
+/****************************************************************************************************************************************************/
+dhtmlXMenuObject.prototype._doOnContextBeforeCall = function(e, cZone) {
+	this.contextMenuZoneId = cZone.id;
+	this._clearAndHide();
+	this._hideContextMenu();
+	
+	// scroll settings
+	var p = (e.srcElement||e.target);
+	var px = (_isIE||_isOpera||_KHTMLrv?e.offsetX:e.layerX);
+	var py = (_isIE||_isOpera||_KHTMLrv?e.offsetY:e.layerY);
+	var mx = getAbsoluteLeft(p)+px;
+	var my = getAbsoluteTop(p)+py;
+	
+	if (this.checkEvent("onBeforeContextMenu")) {
+		if (this.callEvent("onBeforeContextMenu", [cZone.id,e])) {
+			if (this.contextAutoShow) {
+				this._showContextMenu(mx, my, cZone.id);
+				this.callEvent("onAfterContextMenu", [cZone.id,e]);
+			}
+		}
+	} else {
+		if (this.contextAutoShow) {
+			this._showContextMenu(mx, my, cZone.id);
+			this.callEvent("onAfterContextMenu", [cZone.id]);
+		}
+	}
+}
+/* public: user call for show/hide context menu */
+/**
+*   @desc: usercall to show a contextual menu
+*   @param: x - position of the menu on x axis
+*   @param: y - position of the menu on y axis
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.showContextMenu = function(x, y) {
+	this._showContextMenu(x, y, false);
+}
+/**
+*   @desc: usercall to hide a contextual menu
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.hideContextMenu = function() {
+	this._hideContextMenu();
+}
+dhtmlXMenuObject.prototype._autoDetectVisibleArea = function() {
+	if (this._isVisibleArea) return;
+	//
+	this.menuX1 = document.body.scrollLeft;
+	this.menuX2 = this.menuX1+(window.innerWidth||document.body.clientWidth);
+	this.menuY1 = Math.max((_isIE?document.documentElement:document.getElementsByTagName("html")[0]).scrollTop, document.body.scrollTop);
+	// this.menuY2 = this.menuY1+(_isIE?(document.documentElement?Math.max(document.documentElement.clientHeight:document.body.clientHeight):window.innerHeight);
+	this.menuY2 = this.menuY1+(_isIE?Math.max(document.documentElement.clientHeight||0,document.documentElement.offsetHeight||0,document.body.clientHeight||0):window.innerHeight);
+	
+}
+/* inner - returns true if prognozided polygon layout off the visible area */
+/*dhtmlXMenuObject.prototype._isInVisibleArea = function(x, y, w, h) {
+	return ((x >= this.menuX1) && (x+w<=this.menuX2) && (y >= this.menuY1) && (y+h <= this.menuY2));
+}*/
+
+
+//#}
+
+/**
+*   @desc: returns item's position in the current polygon
+*   @param: id - the item
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.getItemPosition = function(id) {
+	id = this.idPrefix+id;
+	var pos = -1;
+	if (this.itemPull[id] == null) return pos;
+	var parent = this.itemPull[id]["parent"];
+	// var obj = (this.idPull["polygon_"+parent]!=null?this.idPull["polygon_"+parent].tbd:this.base);
+	var obj = (this.idPull["polygon_"+parent]!=null?this.idPull["polygon_"+parent].tbd:this.cont);
+	for (var q=0; q<obj.childNodes.length; q++) { if (obj.childNodes[q]==this.idPull["separator_"+id]||obj.childNodes[q]==this.idPull[id]) { pos = q; } }
+	return pos;
+}
+
+/**
+*   @desc: sets new item's position in the current polygon (moves an item inside the single level)
+*   @param: id - the item
+*   @param: pos - the position (int)
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.setItemPosition = function(id, pos) {
+	id = this.idPrefix+id;
+	if (this.idPull[id] == null) { return; }
+	// added in 0.4
+	var isOnTopLevel = (this.itemPull[id]["parent"] == this.idPrefix+this.topId);
+	//
+	var itemData = this.idPull[id];
+	var itemPos = this.getItemPosition(id.replace(this.idPrefix,""));
+	var parent = this.itemPull[id]["parent"];
+	// var obj = (this.idPull["polygon_"+parent]!=null?this.idPull["polygon_"+parent].tbd:this.base);
+	var obj = (this.idPull["polygon_"+parent]!=null?this.idPull["polygon_"+parent].tbd:this.cont);
+	obj.removeChild(obj.childNodes[itemPos]);
+	if (pos < 0) pos = 0;
+	// added in 0.4
+	if (isOnTopLevel && pos < 1) { pos = 1; }
+	//
+	if (pos < obj.childNodes.length) { obj.insertBefore(itemData, obj.childNodes[pos]); } else { obj.appendChild(itemData); }
+}
+
+/**
+*   @desc: returns parent's id
+*   @param: id - the item
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.getParentId = function(id) {
+	id = this.idPrefix+id;
+	if (this.itemPull[id] == null) { return null; }
+	return ((this.itemPull[id]["parent"]!=null?this.itemPull[id]["parent"]:this.topId).replace(this.idPrefix,""));
+}
+/* public: add item */
+
+/**
+*   @desc: adds a new sibling item
+*   @param: nextToId - id of the element after which a new one will be inserted
+*   @param: itemId - id of a new item
+*   @param: itemText - text of a new item
+*   @param: disabled - true|false, whether the item is disabled or not
+*   @param: img - image for the enabled item
+*   @param: imgDis - image for the disabled item
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.addNewSibling = function(nextToId, itemId, itemText, disabled, imgEnabled, imgDisabled) {
+	var id = this.idPrefix+(itemId!=null?itemId:this._genStr(24));
+	var parentId = this.idPrefix+(nextToId!=null?this.getParentId(nextToId):this.topId);
+	// console.log(id, parentId)
+	// console.log(id, ",", parentId)
+	this._addItemIntoGlobalStrorage(id, parentId, itemText, "item", disabled, imgEnabled, imgDisabled);
+	if ((parentId == this.idPrefix+this.topId) && (!this.context)) {
+		this._renderToplevelItem(id, this.getItemPosition(nextToId));
+	} else {
+		this._renderSublevelItem(id, this.getItemPosition(nextToId));
+	}
+}
+
+/**
+*   @desc: adds a new child item
+*   @param: parentId - the item which will contain a new item in the sublevel
+*   @param: position - the position of a new item
+*   @param: itemId - id of a new item
+*   @param: itemText - text of a new item
+*   @param: disabled - true|false, whether the item is disabled or not
+*   @param: img - image for the enabled item
+*   @param: imgDis - image for the disabled item
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.addNewChild = function(parentId, pos, itemId, itemText, disabled, imgEnabled, imgDisabled) {
+	if (parentId == null) {
+		if (this.context) {
+			parentId = this.topId;
+		} else {
+			this.addNewSibling(parentId, itemId, itemText, disabled, imgEnabled, imgDisabled);
+			if (pos != null) this.setItemPosition(itemId, pos);
+			return;
+		}
+	}
+	itemId = this.idPrefix+(itemId!=null?itemId:this._genStr(24));
+	// remove hotkey, added in 0.4
+	if (this.setHotKey) this.setHotKey(parentId, "");
+	//
+	parentId = this.idPrefix+parentId;
+	this._addItemIntoGlobalStrorage(itemId, parentId, itemText, "item", disabled, imgEnabled, imgDisabled);
+	if (this.idPull["polygon_"+parentId] == null) { this._renderSublevelPolygon(parentId, parentId); }
+	this._renderSublevelItem(itemId, pos-1);
+	// console.log(parentId)
+	this._redefineComplexState(parentId);
+}
+
+/* add item to storage */
+dhtmlXMenuObject.prototype._addItemIntoGlobalStrorage = function(itemId, itemParentId, itemText, itemType, disabled, img, imgDis) {
+	var item = {
+		id:	itemId,
+		title:	itemText,
+		imgen:	(img!=null?img:""),
+		imgdis:	(imgDis!=null?imgDis:""),
+		type:	itemType,
+		state:	(disabled==true?"disabled":"enabled"),
+		parent:	itemParentId,
+		complex:false,
+		hotkey:	"",
+		tip:	""};
+	this.itemPull[item.id] = item;
+}
+/* recursively creates and adds submenu polygon */
+dhtmlXMenuObject.prototype._addSubMenuPolygon = function(id, parentId) {
+	var s = this._renderSublevelPolygon(id, parentId);
+	var j = this._getMenuNodes(parentId);
+	for (q=0; q<j.length; q++) { if (this.itemPull[j[q]]["type"] == "separator") { this._renderSeparator(j[q], null); } else { this._renderSublevelItem(j[q], null); } }
+	if (id == parentId) { var level = "topLevel"; } else { var level = "subLevel"; }
+	for (var q=0; q<j.length; q++) { if (this.itemPull[j[q]]["complex"]) { this._addSubMenuPolygon(id, this.itemPull[j[q]]["id"]); } }
+}
+/* inner: add single subpolygon/item/separator */
+dhtmlXMenuObject.prototype._renderSublevelPolygon = function(id, parentId) {
+	var s = document.createElement("DIV");
+	s.className = "dhtmlxMenu_"+this.skin+"_SubLevelArea_Polygon "+(this._rtl?"dir_right":"");
+	s.dir = "ltr";
+	s.oncontextmenu = function(e) { e = e||event; e.returnValue = false; e.cancelBubble = true; return false; }
+	s.id = "polygon_" + parentId;
+	s.onclick = function(e) { e = e || event; e.cancelBubble = true; }
+	s.style.display = "none";
+	document.body.insertBefore(s, document.body.firstChild);
+	//
+	var tbl = document.createElement("TABLE");
+	tbl.className = "dhtmlxMebu_SubLevelArea_Tbl";
+	tbl.cellSpacing = 0;
+	tbl.cellPadding = 0;
+	tbl.border = 0;
+	var tbd = document.createElement("TBODY");
+	tbl.appendChild(tbd);
+	s.appendChild(tbl);
+	s.tbl = tbl;
+	s.tbd = tbd;
+	// polygon
+	this.idPull[s.id] = s;
+	if (this.sxDacProc != null) {
+		this.idPull["sxDac_" + parentId] = new this.sxDacProc(s, s.className);
+		if (_isIE) {
+			this.idPull["sxDac_" + parentId]._setSpeed(this.dacSpeedIE);
+			this.idPull["sxDac_" + parentId]._setCustomCycle(this.dacCyclesIE);
+		} else {
+			this.idPull["sxDac_" + parentId]._setSpeed(this.dacSpeed);
+			this.idPull["sxDac_" + parentId]._setCustomCycle(this.dacCycles);
+		}
+	}
+	return s;
+}
+dhtmlXMenuObject.prototype._renderSublevelItem = function(id, pos) {
+	var main_self = this;
+	
+	var tr = document.createElement("TR");
+	tr.className = (this.itemPull[id]["state"]=="enabled"?"sub_item":"sub_item_dis");
+	
+	// icon
+	var t1 = document.createElement("TD");
+	t1.className = "sub_item_icon";
+	var icon = this.itemPull[id][(this.itemPull[id]["state"]=="enabled"?"imgen":"imgdis")];
+	if (icon != "") {
+		var tp = this.itemPull[id]["type"];
+		if (tp=="checkbox"||tp=="radio") {
+			var img = document.createElement("DIV");
+			img.id = "image_"+this.itemPull[id]["id"];
+			img.className = "sub_icon "+icon;
+			t1.appendChild(img);
+		}
+		if (!(tp=="checkbox"||tp=="radio")) {
+			var img = document.createElement("IMG");
+			img.id = "image_"+this.itemPull[id]["id"];
+			img.className = "sub_icon";
+			img.src = this.imagePath+icon;
+			t1.appendChild(img);
+		}
+	}
+	
+	// text
+	var t2 = document.createElement("TD");
+	t2.className = "sub_item_text";
+	if (this.itemPull[id]["title"] != "") {
+		var t2t = document.createElement("DIV");
+		t2t.className = "sub_item_text";
+		t2t.innerHTML = this.itemPull[id]["title"];
+		t2.appendChild(t2t);
+	} else {
+		t2.innerHTML = "&nbsp;";
+	}
+	
+	// hotkey/sublevel arrow
+	var t3 = document.createElement("TD");
+	t3.className = "sub_item_hk";
+	if (this.itemPull[id]["complex"]) {
+		
+		var arw = document.createElement("DIV");
+		arw.className = "complex_arrow";
+		arw.id = "arrow_"+this.itemPull[id]["id"];
+		t3.appendChild(arw);
+		
+	} else {
+		if (this.itemPull[id]["hotkey"].length > 0 && !this.itemPull[id]["complex"]) {
+			var t3t = document.createElement("DIV");
+			t3t.className = "sub_item_hk";
+			t3t.innerHTML = this.itemPull[id]["hotkey"];
+			t3.appendChild(t3t);
+		} else {
+			t3.innerHTML = "&nbsp;";
+		}
+	}
+	tr.appendChild(this._rtl?t3:t1);
+	tr.appendChild(t2);
+	tr.appendChild(this._rtl?t1:t3);
+	
+	
+	//
+	tr.id = this.itemPull[id]["id"];
+	tr.parent = this.itemPull[id]["parent"];
+	// tooltip, added in 0.4
+	if (this.itemPull[id]["tip"].length > 0) tr.title = this.itemPull[id]["tip"];
+	//
+	if (!this._hideTMData) this._hideTMData = {};
+	
+	tr.onselectstart = function(e) { e = e || event; e.returnValue = false; return false; }
+	tr.onmouseover = function(e) {
+		if (main_self._hideTMData[this.id]) window.clearTimeout(main_self._hideTMData[this.id]);
+		if (main_self.menuMode == "web") window.clearTimeout(main_self.menuTimeoutHandler);
+		if (!this._visible) main_self._redistribSubLevelSelection(this.id, this.parent); // if not visible
+		this._visible = true;
+	}
+	tr.onmouseout = function() {
+		if (main_self.menuMode == "web") {
+			if (main_self.menuTimeoutHandler) window.clearTimeout(main_self.menuTimeoutHandler);
+			main_self.menuTimeoutHandler = window.setTimeout(function(){if(main_self&&main_self._clearAndHide)main_self._clearAndHide();}, main_self.menuTimeoutMsec, "JavaScript");
+		}
+		var k = this;
+		if (main_self._hideTMData[this.id]) window.clearTimeout(main_self._hideTMData[this.id]);
+		main_self._hideTMData[this.id] = window.setTimeout(function(){k._visible=false;}, 50);
+	}
+	tr.onclick = function(e) {
+		// added in 0.4, preven complex closing if user event not defined
+		if (!main_self.checkEvent("onClick") && main_self.itemPull[this.id]["complex"]) return;
+		//
+		e = e || event; e.cancelBubble = true;
+		e.returnValue = false;
+		tc = (main_self.itemPull[this.id]["complex"]?"c":"-");
+		td = (main_self.itemPull[this.id]["state"]=="enabled"?"-":"d");
+		var cas = {"ctrl": e.ctrlKey, "alt": e.altKey, "shift": e.shiftKey};
+		switch (main_self.itemPull[this.id]["type"]) {
+			case "checkbox":
+				main_self._checkboxOnClickHandler(this.id.replace(main_self.idPrefix, ""), tc+td+"n", cas);
+				break;
+			case "radio":
+				main_self._radioOnClickHandler(this.id.replace(main_self.idPrefix, ""), tc+td+"n", cas);
+				break;
+			case "item":
+				main_self._doOnClick(this.id.replace(main_self.idPrefix, ""), tc+td+"n", cas);
+				break;
+		}
+		return false;
+	}
+	// add
+	var polygon = this.idPull["polygon_"+this.itemPull[id]["parent"]];
+	if (pos != null) { pos++; if (pos < 0) pos = 0; if (pos > polygon.tbd.childNodes.length - 1) pos = null; }
+	if (pos != null && polygon.tbd.childNodes[pos] != null) polygon.tbd.insertBefore(tr, polygon.tbd.childNodes[pos]); else polygon.tbd.appendChild(tr);
+	this.idPull[tr.id] = tr;
+}
+/****************************************************************************************************************************************************/
+/*								 	SEPARATOR								    */
+dhtmlXMenuObject.prototype._renderSeparator = function(id, pos) {
+	var level = (this.context?"SubLevelArea":(this.itemPull[id]["parent"]==this.idPrefix+this.topId?"TopLevel":"SubLevelArea"));
+	if (level == "TopLevel" && this.context) return;
+	
+	var main_self = this;
+	
+	if (level != "TopLevel") {
+		var tr = document.createElement("TR");
+		tr.className = "sub_sep";
+		var td = document.createElement("TD");
+		td.colSpan = "3";
+		tr.appendChild(td);
+	}
+	
+	var k = document.createElement("DIV");
+	k.id = "separator_"+id;
+	k.className = (level=="TopLevel"?"top_sep":"sub_sep");
+	k.onselectstart = function(e) { e = e || event; e.returnValue = false; }
+	k.onclick = function(e) {
+		e = e || event; e.cancelBubble = true;
+		var cas = {"ctrl": e.ctrlKey, "alt": e.altKey, "shift": e.shiftKey};
+		main_self._doOnClick(this.id.replace("separator_" + main_self.idPrefix, ""), "--s", cas);
+	}
+	if (level == "TopLevel") {
+		if (pos != null) {
+			pos++; if (pos < 0) { pos = 0; }
+			// if (this.base.childNodes[pos] != null) { this.base.insertBefore(k, this.base.childNodes[pos]); } else { this.base.appendChild(k); }
+			if (this.cont.childNodes[pos] != null) { this.cont.insertBefore(k, this.cont.childNodes[pos]); } else { this.cont.appendChild(k); }
+		} else {
+			// add as a last item
+			// var last = this.base.childNodes[this.base.childNodes.length-1];
+			var last = this.cont.childNodes[this.cont.childNodes.length-1];
+			// if (String(last).search("TopLevel_Text") == -1) { this.base.appendChild(k); } else { this.base.insertBefore(k, last); }
+			if (String(last).search("TopLevel_Text") == -1) { this.cont.appendChild(k); } else { this.cont.insertBefore(k, last); }
+		}
+		this.idPull[k.id] = k;
+	} else {
+		var polygon = this.idPull["polygon_"+this.itemPull[id]["parent"]];
+		if (pos != null) { pos++; if (pos < 0) pos = 0; if (pos > polygon.tbd.childNodes.length - 1) pos = null; }
+		if (pos != null && polygon.tbd.childNodes[pos] != null) polygon.tbd.insertBefore(tr, polygon.tbd.childNodes[pos]); else polygon.tbd.appendChild(tr);
+		td.appendChild(k);
+		this.idPull[k.id] = tr;
+	}
+}
+/**
+*   @desc: add a new separator
+*   @param: nextToId - id of the element after which a new separator will be inserted
+*   @param: itemId - id of a new separator
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.addNewSeparator = function(nextToId, itemId) { //, disabled) {
+	itemId = this.idPrefix+(itemId!=null?itemId:this._genStr(24));
+	var parentId = this.idPrefix+this.getParentId(nextToId);
+	// if ((parentId == this.idPrefix+this.topId) && (!this.context)) { return; }
+	// this._addItemIntoGlobalStrorage(itemId, parentId, "", "item", disabled, "", "");
+	// this._addItemIntoGlobalStrorage(itemId, parentId, "", "item", false, "", "");
+	this._addItemIntoGlobalStrorage(itemId, parentId, "", "separator", false, "", "");
+	this._renderSeparator(itemId, this.getItemPosition(nextToId));
+}
+/****************************************************************************************************************************************************/
+// hide any opened polygons
+/**
+*   @desc: hides any open menu polygons
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.hide = function() {
+	this._clearAndHide();
+}
+/**
+*   @desc: clear all loaded items
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.clearAll = function() {
+	/*
+	for (var a in this.itemPull) {
+		if (this.itemPull[a]["parent"] == this.idPrefix+this.topId) {
+			this.removeItem(String(a).replace(this.idPrefix,""));
+		}
+	}
+	*/
+	this.removeItem(this.idPrefix+this.topId, true);
+	this._isInited = false;
+	this.idPrefix = this._genStr(12);
+	this.itemPull = {};
+}
+/****************************************************************************************************************************************************/
+/**
+*   @desc: unloads menu from page (destructor)
+*   @type: public
+*/
+dhtmlXMenuObject.prototype.unload = function() {
+	
+	if (_isIE) {
+		document.body.detachEvent("onclick", this._bodyClick);
+		document.body.detachEvent("oncontextmenu", this._bodyContext);
+	} else {
+		window.removeEventListener("click", this._bodyClick, false);
+		window.removeEventListener("contextmenu", this._bodyContext, false);
+	}
+	this._bodyClick = null;
+	this._bodyContext = null;
+	
+	// will recursively remove all items
+	this.removeItem(this.idPrefix+this.topId, true);
+	
+	this.itemPull = null;
+	this.idPull = null;
+	
+	// clear context zones
+	if (this.context) for (var a in this.contextZones) this.removeContextZone(a);
+	
+	if (this.cont != null) {
+		this.cont.className = "";
+		this.cont.parentNode.removeChild(this.cont);
+		this.cont = null;
+	}
+	
+	if (this.base != null) {
+		this.base.className = "";
+		if (!this.context) this.base.oncontextmenu = (this.base._oldContextMenuHandler||null);
+		this.base.onselectstart = null;
+		this.base = null;
+	}
+	this.setSkin = null;
+	
+	this.detachAllEvents();
+	
+	if (this._xmlLoader) {
+		this._xmlLoader.destructor();
+		this._xmlLoader = null;
+	}
+	
+	this._align = null;
+	this._arrowFFFix = null;
+	this._isIE6 = null;
+	this._isInited = null;
+	this._rtl = null;
+	this._scrollDownTMStep = null;
+	this._scrollDownTMTime = null;
+	this._scrollUpTMStep = null;
+	this._scrollUpTMTime = null;
+	this._topLevelBottomMargin = null;
+	this._topLevelOffsetLeft = null;
+	this._topLevelBottomMargin = null;
+	this._topLevelRightMargin = null;
+	this.addBaseIdAsContextZone = null;
+	this.context = null;
+	this.contextAutoHide = null;
+	this.contextAutoShow = null;
+	this.contextHideAllMode = null;
+	this.contextMenuZoneId = null;
+	this.dLoad = null;
+	this.dLoadSign = null;
+	this.dLoadUrl = null;
+	this.loaderIcon = null;
+	this.fixedPosition = null;
+	this.dirSubLevel = null;
+	this.dirTopLevel = null;
+	this.limit = null;
+	this.menuSelected = null;
+	this.menuLastClicked = null;
+	this.idPrefix = null;
+	this.imagePath = null;
+	this.menuMode = null;
+	this.menuModeTopLevelTimeout = null;
+	this.menuModeTopLevelTimeoutTime = null;
+	this.menuTimeoutHandler = null;
+	this.menuTimeoutMsec = null;
+	this.menuTouched = null;
+	this.isDhtmlxMenuObject = null;
+	this.itemHotKeyTagName = null;
+	this.itemHrefTagName = null;
+	this.itemTagName = null;
+	this.itemTextTagName = null;
+	this.itemTipTagName = null;
+	this.userDataTagName = null;
+	this.skin = null;
+	this.topId = null;
+	this.dacCycles = null;
+	this.dacCyclesIE = null;
+	this.dacSpeed = null;
+	this.dacSpeedIE = null;
+	this.zInd = null;
+	this.zIndInit = null;
+	this.zIndStep = null;
+	
+	//
+	// unload basic methods
+	
+	this._enableDacSupport = null;
+	this._selectedSubItems = null;
+	this._openedPolygons = null;
+	this._addSubItemToSelected = null;
+	this._removeSubItemFromSelected = null;
+	this._getSubItemToDeselectByPolygon = null;
+	this._hidePolygon = null;
+	this._showPolygon = null;
+	this._redistribSubLevelSelection = null;
+	this._doOnClick = null;
+	this._doOnTouchMenu = null;
+	this._searchMenuNode = null;
+	this._getMenuNodes = null;
+	this._genStr = null;
+	this._clearAndHide = null;
+	this._doOnLoad = null;
+	this.getItemType = null;
+	this.forEachItem = null;
+	this.init = null;
+	this.loadXML = null;
+	this.loadXMLString = null;
+	this._buildMenu = null;
+	this._xmlParser = null;
+	this._showSubLevelItem = null;
+	this._hideSubLevelItem = null;
+	this._countVisiblePolygonItems = null;
+	this._redefineComplexState = null;
+	this._updateItemComplexState = null;
+	this._getItemLevelType = null;
+	this._redistribTopLevelSelection = null;
+	this._initTopLevelMenu = null;
+	this._renderToplevelItem = null;
+	this.setImagePath = null;
+	this.setIconsPath = null;
+	this.setIconPath = null;
+	this._updateItemImage = null;
+	this.removeItem = null;
+	this._getAllParents = null;
+	this.renderAsContextMenu = null;
+	this.addContextZone = null;
+	this.removeContextZone = null;
+	this.isContextZone = null;
+	this._isContextMenuVisible = null;
+	this._showContextMenu = null;
+	this._doOnContextBeforeCall = null;
+	this._autoDetectVisibleArea = null;
+	this._addItemIntoGlobalStrorage = null;
+	this._addSubMenuPolygon = null;
+	this._renderSublevelPolygon = null;
+	this._renderSublevelItem = null;
+	this._renderSeparator = null;
+	this._hideContextMenu = null;
+	this.clearAll = null;
+	this.getItemPosition = null;
+	this.setItemPosition = null;
+	this.getParentId = null;
+	this.addNewSibling = null;
+	this.addNewChild = null;
+	this.addNewSeparator = null;
+	this.attachEvent = null;
+	this.callEvent = null;
+	this.checkEvent = null;
+	this.eventCatcher = null;
+	this.detachEvent = null;
+	this.dhx_Event = null;
+	this.unload = null;
+	this.items = null;
+	this.radio = null;
+	this.detachAllEvents = null;
+	this.hide = null;
+	this.showContextMenu = null;
+	this.hideContextMenu = null;
+	
+	
+	// unload extended methods
+	this._changeItemState = null;
+	this._changeItemVisible = null;
+	this._updateLoaderIcon = null;
+	this._clearAllSelectedSubItemsInPolygon = null;
+	this._checkArrowsState = null;
+	this._addUpArrow = null;
+	this._addDownArrow = null;
+	this._removeUpArrow = null;
+	this._removeDownArrow = null;
+	this._isArrowExists = null;
+	this._doScrollUp = null;
+	this._doScrollDown = null;
+	this._countPolygonItems = null;
+	this._getRadioImgObj = null;
+	this._setRadioState = null;
+	this._radioOnClickHandler = null;
+	this._getCheckboxState = null;
+	this._setCheckboxState = null;
+	this._readLevel = null;
+	this._updateCheckboxImage = null;
+	this._checkboxOnClickHandler = null;
+	this._removeArrow = null;
+	this.setItemEnabled = null;
+	this.setItemDisabled = null;
+	this.isItemEnabled = null;
+	this.getItemText = null;
+	this.setItemText = null;
+	this.loadFromHTML = null;
+	this.hideItem = null;
+	this.showItem = null;
+	this.isItemHidden = null;
+	this.setUserData = null;
+	this.getUserData = null;
+	this.setOpenMode = null;
+	this.setWebModeTimeout = null;
+	this.enableDynamicLoading = null;
+	this.getItemImage = null;
+	this.setItemImage = null;
+	this.clearItemImage = null;
+	this.setAutoShowMode = null;
+	this.setAutoHideMode = null;
+	this.setContextMenuHideAllMode = null;
+	this.getContextMenuHideAllMode = null;
+	this.setVisibleArea = null;
+	this.setTooltip = null;
+	this.getTooltip = null;
+	this.setHotKey = null;
+	this.getHotKey = null;
+	this.setItemSelected = null;
+	this.setTopText = null;
+	this.setRTL = null;
+	this.setAlign = null;
+	this.setHref = null;
+	this.clearHref = null;
+	this.getCircuit = null;
+	this.contextZones = null;
+	this.setOverflowHeight = null;
+	this.userData = null;
+	this.getRadioChecked = null;
+	this.setRadioChecked = null;
+	this.addRadioButton = null;
+	this.setCheckboxState = null;
+	this.getCheckboxState = null;
+	this.addCheckbox = null;
+	this.serialize = null;
+	
+	
+	this.extendedModule = null;
+	
+	// remove menu from global store
+	dhtmlxMenuObjectLiveInstances[this._UID] = null;
+	try { delete dhtmlxMenuObjectLiveInstances[this._UID]; } catch(e) {}
+	this._UID = null;
+	
+}
+// dhtmlxmenu global store
+var dhtmlxMenuObjectLiveInstances = {};
+
+dhtmlXMenuObject.prototype.i18n = {
+	dhxmenuextalert: "dhtmlxmenu_ext.js required"
+};
+
+//menu
+(function(){
+	dhtmlx.extend_api("dhtmlXMenuObject",{
+		_init:function(obj){
+			return [obj.parent, obj.skin];
+		},
+		align:"setAlign",
+		top_text:"setTopText",
+		context:"renderAsContextMenu",
+		icon_path:"setIconsPath",
+		open_mode:"setOpenMode",
+		rtl:"setRTL",
+		skin:"setSkin",
+		dynamic:"enableDynamicLoading",
+		xml:"loadXML",
+		items:"items",
+		overflow:"setOverflowHeight"
+	},{
+		items:function(arr,parent){
+			var pos = 100000;
+			var lastItemId = null;
+			for (var i=0; i < arr.length; i++) {
+				var item=arr[i];
+				if (item.type == "separator") {
+					this.addNewSeparator(lastItemId, pos, item.id);
+					lastItemId = item.id;
+				} else {
+					this.addNewChild(parent, pos, item.id, item.text, item.disabled, item.img, item.img_disabled);
+					lastItemId = item.id;
+					if (item.items) this.items(item.items,item.id);
+				}
+			}
+		}
+	});
+})();
+
+// terrace
+dhtmlXMenuObject.prototype._improveTerraceSkin = function() {
+	
+	for (var a in this.itemPull) {
+		
+		if (this.itemPull[a].parent == this.idPrefix+this.topId && this.idPull[a] != null) { // this.idPull[a] will null for separator
+			
+			var bl = false;
+			var br = false;
+			
+			// left side, first item, not sep
+			if (this.idPull[a].parentNode.firstChild == this.idPull[a]) {
+				bl = true;
+			}
+			
+			// right side, last item, not sep
+			if (this.idPull[a].parentNode.lastChild == this.idPull[a]) {
+				br = true;
+			}
+			
+			// check siblings
+			for (var b in this.itemPull) {
+				if (this.itemPull[b].type == "separator" && this.itemPull[b].parent == this.idPrefix+this.topId) {
+					if (this.idPull[a].nextSibling == this.idPull["separator_"+b]) {
+						br = true;
+					}
+					if (this.idPull[a].previousSibling == this.idPull["separator_"+b]) {
+						bl = true;
+					}
+				}
+			}
+			
+			this.idPull[a].style.borderLeft = (bl?"1px solid #cecece":"0px solid white");
+			this.idPull[a].style.borderTopLeftRadius = this.idPull[a].style.borderBottomLeftRadius = (bl?"5px":"0px");
+			
+			this.idPull[a].style.borderTopRightRadius = this.idPull[a].style.borderBottomRightRadius = (br?"5px":"0px");
+			
+			this.idPull[a]._bl = bl;
+			this.idPull[a]._br = br;
+			
+		}
+	}
+	
+};
+
+dhtmlXMenuObject.prototype._improveTerraceButton = function(id, state) {
+	if (state) {
+		this.idPull[id].style.borderBottomLeftRadius = (this.idPull[id]._bl ? "5px" : "0px");
+		this.idPull[id].style.borderBottomRightRadius = (this.idPull[id]._br ? "5px" : "0px");
+	} else {
+		this.idPull[id].style.borderBottomLeftRadius = "0px";
+		this.idPull[id].style.borderBottomRightRadius = "0px";
+	}
+};
