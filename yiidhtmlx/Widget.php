@@ -97,8 +97,7 @@ class Widget extends BaseWidget
 
 			//load data for tree in a different way
 			if($name === 'GridObject')
-			{
-				$js[] = "dhtmlx$id.init();";
+			{				
 				if($this->enablePaging)
 				{					
 					$js[] = "dhtmlx$id.enablePaging(true,10,5,'pagingArea$id',true,'recinfoArea$id');"; //no of recs and pages needs to be parametrized
