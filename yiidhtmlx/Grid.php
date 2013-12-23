@@ -46,6 +46,12 @@ class Grid extends Widget
 	* @var object name of the dhtmlxmenuobject, default empty
 	*/
 	public $enableContextMenu = '';
+
+	/**
+	 * [$enablePaging description]
+	 * @var boolean default false
+	 */
+	public $enablePaging = false;
 	
 	/**
 	 * Initializes the widget.
