@@ -100,8 +100,11 @@ class Widget extends BaseWidget
 			{				
 				if($this->enablePaging)
 				{					
-					$js[] = "dhtmlx$id.enablePaging(true,10,5,'pagingArea$id',true,'recinfoArea$id');"; //no of recs and pages needs to be parametrized
-					//$js[] = "dhtmlx$id.setPagingSkin('bricks');";
+					$js[] = "dhtmlx$id.enablePaging(true,10,5,'pagingArea$id',true,'recinfoArea$id');"; //no of recs and pages needs to be parametrized					
+				}
+				if($this->enableSmartRendering)
+				{					
+					$js[] = "dhtmlx$id.enableSmartRendering(true,50);";
 				}				
 			}
 
