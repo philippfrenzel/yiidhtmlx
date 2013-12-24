@@ -13,7 +13,7 @@ class MenuObjectAsset extends AssetBundle
 {
     public $sourcePath = '@yiidhtmlx/assets';
     public $css = array(
-        'dhtmlxMenu/skins/dhtmlxgrid_dhx_skyblue.css'
+        'dhtmlxMenu/skins/dhtmlxgrid_dhx_web.css'
     );
     public $js = array(
         'dhtmlxMenu/dhtmlxmenu.js',

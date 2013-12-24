@@ -15,7 +15,7 @@ class GridObjectAsset extends AssetBundle
     public $css = array(
         'dhtmlxGrid/dhtmlxgrid.css',
         'dhtmlxGrid/dhtmlxgrid_skins.css',
-        'dhtmlxGrid/skins/dhtmlxgrid_dhx_skyblue.css',        
+        'dhtmlxGrid/skins/dhtmlxgrid_dhx_web.css',        
     );
     public $js = array(
         'dhtmlxGrid/dhtmlxgrid.js',

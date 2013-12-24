@@ -13,7 +13,7 @@ class PopupAsset extends AssetBundle
 {
     public $sourcePath = '@yiidhtmlx/assets';
     public $css = array(
-        'dhtmlxPopup/skins/dhtmlxgrid_dhx_skyblue.css'
+        'dhtmlxPopup/skins/dhtmlxgrid_dhx_web.css'
     );
     public $js = array(
         'dhtmlxPopup/dhtmlxpopup.js',
