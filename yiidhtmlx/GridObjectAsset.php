@@ -19,6 +19,7 @@ class GridObjectAsset extends AssetBundle
     );
     public $js = array(
         'dhtmlxGrid/dhtmlxgrid.js',
+        'dhtmlxGrid/connector.js',
         'dhtmlxGrid/dhtmlxgridcell.js',
         'dhtmlxGrid/ext/dhtmlxgrid_json.js',
         'dhtmlxGrid/ext/dhtmlxgrid_srnd.js',
