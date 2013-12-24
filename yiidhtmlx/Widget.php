@@ -102,11 +102,7 @@ class Widget extends BaseWidget
 				{					
 					$js[] = "dhtmlx$id.enablePaging(true,10,5,'pagingArea$id',true,'recinfoArea$id');"; //no of recs and pages needs to be parametrized
 					//$js[] = "dhtmlx$id.setPagingSkin('bricks');";
-				}
-				if($this->enableSmartRendering)
-				{
-					$js[] = "dhtmlx$id.enableSmartRendering(true,50);";
-				}
+				}				
 			}
 
 			//load data for tree in a different way
