@@ -124,6 +124,50 @@ echo Grid::widget(
 );
 ```
 
+As we are using smart rendering, the full functionality in the controller referenced by url should look as followed:
+```
+   /**
+   * returns the json for the dhtmlx grid
+   * @param  date  $un       YYYYMMDD
+   * @param  integer $posStart current position in grid scroll
+   * @param  integer $count    last record handed over
+   * @return JSON               json object, see dhtmlx for more information
+   */
+  public function actionDhtmlxgrid($un=NULL, $posStart=0, $count=0){
+    $currentPage = 0;
+    $pageSize = 50;
+    
+    if($posStart>0){
+      $currentPage = round(($posStart / $pageSize),0);
+    }
+
+    $query = new Query;
+    $provider = new ArrayDataProvider([
+      'allModels' => $query->select('id,organisationName,taxNumber,registrationCountryCode')->from('tbl_party')->all(),
+      'sort' => [
+        'attributes' => ['id', 'organisationName', 'taxNumber'],
+      ],
+      'pagination' => [
+        'pageSize' => $pageSize,
+        'page' => $currentPage
+      ],
+    ]);
+
+    //the grid header to pass over total count
+    $clean = ['total_count'=>Party::find()->count(),'pos'=>$posStart];
+    foreach($provider->getModels() AS $record){
+      if(!is_null($record))
+      {
+        $clean['rows'][]=['id'=>$record['id'],'data'=>array_values($record)];
+      }
+    }
+
+    header('Content-type: application/json');
+    echo Json::encode($clean);
+    exit();
+  }
+```
+
 * The clientOptions->parent must be the same as the options->id !
 * The skin is currently default to dhx_terrace.
 * For a complete list of clientOptions check out the dhtmlx.com webpage
