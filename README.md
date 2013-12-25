@@ -168,6 +168,8 @@ As we are using smart rendering, the full functionality in the controller refere
   }
 ```
 
+If you wanna script using the id of the object, the name will be "dhtmlxID" -> dhtmlxmyTestGrid.
+
 * The clientOptions->parent must be the same as the options->id !
 * The skin is currently default to dhx_terrace.
 * For a complete list of clientOptions check out the dhtmlx.com webpage
