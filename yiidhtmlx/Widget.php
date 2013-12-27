@@ -99,11 +99,17 @@ class Widget extends BaseWidget
 			if($name === 'GridObject')
 			{				
 				if($this->enablePaging)
-				{					
+				{	
+					/** @var \yii\web\AssetBundle $assetClass */
+					$PNGassetClass = 'yiidhtmlx\\' . $name.'PaginationAsset';
+					$PNGassetClass::register($view);				
 					$js[] = "dhtmlx$id.enablePaging(true,10,5,'pagingArea$id',true,'recinfoArea$id');"; //no of recs and pages needs to be parametrized					
 				}
 				if($this->enableSmartRendering)
-				{					
+				{
+					/** @var \yii\web\AssetBundle $assetClass */
+					$SMRassetClass = 'yiidhtmlx\\' . $name.'SmartRenderingAsset';
+					$SMRassetClass::register($view);					
 					$js[] = "dhtmlx$id.enableSmartRendering(true,50);";
 				}				
 			}
