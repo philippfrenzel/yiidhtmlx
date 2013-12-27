@@ -14,8 +14,7 @@ class GridObjectSmartRenderingAsset extends AssetBundle
     public $sourcePath = '@yiidhtmlx/assets';
     public $css = array(
     );
-    public $js = array(
-        'dhtmlxGrid/ext/dhtmlxgrid_json.js',
+    public $js = array(        
         'dhtmlxGrid/ext/dhtmlxgrid_srnd.js',
     );
     public $depends = array(
