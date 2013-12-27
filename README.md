@@ -109,8 +109,9 @@ echo Grid::widget(
 				array('label'=>Yii::t('app','Cap.'),'width'=>'100','type'=>'ed'),
 			),
 		 	'image_path' => $imgPath
-		),			
-	    'options'=>array(
+		),
+    'enableSmartRendering' => false, 
+    'options'=>array(
 			'id'    => 'myTestGrid',
 		),
 		'clientDataOptions'=>array(

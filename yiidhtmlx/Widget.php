@@ -124,11 +124,6 @@ class Widget extends BaseWidget
 				$js[] = "dhtmlx$id.load('$url', '$type');";
 			}
 
-			/*if($name === 'GridObject')
-			{
-				$js[] = "dhtmlxDP$id = new dataProcessor('$url');";
-        $js[] = "dhtmlxDP$id.init(dhtmlx$id);";
-			}*/
 			$view->registerJs(implode("\n", $js),View::POS_READY);
 		}
 
