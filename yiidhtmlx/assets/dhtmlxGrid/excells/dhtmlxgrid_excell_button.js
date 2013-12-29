@@ -7,7 +7,7 @@ function eXcell_button(cell){                                    //excell name i
     this.isDisabled = function(){ return true; }      // the cell is read-only, that's why it is always in the disabled state
     this.setValue=function(val){
         var row_id=this.cell.parentNode.id;
-        this.setCValue("<a id='win_"+row_id+"' class='btn btn_primary' href='"+val+"'></a>",val);                                      
+        this.setCValue("<a id='win_"+row_id+"' class='btn btn_primary' href='"+val+"'>edit</a>",val);                                      
     }
 }
 eXcell_button.prototype = new eXcell;    // nest all other methods from base class
