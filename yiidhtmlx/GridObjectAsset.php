@@ -21,6 +21,9 @@ class GridObjectAsset extends AssetBundle
         'dhtmlxGrid/dhtmlxgrid.js',
         'dhtmlxGrid/dhtmlxgridcell.js',        
         'dhtmlxGrid/ext/dhtmlxgrid_filter.js',
+        'dhtmlxGrid/excells/dhtmlxgrid_excell_link',
+        'dhtmlxGrid/excells/dhtmlxgrid_excell_calendar',
+        'dhtmlxGrid/excells/dhtmlxgrid_excell_acheck',
     );
     public $depends = array(
         '\yiidhtmlx\WidgetAsset',
