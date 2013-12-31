@@ -111,6 +111,13 @@ class Widget extends BaseWidget
 					$SMRassetClass = 'yiidhtmlx\\' . $name.'SmartRenderingAsset';
 					$SMRassetClass::register($view);					
 					$js[] = "dhtmlx$id.enableSmartRendering(true,50);";
+				}
+				if(!is_null($this->setGroupBy))
+				{
+					/** @var \yii\web\AssetBundle $assetClass */
+					$SMRassetClass = 'yiidhtmlx\\' . $name.'GroupByAsset';
+					$SMRassetClass::register($view);					
+					$js[] = "dhtmlx$id.groupBy(".$this->setGroupBy.");";
 				}				
 			}
 

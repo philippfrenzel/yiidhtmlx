@@ -52,6 +52,12 @@ class Grid extends Widget
 	 * @var boolean default false
 	 */
 	public $enablePaging = false;
+
+	/**
+	 * [$setGroupBy description]
+	 * @var INTEGER that represents the column to group by
+	 */
+	public $setGroupBy = NULL;
 	
 	/**
 	 * [$enableSmartRendering description]
