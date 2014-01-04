@@ -58,6 +58,12 @@ class Grid extends Widget
 	 * @var INTEGER that represents the column to group by
 	 */
 	public $setGroupBy = NULL;
+
+
+	/**
+	 * set the number format of columns	
+	 */
+	public $setNumberFormat = array();
 	
 	/**
 	 * [$enableSmartRendering description]

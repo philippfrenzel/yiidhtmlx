@@ -118,6 +118,14 @@ class Widget extends BaseWidget
 					$SMRassetClass = 'yiidhtmlx\\' . $name.'GroupByAsset';
 					$SMRassetClass::register($view);					
 					$js[] = "dhtmlx$id.groupBy(".$this->setGroupBy.");";
+				}
+				if(!is_array($this->setNumberFormat))
+				{
+					foreach($this->setNumberFormat AS $index=>$format){
+						if($format != ''){
+							$js[] = "dhtmlx$id.setNumberFormat('".$format."',".$index.");";
+						}
+					}
 				}				
 			}
 
