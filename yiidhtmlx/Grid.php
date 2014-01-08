@@ -59,6 +59,11 @@ class Grid extends Widget
 	 */
 	public $setGroupBy = NULL;
 
+	/**
+	 * [$attachFooter description]
+	 * @var [type]
+	 */
+	public $attachFooter = NULL;
 
 	/**
 	 * set the number format of columns	

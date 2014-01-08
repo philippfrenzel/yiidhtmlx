@@ -119,6 +119,10 @@ class Widget extends BaseWidget
 					$SMRassetClass::register($view);					
 					$js[] = "dhtmlx$id.groupBy(".$this->setGroupBy.");";
 				}
+				if(!is_null($this->attachFooter))
+				{
+					$js[] = "dhtmlx$id.attachFooter(".$this->attachFooter.");";
+				}				
 				foreach($this->setNumberFormat AS $index=>$format){
 					if($format != ''){
 						$js[] = "dhtmlx$id.setNumberFormat('".$format."',".$index.");";
