@@ -149,7 +149,7 @@ class Widget extends BaseWidget
 				}
 				else
 				{
-					$js[] = "dhtmlx$id.load('$url', '$type',".$this->attachFooterScript.");";
+					$js[] = "dhtmlx$id.load('$url',".$this->attachFooterScript.", '$type');";
 				}
 			}
 
