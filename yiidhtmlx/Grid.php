@@ -66,6 +66,12 @@ class Grid extends Widget
 	public $attachFooter = NULL;
 
 	/**
+	 * [$attachFooterScript description] by default this is named calculateFooterValues
+	 * @var string function name to be executed after loading the data source
+	 */
+	public $attachFooterScript = 'calculateFooterValues';
+
+	/**
 	 * set the number format of columns	
 	 */
 	public $setNumberFormat = array();

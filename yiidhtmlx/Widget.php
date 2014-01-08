@@ -143,7 +143,14 @@ class Widget extends BaseWidget
 			}
 			else
 			{
-				$js[] = "dhtmlx$id.load('$url', '$type');";
+				if(is_null($this->attachFooter))
+				{
+					$js[] = "dhtmlx$id.load('$url', '$type');";
+				}
+				else
+				{
+					$js[] = "dhtmlx$id.load('$url', '$type',".$this->attachFooterScript.");";
+				}
 			}
 
 			$view->registerJs(implode("\n", $js),View::POS_READY);
