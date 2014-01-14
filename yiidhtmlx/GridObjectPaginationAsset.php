@@ -16,7 +16,7 @@ class GridObjectPaginationAsset extends AssetBundle
         'dhtmlxGrid/ext/dhtmlxgrid_pgn_bricks.css'
     );
     public $js = array(
-        'dhtmlxGrid/ext/dhtmlxgrid_json.js',
+        //'dhtmlxGrid/ext/dhtmlxgrid_json.js',
         'dhtmlxGrid/ext/dhtmlxgrid_pgn.js'
     );
     public $depends = array(
