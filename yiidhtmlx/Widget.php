@@ -157,7 +157,7 @@ class Widget extends BaseWidget
 		}
 
 		//load tabs for tabbar
-		if($name === 'Tabbar')
+		if($name === 'TabBar')
 		{
 			$js = array();
 			foreach($this->tabs AS $tabID=>$htmlID)
