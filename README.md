@@ -248,3 +248,25 @@ DEL;
 $this->registerJs($jumpJS); //where $this is the current view!
 
 ```
+
+Tabbar Object
+=============
+```
+use yiidhtmlx\Tabbar;
+
+echo Tabbar::widget(
+  [
+  'clientOptions'=>[
+      'parent'      => 'PurchaseOrderTabbar',
+      'image_path'  => Yii::$app->AssetManager->getBundle('yiidhtmlx\TabbarObjectAsset')->baseUrl."/dhtmlxTabbar/imgs/dhx_terrace/",
+      'skin'        => "dhx_terrace",       
+      'tabs' => [
+        ['id'=> 'tab_one','label'=>'id','width'=>'100%']
+      ],
+    ],
+    'tabs'=>[
+      ['tab_one'=>'tabrequested']
+    ]   
+  ]
+);
+```

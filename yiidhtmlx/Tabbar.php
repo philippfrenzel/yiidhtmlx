@@ -37,6 +37,7 @@ class Tabbar extends Widget
 
 	/**
 	 * Client Options, see dhtmlx tabbar docs for parameters
+	 * See readme for example
 	 * @var [type]
 	 */
 	public $clientOptions=array();
