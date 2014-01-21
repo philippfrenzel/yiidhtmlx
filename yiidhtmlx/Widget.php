@@ -156,6 +156,16 @@ class Widget extends BaseWidget
 			$view->registerJs(implode("\n", $js),View::POS_READY);
 		}
 
+		//load tabs for tabbar
+		if($name === 'TabbarObject')
+		{
+			foreach($this->tabs AS $tabID=>$htmlID)
+			{
+				$js[] = "dhtmlx$id.setContent('$tabID','$htmlID');";
+			}
+			$view->registerJs(implode("\n", $js),View::POS_READY);
+		}
+
 		if (!empty($this->clientEvents)) {
 			$js = array();
 			foreach ($this->clientEvents as $event => $handler) {
