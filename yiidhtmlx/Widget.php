@@ -164,6 +164,8 @@ class Widget extends BaseWidget
 			{
 				$js[] = "dhtmlx$id.setContent('$tabID','$htmlID');";
 			}
+			//enable inner scroll!
+			$js[] = "dhtmlx$id.showInnerScroll();";
 			$view->registerJs(implode("\n", $js),View::POS_READY);
 		}
 
