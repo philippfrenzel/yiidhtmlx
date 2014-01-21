@@ -36,13 +36,6 @@ class Tabbar extends Widget
 {
 
 	/**
-	 * Client Options, see dhtmlx tabbar docs for parameters
-	 * See readme for example
-	 * @var [type]
-	 */
-	public $clientOptions=array();
-
-	/**
 	 * Array of page tab id's and html id's that will be put inside the tabbs
 	 * @var [type]
 	 */
@@ -65,7 +58,7 @@ class Tabbar extends Widget
 		echo Html::beginTag('div', $this->options) . "\n";
 		//echo $this->renderChart()."\n";
 		echo Html::endTag('div')."\n";
-		$this->registerPlugin('tabbarObject');
+		$this->registerPlugin('tabBar');
 	}
 
 	/**

@@ -9,7 +9,7 @@ use yii\web\AssetBundle;
  * @author Philipp Frenzel <philipp@frenzel.net> 
  */
 
-class TabbarObjectAsset extends AssetBundle
+class TabbarAsset extends AssetBundle
 {
     public $sourcePath = '@yiidhtmlx/assets';
     public $css = array(
