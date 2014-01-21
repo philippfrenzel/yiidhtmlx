@@ -159,6 +159,7 @@ class Widget extends BaseWidget
 		//load tabs for tabbar
 		if($name === 'TabbarObject')
 		{
+			$js = array();
 			foreach($this->tabs AS $tabID=>$htmlID)
 			{
 				$js[] = "dhtmlx$id.setContent('$tabID','$htmlID');";
