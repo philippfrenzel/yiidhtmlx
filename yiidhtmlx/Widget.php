@@ -44,6 +44,8 @@ class Widget extends BaseWidget
 	 */
 	public $clientDataOptions = array();
 
+	public $attachFooter = NULL;
+
 	/**
 	 * Initializes the widget.
 	 * If you override this method, make sure you call the parent implementation first.
