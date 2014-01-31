@@ -114,6 +114,10 @@ class Widget extends BaseWidget
 					$SMRassetClass::register($view);					
 					$js[] = "dhtmlx$id.enableSmartRendering(true,50);";
 				}
+				else{
+					$FilterassetClass = 'yiidhtmlx\\' . $name.'FilterAsset';
+					$FilterassetClass::register($view);
+				}
 				if(!is_null($this->setGroupBy))
 				{
 					/** @var \yii\web\AssetBundle $assetClass */
