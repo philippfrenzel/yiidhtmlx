@@ -15,7 +15,7 @@ class GridObjectSmartRenderingAsset extends AssetBundle
     public $css = array(
     );
     public $js = array(
-        'dhtmlxGrid/ext/dhtmlxgrid_json.js',        
+        //'dhtmlxGrid/ext/dhtmlxgrid_json.js',        
         'dhtmlxGrid/ext/dhtmlxgrid_srnd.js',
     );
     public $depends = array(
