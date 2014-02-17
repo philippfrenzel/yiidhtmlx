@@ -72,9 +72,7 @@ class Widget extends BaseWidget
 
 		/** @var \yii\web\AssetBundle $assetClass */
 		$assetClass = 'yiidhtmlx\\' . $name.'Asset';
-		$assetClass::register($view);
-
-		
+		$assetClass::register($view);		
 
 		if ($this->clientOptions !== false) {
 			$options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
@@ -107,6 +105,7 @@ class Widget extends BaseWidget
 					$PNGassetClass::register($view);				
 					$js[] = "dhtmlx$id.enablePaging(true,10,5,'pagingArea$id',true,'recinfoArea$id');"; //no of recs and pages needs to be parametrized					
 				}
+				
 				if($this->enableSmartRendering)
 				{
 					/** @var \yii\web\AssetBundle $assetClass */
@@ -118,6 +117,7 @@ class Widget extends BaseWidget
 					$FilterassetClass = 'yiidhtmlx\\' . $name.'FilterAsset';
 					$FilterassetClass::register($view);
 				}
+				
 				if(!is_null($this->setGroupBy))
 				{
 					/** @var \yii\web\AssetBundle $assetClass */
@@ -125,10 +125,12 @@ class Widget extends BaseWidget
 					$SMRassetClass::register($view);					
 					$js[] = "dhtmlx$id.groupBy(".$this->setGroupBy.");";
 				}
+				
 				if(!is_null($this->attachFooter))
 				{
 					$js[] = "dhtmlx$id.attachFooter(".$this->attachFooter.");";
 				}				
+				
 				foreach($this->setNumberFormat AS $index=>$format){
 					if($format != ''){
 						$js[] = "dhtmlx$id.setNumberFormat('".$format."',".$index.");";
