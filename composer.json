@@ -23,7 +23,5 @@
 	"autoload": {
 		"psr-0": { "yiidhtmlx\\": "" }
 	},
-	"extra": {
-          "bootstrap": "yiidhtmlx\\Extension"
-  }
+	"targetDir":"philippfrenzel/yiidhtmlx"
 }
